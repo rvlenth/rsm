@@ -1,0 +1,192 @@
+NEWS for rsm package
+
+Changes in version 2.01 (xx December 2012)
+
+  * Added .ccd.1.41 and .bbd.141 functions, so that given the random seed, 
+    one can reproduce a design that was generated in version 1.41 or earlier
+    with the identical randomization. These functions are NOT exported.
+
+  * Renamed 'join' to 'djoin' to avoid clashing with 'join' function in 
+    the package conf.design
+
+  * coded.data and as.coded.data generate automatic codings if no formulas 
+    are provided.
+
+
+
+Changes in version 2.00 (7 December 2012)
+
+This is a major update of 'rsm'. It includes more pervasive and complete integration
+of coded.data, and improves flexibility in generating designs and RSM analysis.
+
+  * Old coded.data objects created before this version may need to be updated 
+    (via as.coded.data) in order to use some new functions such as join
+
+  * Allows more general rsm models, e.g. 
+        FO(x1,x2,x3,x4) + TWI(formula = ~x1:(x2+x3+x4)) + PQ(x1,x3)
+
+  * Can deal with singular second-order effects (e.g. stationary ridge). New threshold
+    option in canonical analysis to actually force singularity -- which likely will
+    identify a stationary point nearer the design center.
+
+  * All design-generating functions ALWAYS create coded.data objects, and they
+    have columns for run.order and std.order. There are additional (under the hood)
+    enhancements to coded.data to keep track of primary variables, blocks, etc.
+
+  * New cube(), star(), foldover(), dupe(), and join() functions for creating and
+    combining designs. These should usually be used in preference to ccd() when
+    doing iterative response-surface experimentation
+
+  * Added a oneblock argument to ccd() so we can create an un-blocked CCD
+
+  * A star block may be added to ANY design, including ones imported from other
+    packages. Options alpha = "orthogonal" and alpha = "rotatable" calculate the
+    the design moments, check suitability and set alpha to meet the criterion, or
+    raise an error condition if it cannot be met.
+
+  * New 'block' argument in coded-data-generating functions. May be needed to
+    identify blocking factor(s). 
+
+  * New varfcn() function for examining the scaled variance function for a design
+
+  * contour.lm, persp.lm, image.lm now have "decode" argument (TRUE by default) 
+    that displays decoded values on the coordinate axes when codings are available
+
+  * contour.lm et al. now average over any factor levels rather than picking the
+    first level of each. (May still specify particular levels in 'at')
+
+  * New vignette with a simulated example of a series of response-surface experiments
+
+  * Fixed some scoping bugs so that rsm can be called within a function. (This should
+    make it possible to retire the spotRsm function in the SPOT package)
+
+  * parse.coding function replaced by .parse.coding (and not exported)
+
+  * row.names attribute for a design is updated to 1:nrow(design) every time it is
+    randomized. 'ccd' does not create the same weird row names that it used to
+
+  * print.coded.data now has argument to decide whether to show coded values or 
+    actual values (actual is the default)
+
+  * function "codings<-" to change the codings
+
+  * function "[.coded.data" implemented for smarter handling of subsetted data;
+    for example, if a coded column is excluded, so is its coding.
+
+  * New functions "names<-.coded.data", "truenames.coded.data", "truenames<-.coded.data"
+    for smart handling of variable names, keeping coding consistent with names
+
+  * xs() function to obtain stationary point of an rsm object
+
+  * TWI() function now has optional 'formula' argument to aid in specifying
+    reduced version of second-order models
+
+
+Changes in version 1.41 (July 28, 2012)
+
+  * Added a NAMESPACE so it will work in newer versions of R
+  
+
+Changes in version 1.40 (July 28, 2010)
+
+  * Fixed scoping bugs in 'model.data' (affects 'contour.lm' etc.)
+  
+  * Fixed scoping bugs in 'rsm'
+  
+  * Fix to 'rsm' -- coding worked incorrectly when 'data' keyword
+    was not given explicitly.  Side effect: 'data' is no longer a 
+    separate argument, it's just part of '...'
+  
+  * Added 'inscribed' optional argument to 'ccd'
+    (Thanks to Ron Behlinger for suggesting this)
+  
+  * 'contour.lm' checks to ensure that elements of 'at' and 'bounds',
+    if provided, are named.
+  
+  * New 'atlab' argument in 'contour.lm' and related functions.
+    Now by default, the 'at' values are displayed for variables not on
+    the coordinate axes; 'atlab' specifies where this information is
+    shown, or suppresses it.
+  
+
+Changes in version 1.31 (December 19, 2009)
+
+  * Fixed logic bug in contour.lm - didn't handle xlabs correctly
+
+
+Changes in version 1.30 (December 16, 2009)
+
+  * Enhanced contour.lm with hooks and improved axis labeling
+    Also changed default to image=FALSE -- seems more "pure"
+  
+  * Added persp.lm for perspective plots akin to contour.lm
+  
+  * Added image.lm for image-only plots akin to contour.lm
+  
+  * Added 'codings' methods for coded.data and rsm objects
+  
+  * Added 'canonical' method for rsm for more convenient access
+  
+  * Updated references to 3rd ed. of Myers, Montgomery, Anderson-Cook
+    (also corrected misspelling of Myers -- my apologies to Ray.)
+  
+  * Additional vignette "rsm-plots" describing contour, image, persp
+    in more detail
+
+
+Changes in version 1.21 (October 30, 2009)
+
+  * Bug fix in contour.lm (axis labeling was reversed whern image=FALSE)
+    Thanks to Eduard Sturm for reporting this
+  
+
+Changes in version 1.20 (October 20, 2009)
+
+  * Replaced citation to point to paper published in JSS
+  
+  * Replaced vignette by JSS article
+
+
+Changes in version 1.13 (12 October, 2009)
+
+  * Fixed one misused macro in documentation
+
+
+Changes in version 1.12 (5 May, 2009)
+
+  * Modified CITATION file to conform to standards
+
+
+Changes in version 1.11 (6 March, 2009)
+
+  * Changed last variable name to 'logSD' in 'heli' and clarified 
+    documentation for that dataset
+    
+  * Fixed bug in contour.lm relating to original use of model formula,
+    e.g. it now works with for model fitted by 'lm(swiss)'
+
+
+Changes from version 1.10 (30 December, 2008)
+
+  * Added functions ccd() and bbd() for generating RS designs
+  
+  * Added function ccd.pick() to help in choosing good CCDs
+  
+  * Added checks in rsm() for aliased parameters
+
+  * Added NEWS and CITATION files.
+  
+  * Tweaks/corrections/additions to documentation and vignettes.
+  
+
+Changes from version 1.01 (5 December 2008)
+
+  * Added canonical.path function
+  
+  * Modified formula handling in coded.data and relatives so that any
+    legal expression will work (as long as it's linear!)
+  
+  * Overhauled contour.lm, with different argument list.  Now it is much 
+    easier to use, and can produce multiple plots with one call.
+    
+  * Provided a true vignette.  Other improvements to documentation.

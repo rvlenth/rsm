@@ -1,0 +1,19 @@
+import(graphics)
+
+S3method(print, coded.data)
+S3method(print, summary.rsm)
+S3method(summary, rsm)
+S3method("[", coded.data)
+S3method(codings, coded.data)
+S3method(codings, rsm)
+S3method("names<-", coded.data)
+S3method(truenames, coded.data)
+S3method("truenames<-", coded.data)
+
+S3method(contour, lm)
+S3method(image, lm)
+S3method(persp, lm)
+
+### exportPattern("^[[:alpha:]]+")
+#--- export all that don't start with "."
+exportPattern("^[^\\.]")
