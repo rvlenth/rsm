@@ -108,7 +108,7 @@ PE = function(...)
 rsm = function (formula, data, ...) {
     CALL = match.call(stats::lm)
     CALL[[1]] = as.name("lm")
-    oc = as.character(deparse(formula))
+    oc = paste(as.character(deparse(formula)), collapse = " ")
     nc = sub("SO\\(([a-zA-Z0-9, ._]+)\\)", "FO\\(\\1\\) + TWI\\(\\1\\) + PQ\\(\\1\\)", oc)
   # no comma -> only 1 var -> no TWI ...
     nc = sub("TWI\\([a-zA-Z0-9 ._]+\\)", "", nc)

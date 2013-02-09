@@ -1,6 +1,12 @@
 NEWS for rsm package
 
-Changes in version 2.01 (xx December 2012)
+Changes in version 2.02 (9 February 2013)
+
+  * Corrected deparse bug that occurs when model formula wraps a line.
+    (Thanks go to Keith Ponting, Avaya)
+
+
+Changes in version 2.01 (29 December 2012)
 
   * Added .ccd.1.41 and .bbd.141 functions, so that given the random seed, 
     one can reproduce a design that was generated in version 1.41 or earlier
