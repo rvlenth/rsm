@@ -2,6 +2,12 @@ NEWS for rsm package
 
 Changes in version 2.02 (9 February 2013)
 
+  * Corrected error in slice labels present since 2.00
+    (Thanks AGAIN go to Keith Ponting, Avaya)
+
+
+Changes in version 2.02 (9 February 2013)
+
   * Corrected deparse bug that occurs when model formula wraps a line.
     (Thanks go to Keith Ponting, Avaya)
 

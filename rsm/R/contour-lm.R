@@ -124,8 +124,8 @@ contour.lm = function(x, form, at, bounds, zlim,
     })
     
     # get names to use in slice labels
-#     isnum = sapply(at, is.numeric)
-#     allnum = names(at)[isnum]
+     isnum = sapply(at, is.numeric) # was commented-out
+     allnum = names(at)[isnum]      # ditto
 #     allfac = names(at)[!isnum]
     
     ### Accumulate the z values
@@ -162,7 +162,7 @@ contour.lm = function(x, form, at, bounds, zlim,
             #atidx = - sapply(vnames, grep, allnum)
             #atidx = allnum[atidx] 
             # REPLACEMENT:
-            atidx = vnames
+            atidx = setdiff(allnum, vnames)  ## was vnames in rsm2.0 -- NOT correct!
             if (length(atidx) > 0) { ###### || length(allfac) > 0) {
                 atlabs = NULL
                 if (length(atidx) > 0) {
