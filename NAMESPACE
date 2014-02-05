@@ -17,3 +17,6 @@ S3method(persp, lm)
 ### exportPattern("^[[:alpha:]]+")
 #--- export all that don't start with "."
 exportPattern("^[^\\.]")
+
+# --- to make Ulrike's life easier...
+export(.ccd.1.41, .bbd.1.41)

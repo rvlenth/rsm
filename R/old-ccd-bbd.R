@@ -159,7 +159,7 @@
     if (new.style) {
         if (missing(coding))
             coding = sapply(xvars, function(v) as.formula(paste(v,"~",v,".as.is", sep="")))
-        des = rsm:::.randomize(as.coded.data(des, formulas=coding), randomize=FALSE)
+        des = .randomize(as.coded.data(des, formulas=coding), randomize=FALSE)
         des$std.order = stdord
     }
     
