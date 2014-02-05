@@ -9,13 +9,16 @@
 }
 \usage{
 \method{contour}{lm}(x, form, at, bounds, zlim, xlabs, hook, 
-  plot.it = TRUE, atpos = 1, decode = TRUE, image = FALSE, img.col = terrain.colors(50), ...)
+    plot.it = TRUE, atpos = 1, decode = TRUE, image = FALSE, 
+    img.col = terrain.colors(50), ...)
 
-\method{image}{lm}(x, form, at, bounds, zlim, xlabs, hook, atpos = 1, decode = TRUE, ...)
+\method{image}{lm}(x, form, at, bounds, zlim, xlabs, hook, 
+    atpos = 1, decode = TRUE, ...)
 
-\method{persp}{lm}(x, form, at, bounds, zlim, zlab, xlabs, col = "white", 
-  contours = NULL, hook, atpos = 3, decode = TRUE, theta = -25, phi = 20, r = 4, 
-  border = NULL, box = TRUE, ticktype = "detailed", ...) 
+\method{persp}{lm}(x, form, at, bounds, zlim, zlab, xlabs, 
+    col = "white", contours = NULL, hook, atpos = 3, decode = TRUE, 
+    theta = -25, phi = 20, r = 4, border = NULL, box = TRUE, 
+    ticktype = "detailed", ...) 
 }
 \arguments{
   \item{x}{A \code{lm} object.}
