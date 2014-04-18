@@ -48,7 +48,7 @@
   \item{r}{Viewing distance passed to \code{\link{persp}} (different default).}
   \item{border, box}{Options passed to \code{\link{persp}}.}
   \item{ticktype}{Option passed to \code{\link{persp}} (different default).}
-  \item{\dots}{Additional arguments passed to \code{\link{contour}}, \code{\link{image}}, or \code{\link{persp}}.}
+  \item{\dots}{Additional arguments passed to \code{\link{contour}}, \code{\link{image}}, or \code{\link{persp}}. Note, however, that a \code{ylab} is ignored, with a message to Use \code{xlabs} instead.}
 }
 \details{
   \code{form} may be a single formula or a list of formulas.  A simple formula like

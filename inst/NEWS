@@ -1,5 +1,16 @@
 NEWS for rsm package
 
+Changes in version 2.06 (18 April 2014)
+  * Fixed a bug in contour.lm wherein if xlabs is supplied,
+    decoding was disabled
+  * Additional messages from contour.lm for misspecified axis labels.
+
+Changes in version 2.05 (14 April 2014)
+
+  * Added back some details (e.g. R^2, F) earlier omitted from 
+    summary.
+
+
 Changes in version 2.04 (5 February 2014)
 
   * Correction in bbd: Wrong design was generated when k = 6

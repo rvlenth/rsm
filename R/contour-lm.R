@@ -82,10 +82,17 @@ contour.lm = function(x, form, at, bounds, zlim,
         }
     }
     vars = sort(unique(as.character(sapply(form, all.vars))))
+    
+    dots = list(...)
+    if (!is.null(dots$ylab))
+        message("'ylab' ignored. Specify axis labels using 'xlabs'")
+    if(length(xlabs) < length(vars))
+        stop("'xlabs' does not contain enough labels" )
+    
     forms = NULL  # for all non-rsm objects
-    if (missing(xlabs) && inherits(lmobj, "rsm")) {
+    if (inherits(lmobj, "rsm")) {
         forms = codings(lmobj)
-        if (!is.null(forms)) {
+        if (missing(xlabs) && !is.null(forms)) {
             if(!decode)
                 xlabs = sapply(vars, function(v) 
                     paste(as.character(forms[[v]][2:3]), collapse=" = "))
@@ -93,9 +100,11 @@ contour.lm = function(x, form, at, bounds, zlim,
                 xlabs = sapply(vars, function(v) all.vars(forms[[v]][[3]])[1])
             }
         }
-        else xlabs = vars
+        else if (missing(xlabs))
+            xlabs = vars
     }   
-    else if (missing(xlabs)) xlabs = vars
+    else if (missing(xlabs)) 
+        xlabs = vars
     
     
     # gather 'at' info
@@ -206,14 +215,23 @@ contour.lm = function(x, form, at, bounds, zlim,
         dat = plot.data[[i]]
         if (!missing(hook))
             if (!is.null(hook$pre.plot)) hook$pre.plot(dat$labs)
+        args = list(x=dat$x, y=dat$y, z=dat$z, col=img.col, zlim = dat$zlim, ...)
+        args$xlab = dat$labs[1]
+        args$ylab = dat$labs[2]
         if (image) {
-            image(dat$x, dat$y, dat$z, col=img.col, 
-                  xlab = dat$labs[1], ylab = dat$labs[2], zlim = dat$zlim, ...)
-            contour(dat$x, dat$y, dat$z, add=TRUE, ...)
+          do.call("image", args)
+          args$add = TRUE
+          args$xlab = args$ylab = args$col = NULL
+          do.call("contour", args)
+            #image(dat$x, dat$y, dat$z, col=img.col, 
+            #      xlab = dat$labs[1], ylab = dat$labs[2], zlim = dat$zlim, ...)
+            #contour(dat$x, dat$y, dat$z, add=TRUE, ...)
         }
         else {
-            contour(dat$x, dat$y, dat$z, 
-                    xlab = dat$labs[1], ylab = dat$labs[2], zlim = dat$zlim, ...)
+            args$col = NULL
+            do.call("contour", args)
+            #contour(dat$x, dat$y, dat$z, 
+            #        xlab = dat$labs[1], ylab = dat$labs[2], zlim = dat$zlim, ...)
             if (atpos == 3)
                 title(sub = labs[5])
         }

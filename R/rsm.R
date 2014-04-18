@@ -248,34 +248,50 @@ summary.rsm = function (object, ...) {
 }
 
 # Print method for summary
-print.summary.rsm = function(x,...) {
-    ### --- replace: getS3method("print", "summary.lm") (x, ...)
-    ### Just show the call and coefs; skip the resid summary
-    cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
-        "\n\n", sep = "")
-    printCoefmat(x$coefficients, ...)
+print.summary.rsm = function(x, ...) {
+  ### --- replace: getS3method("print", "summary.lm") (x, ...)
+  ### Just show the call and coefs; skip the resid summary
+  cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
+      "\n\n", sep = "")
+  printCoefmat(x$coefficients, ...)
+  cat("\n")
+  
+  # This block is "borrowed" from print.summary.lm
+  digits = list(...)$digits
+  if (is.null(digits))
+    digits = max(3L, getOption("digits") - 3L)
+  if (!is.null(x$fstatistic)) {
+    cat("Multiple R-squared: ", formatC(x$r.squared, digits = digits))
+    cat(",\tAdjusted R-squared: ", formatC(x$adj.r.squared, digits = digits), 
+        "\nF-statistic:", formatC(x$fstatistic[1L], digits = digits), 
+        "on", x$fstatistic[2L], "and", x$fstatistic[3L], 
+        "DF,  p-value:", format.pval(pf(x$fstatistic[1L], 
+          x$fstatistic[2L], x$fstatistic[3L], lower.tail = FALSE), 
+          digits = digits))
     cat("\n")
-    print(x$lof, signif.stars=FALSE, ...)
-    cat("\n")
-    can = x$canonical
-    if (!is.null(can)) {
-        cat("Stationary point of response surface:\n")
-        print(can$xs)
-        if(!is.null(x$coding)) {
-            cat("\nStationary point in original units:\n")
-            print (code2val (can$xs, x$coding))
-        }
-        cat("\nEigenanalysis:\n")
-        print(can$eigen)
+  }
+  cat("\n")
+  print(x$lof, signif.stars=FALSE, ...)
+  cat("\n")
+  can = x$canonical
+  if (!is.null(can)) {
+    cat("Stationary point of response surface:\n")
+    print(can$xs)
+    if(!is.null(x$coding)) {
+      cat("\nStationary point in original units:\n")
+      print (code2val (can$xs, x$coding))
     }
-    else {
-        cat("Direction of steepest ascent (at radius 1):\n")
-        print(x$sa)
-        cat("\nCorresponding increment in original units:\n")
-        temp = code2val (rbind(x$sa, 2*x$sa), x$coding)
-        print (temp[2,] - temp[1,])
-    }
-    cat("\n")
+    cat("\nEigenanalysis:\n")
+    print(can$eigen)
+  }
+  else {
+    cat("Direction of steepest ascent (at radius 1):\n")
+    print(x$sa)
+    cat("\nCorresponding increment in original units:\n")
+    temp = code2val (rbind(x$sa, 2*x$sa), x$coding)
+    print (temp[2,] - temp[1,])
+  }
+  cat("\n")
 }
 
 # Steepest ascent (and ridge analysis)
