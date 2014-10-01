@@ -86,7 +86,7 @@ contour.lm = function(x, form, at, bounds, zlim,
     dots = list(...)
     if (!is.null(dots$ylab))
         message("'ylab' ignored. Specify axis labels using 'xlabs'")
-    if(length(xlabs) < length(vars))
+    if(!missing(xlabs) && length(xlabs) < length(vars))
         stop("'xlabs' does not contain enough labels" )
     
     forms = NULL  # for all non-rsm objects
@@ -112,12 +112,16 @@ contour.lm = function(x, form, at, bounds, zlim,
         if (is.factor(var)) factor(levels(var)) ####NEW [1], levels=levels(var))
         else mean(var)
     })
-    if (!missing(at))
-        for (nm in names(at)) {
-            numflag = is.numeric(tmp[[nm]])
-            if (numflag) tmp[[nm]] = as.numeric(at[[nm]])
-            else         tmp[[nm]] = at[[nm]]
-        }
+    # remember original at list
+    orig.atnm = NULL
+    if (!missing(at)) {
+      orig.atnm = names(at)
+      for (nm in orig.atnm) {
+        numflag = is.numeric(tmp[[nm]])
+        if (numflag) tmp[[nm]] = as.numeric(at[[nm]])
+        else         tmp[[nm]] = at[[nm]]
+      }
+    }
     at = tmp
     
     # gather 'bounds' info -- elts can be vectors of length 2, 3, or n
@@ -190,6 +194,10 @@ contour.lm = function(x, form, at, bounds, zlim,
                     else
                         atlabs = paste(atidx, atvals, sep = " = ")
                 }
+                # added  for factors in 'at'
+                facidx = setdiff(orig.atnm, atidx)
+                faclabs = paste(facidx, unlist(at[facidx]), sep = " = ")
+                atlabs = c(atlabs, faclabs)
 #                 faclabs = paste(allfac, sapply(allfac, function(v) at[[v]]), sep=" = ")
 #                 atlabs = paste(c(atlabs, faclabs), collapse = ", ")
                 atlabs = paste(atlabs, collapse = ", ") ### NEW
