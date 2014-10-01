@@ -1,5 +1,9 @@
 NEWS for rsm package
 
+Changes in version 2.07 (1 October 2014)
+  * Including factors specified in 'at' in the slice labels
+
+
 Changes in version 2.06 (18 April 2014)
   * Fixed a bug in contour.lm wherein if xlabs is supplied,
     decoding was disabled
