@@ -1,5 +1,10 @@
 NEWS for rsm package
 
+
+Changes for version 2.08 (???)
+  * Modified the "rs-illus" vignette slightly to make it less 
+    confusing
+
 Changes in version 2.07 (1 October 2014)
   * Including factors specified in 'at' in the slice labels
 
