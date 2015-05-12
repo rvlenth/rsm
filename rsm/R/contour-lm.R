@@ -127,13 +127,13 @@ contour.lm = function(x, form, at, bounds, zlim,
     # gather 'bounds' info -- elts can be vectors of length 2, 3, or n
     tmp = lapply(data, function(x) if (is.numeric(x)) range(x))
     if (!missing(bounds))
-        for (nm in names(bounds))
-            if (length(bounds[[nm]]) > 1)
-                tmp[[nm]] = bounds[[nm]]
+      for (nm in names(bounds))
+        if (length(bounds[[nm]]) > 1)
+          tmp[[nm]] = bounds[[nm]]
     bounds = lapply(tmp, function(x) {
-        if (length(x) == 2) seq(x[1], x[2], length=26)
-        else if (length(x) == 3) seq(x[1], x[2], length=x[3])
-        else x
+      if (length(x) == 2) seq(x[1], x[2], length=26)
+      else if (length(x) == 3) seq(x[1], x[2], length=x[3])
+      else x
     })
     
     # get names to use in slice labels
