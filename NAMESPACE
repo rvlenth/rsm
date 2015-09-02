@@ -1,4 +1,33 @@
+# non-base package imports:
+
+importFrom("grDevices", 
+           "contourLines", 
+           "rainbow", 
+           "terrain.colors",
+           "trans3d")
+
+importFrom("stats", 
+           "anova", 
+           "as.formula", 
+           "coef", 
+           "delete.response",
+           "formula", 
+           "lm", 
+           "model.frame", 
+           "model.matrix", 
+           "pf",
+           "predict", 
+           "printCoefmat", 
+           "rnorm", 
+           "runif", 
+           "sd", 
+           "terms",
+           "uniroot")
+     
 import(graphics)
+
+
+# Methods
 
 S3method(print, coded.data)
 S3method(print, summary.rsm)
@@ -13,6 +42,9 @@ S3method("truenames<-", coded.data)
 S3method(contour, lm)
 S3method(image, lm)
 S3method(persp, lm)
+
+
+# Exports
 
 ### exportPattern("^[[:alpha:]]+")
 #--- export all that don't start with "."

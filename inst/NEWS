@@ -1,6 +1,10 @@
 NEWS for rsm package
 
 
+Changes for version 2.7-3 (2 September 2015)
+  * Added NAMESPACE imports of non-base packages referenced
+
+
 Changes for version 2.7-2 (12 May 2015)
   * Modified the "rs-illus" vignette slightly to make it less 
     confusing
