@@ -1,6 +1,10 @@
 NEWS for rsm package
 
 
+Changes for version 2.7-4 (6 October 2015)
+  * Fixed error incurred when PQ() has only one argument
+
+
 Changes for version 2.7-3 (2 September 2015)
   * Added NAMESPACE imports of non-base packages referenced
 
