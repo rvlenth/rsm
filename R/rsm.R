@@ -121,7 +121,7 @@ rsm = function (formula, data, ...) {
     LM$data = data
 
     newlabs = nm = names(LM$coef)
-names(newlabs) = nm
+    names(newlabs) = nm
     i.fo = grep("FO\\(", nm)
     if (length(i.fo) == 0) {
         warning("No FO() terms in model; cannot use RSM methods\nAn 'lm' object has been returned.")
@@ -172,7 +172,10 @@ names(newlabs) = nm
     i.pq = grep("PQ\\(", nm)
     if (length(i.pq) > 0) {
         LM$order = 2
-        pq.lab = sapply(names(LM$coef[i.pq]), function(s) strsplit(s, "\\)")[[1]][2])
+        if(length(i.pq) > 1)
+            pq.lab = sapply(names(LM$coef[i.pq]), function(s) strsplit(s, "\\)")[[1]][2])
+        else
+            pq.lab = paste(strsplit(names(LM$coef[i.pq]), "\\(|\\)")[[1]][2], "^2", sep="")
         names(pq.lab) = NULL
         vn = sapply(pq.lab, function(s) substr(s, 1, nchar(s)-2))
         for (i in 1:length(vn)) LM$B[vn[i],vn[i]] = LM$coef[i.pq[i]]
