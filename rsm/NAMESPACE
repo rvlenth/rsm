@@ -43,6 +43,13 @@ S3method(contour, lm)
 S3method(image, lm)
 S3method(persp, lm)
 
+# lsmeans support
+if (requireNamespace("lsmeans", quietly = TRUE)) {
+    importFrom("lsmeans", "recover.data", "lsm.basis")
+    S3method(recover.data, rsm)
+    S3method(lsm.basis, rsm)
+}
+
 
 # Exports
 
