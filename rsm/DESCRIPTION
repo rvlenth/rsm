@@ -1,11 +1,14 @@
 Package: rsm
-Version: 2.7-4
-Date: 2015-10-06
+Version: 2.8
+Date: 2016-10-12
 Title: Response-Surface Analysis
 Author: Russell V. Lenth
 Maintainer: Russell V Lenth <russell-lenth@uiowa.edu>
-Description: Provides functions to generate response-surface designs, fit first- and second-order response-surface models, make surface plots, obtain the path of steepest ascent, and do canonical analysis.
-Suggests: Vdgraph, conf.design, DoE.base, FrF2
+Description: Provides functions to generate response-surface designs, 
+    fit first- and second-order response-surface models, 
+    make surface plots, obtain the path of steepest ascent, 
+    and do canonical analysis.
+Suggests: Vdgraph, conf.design, DoE.base, FrF2, lsmeans
 License: GPL-2
 LazyLoad: yes
 LazyData: yes

@@ -6,29 +6,39 @@
 #       present results working on the decoded scale.
 
 recover.data.rsm = function(object, data, mode = c("asis", "coded", "decoded"), ...) {
-    fcall = object$call
-    if(is.null(data))
-        data = recover.data(fcall, delete.response(terms(object)), object$na.action, ...)
     mode = match.arg(mode)
     cod = codings(object)
-    if (is.null(cod) || mode != "decoded")
-        data
-    else 
-        decode.data(as.coded.data(data, formulas = cod))
+    fcall = object$call
+    if(is.null(data))
+        data = lsmeans::recover.data(fcall, delete.response(terms(object)), object$na.action, ...)
+    if (!is.null(cod) && (mode == "decoded")) {
+        pred = cpred = attr(data, "predictors")
+        trms = attr(data, "terms")
+        pnms = all.vars(delete.response(trms))
+        data = decode.data(as.coded.data(data, formulas = cod))
+        for (form in cod) {
+            vn = all.vars(form)
+            if (!is.na(idx <- grep(vn[1], pred))) {
+                pred[idx] = vn[2]
+                cpred = setdiff(cpred, vn[1])
+            }
+        }
+        attr(data, "predictors") = pred
+        new.trms = update(trms, reformulate(cpred))   # excludes coded variables
+        attr(new.trms, "orig") = trms       # save orig terms as an attribute
+        attr(data, "terms") = new.trms
+    }
+    data
 }
 
 lsm.basis.rsm = function(object, trms, xlev, grid, 
                          mode = c("asis", "coded", "decoded"), ...) {
     mode = match.arg(mode)
     cod = codings(object)
-    misc = list()
     if(!is.null(cod) && mode == "decoded") {
         grid = coded.data(grid, formulas = cod)
-        misc$initMesg = "predictor settings are decoded"
+        trms = attr(trms, "orig")   # get back the original terms we saved
     }
-    else if (!is.null(cod))
-        misc$initMesg = "predictor settings are coded"
-    
     
     m = model.frame(trms, grid, na.action = na.pass, xlev = xlev)
     X = model.matrix(trms, m, contrasts.arg = object$contrasts)
@@ -43,5 +53,5 @@ lsm.basis.rsm = function(object, trms, xlev, grid,
     dffun = function(k, dfargs) dfargs$df
 
     list(X = X, bhat = bhat, nbasis = nbasis, V = V, 
-         dffun = dffun, dfargs = dfargs, misc = misc)
+         dffun = dffun, dfargs = dfargs, misc = list())
 }
