@@ -6,6 +6,8 @@
 \alias{codings.rsm}
 \alias{canonical}
 \alias{xs}
+\alias{lsmeans}
+
 \title{Response-surface regression}
 \description{
   Fit a linear model with a response-surface component,
@@ -89,6 +91,10 @@ The first version, however, creates duplicate \code{x2:x3} terms -- which \code{
   \code{codings} returns a \code{list} of coding formulas if the model was fitted to 
   \code{\link{coded.data}}, or \code{NULL} otherwise.
 }
+
+\note{
+Support is provided for the \pkg{lsmeans} package: its \code{\link[lsmeans]{lsmeans}} and related functions work with special provisions for models fitted to coded data. The optional \code{mode} argument can have values of \code{"asis"} (the default), \code{"coded"}, or \code{"decoded"}. The first two are equivalent and simply return LS means based on the original model formula and the variables therein (raw or coded), without any conversion. When coded data were used and the user specifies \code{mode = "decoded"}, the user must specify results in terms of the decoded variables rather than the coded ones. See the illustration in the Examples section.
+}
 \references{
 Lenth RV (2009) ``Response-Surface Methods in R, Using rsm'', 
   \emph{Journal of Statistical Software}, 32(7), 1--17. 
@@ -115,5 +121,17 @@ RRex$Response <- c(52.3,5.3,46.7,44.2,58.5,33.5,32.8,49.2,49.3,50.2,51.6)
 RRex.rsm <- rsm(Response ~ SO(A,B), data = RRex)
 canonical(RRex.rsm)
 canonical(RRex.rsm, threshold = 1)  # xs is MUCH closer to the experiment
+
+\dontrun{
+# Illustration of lsmeans support
+require("lsmeans")
+
+lsmeans(CR.rs2, ~ x1 * x2, mode = "coded", 
+        at = list(x1 = c(-1, 0, 1), x2 = c(-2, 2)))
+        
+# The following will yield the same results:
+lsmeans(CR.rs2, ~ Time * Temp, mode = "decoded", 
+        at = list(Time = c(80, 85, 90), Temp = c(165, 185)))
+}
 }
 \keyword{regression}
