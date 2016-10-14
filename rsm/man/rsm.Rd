@@ -7,6 +7,8 @@
 \alias{canonical}
 \alias{xs}
 \alias{lsmeans}
+\alias{recover.data.rsm}
+\alias{lsm.basis.rsm}
 
 \title{Response-surface regression}
 \description{
@@ -16,7 +18,7 @@
 \usage{
 rsm (formula, data, ...)
 
-\method{summary}{rsm}(object, ...)
+\method{summary}{rsm}(object, adjust = rev(p.adjust.methods), ...)
 \method{print}{summary.rsm}(x, ...)
 
 loftest (object)
@@ -38,6 +40,7 @@ xs (object, ...)
   are passed to their generic methods.}
 
   \item{object}{An object of class \code{rsm}}
+  \item{adjust}{Adjustment to apply to the P values in the coefficient matrix, chosen from among the available \code{\link[stats]{p.adjust.methods}} in the \pkg{stats} package. The default is \code{"none"}.}
   \item{threshold}{Threshold for canonical analysis -- see Value}
   \item{x}{An object produced by \code{summary}}
 }
