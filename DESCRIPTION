@@ -8,7 +8,8 @@ Description: Provides functions to generate response-surface designs,
     fit first- and second-order response-surface models, 
     make surface plots, obtain the path of steepest ascent, 
     and do canonical analysis.
-Suggests: Vdgraph, conf.design, DoE.base, FrF2, lsmeans
+Suggests: Vdgraph, conf.design, DoE.base, FrF2
+Imports: estimability, lsmeans
 License: GPL-2
 LazyLoad: yes
 LazyData: yes

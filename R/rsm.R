@@ -219,9 +219,11 @@ loftest = function (object) {
 }
 
 # Summary method
-summary.rsm = function (object, ...) {
+summary.rsm = function (object, adjust = rev(p.adjust.methods), ...) {
     # figure out which dots to pass to summary.lm
     dots = list(...)
+    adjust = match.arg(adjust)
+    
     tidx = pmatch(names(dots), "threshold")
     if (!all(is.na(tidx))) {
         threshold = dots[!is.na(tidx)][1]
@@ -232,6 +234,10 @@ summary.rsm = function (object, ...) {
     
     dots$object = object
     SUM = do.call("summary.lm", dots)
+    if (adjust != "none") {
+        SUM$coefficients[, 4] = p.adjust(SUM$coefficients[, 4], adjust)
+        attr(SUM$coefficients, "adjust") = adjust
+    }
     if (object$order > 0) {
         if (!is.null(object$labels))  ### compatibility with old objects
             for (lst in object$labels)
@@ -257,6 +263,9 @@ print.summary.rsm = function(x, ...) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
       "\n\n", sep = "")
   printCoefmat(x$coefficients, ...)
+  adj = attr(x$coefficients, "adjust")
+  if(!is.null(adj))
+    cat(paste0("P-value adjustment: \"", adj, "\"\n"))
   cat("\n")
   
   # This block is "borrowed" from print.summary.lm

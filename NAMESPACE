@@ -15,14 +15,19 @@ importFrom("stats",
            "lm", 
            "model.frame", 
            "model.matrix", 
+           "na.pass",
+           "p.adjust",
+           "p.adjust.methods",
            "pf",
            "predict", 
            "printCoefmat", 
+           "reformulate",
            "rnorm", 
            "runif", 
            "sd", 
            "terms",
-           "uniroot")
+           "uniroot",
+           "update")
      
 import(graphics)
 
@@ -46,6 +51,7 @@ S3method(persp, lm)
 # lsmeans support
 if (requireNamespace("lsmeans", quietly = TRUE)) {
     importFrom("lsmeans", "recover.data", "lsm.basis")
+    importFrom("estimability", "all.estble", "nonest.basis")
     S3method(recover.data, rsm)
     S3method(lsm.basis, rsm)
 }
