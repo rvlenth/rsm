@@ -59,9 +59,65 @@ if (requireNamespace("lsmeans", quietly = TRUE)) {
 
 # Exports
 
-### exportPattern("^[[:alpha:]]+")
+### exportPattern("^[[:alpha:]]+") - using explicit exports below
 #--- export all that don't start with "."
-exportPattern("^[^\\.]")
+#exportPattern("^[^\\.]")
 
 # --- to make Ulrike's life easier...
-export(.ccd.1.41, .bbd.1.41)
+#export(.ccd.1.41, .bbd.1.41)
+
+export(".bbd.1.41", 
+       ".ccd.1.41", 
+#       "[.coded.data", 
+       "as.coded.data", 
+       "bbd", 
+       "canonical", 
+       "canonical.path", 
+       "ccd", 
+       "ccd.pick", 
+       "ChemReact", 
+       "ChemReact1", 
+       "ChemReact2", 
+       "codata", 
+       "code2val", 
+       "coded.data", 
+       "codings", 
+#       "codings.coded.data", 
+#       "codings.rsm", 
+       "codings<-", 
+#       "contour.lm", 
+       "cube", 
+       "decode.data", 
+       "djoin", 
+       "dupe", 
+       "FO", 
+       "foldover", 
+       "heli", 
+#       "image.lm", 
+       "is.coded.data", 
+       "loftest", 
+#       "lsm.basis.rsm", 
+       "model.data", 
+#       "names<-.coded.data", 
+       "PE", 
+#       "persp.lm", 
+       "PQ", 
+#       "print.coded.data", 
+#       "print.summary.rsm", 
+       "recode.data", 
+#       "recover.data.rsm", 
+       "rsm", 
+       "SO", 
+       "star", 
+       "stdorder", 
+       "steepest", 
+#       "summary.rsm", 
+       "truenames", 
+#       "truenames.coded.data", 
+       "truenames<-", 
+#       "truenames<-.coded.data", 
+       "TWI", 
+       "val2code", 
+       "varfcn", 
+       "xs"
+)

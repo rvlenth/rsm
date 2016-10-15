@@ -1,6 +1,7 @@
 NEWS for rsm package
 
-Changes for version 2.8 (12 October 2016)
+Changes for version 2.8 (14 October 2016)
+  * Added 'adjust' argument to 'rsm()'
   * Added support for lsmeans package
 
 

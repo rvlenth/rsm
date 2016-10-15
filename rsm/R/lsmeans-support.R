@@ -24,7 +24,7 @@ recover.data.rsm = function(object, data, mode = c("asis", "coded", "decoded"), 
             }
         }
         attr(data, "predictors") = pred
-        new.trms = update(trms, reformulate(cpred))   # excludes coded variables
+        new.trms = update(trms, reformulate(c("1", cpred)))   # excludes coded variables
         attr(new.trms, "orig") = trms       # save orig terms as an attribute
         attr(data, "terms") = new.trms
     }
@@ -55,3 +55,4 @@ lsm.basis.rsm = function(object, trms, xlev, grid,
     list(X = X, bhat = bhat, nbasis = nbasis, V = V, 
          dffun = dffun, dfargs = dfargs, misc = list())
 }
+
