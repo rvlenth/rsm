@@ -14,7 +14,6 @@ recover.data.rsm = function(object, data, mode = c("asis", "coded", "decoded"), 
     if (!is.null(cod) && (mode == "decoded")) {
         pred = cpred = attr(data, "predictors")
         trms = attr(data, "terms")
-        pnms = all.vars(delete.response(trms))
         data = decode.data(as.coded.data(data, formulas = cod))
         for (form in cod) {
             vn = all.vars(form)
