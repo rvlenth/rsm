@@ -1,3 +1,4 @@
+%    Copyright (c) 2008-2010, 2012-2016 Russell V. Lenth
 \name{coded.data}
 \alias{coded.data}
 \alias{as.coded.data}

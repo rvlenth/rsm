@@ -1,3 +1,4 @@
+%    Copyright (c) 2008-2010, 2012-2016 Russell V. Lenth
 \name{ccd.pick}
 \alias{ccd.pick}
 \title{Find a good central-composite design}
