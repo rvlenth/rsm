@@ -1,5 +1,9 @@
 NEWS for rsm package
 
+Changes for version 2.9 ()
+  * Changed license to ease with interdependencies with other packages
+  
+
 Changes for version 2.8 (14 October 2016)
   * Added 'adjust' argument to 'rsm()'
   * Added support for lsmeans package
