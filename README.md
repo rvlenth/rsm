@@ -1,4 +1,4 @@
-R package **rsm**: Least-squares means (predicted marginal means)
+R package **rsm**: Response-surface methods and visualization
 ====
 
 [![Build Status](https://travis-ci.org/rvlenth/rsm.svg?branch=master)](https://travis-ci.org/rvlenth/rsm)
@@ -14,7 +14,7 @@ R package **rsm**: Least-squares means (predicted marginal means)
 * Includes support for a coded-data structure, important for expressing the design layout relative to a central location.
 * Standard first- and second-order designs may be generated and appropriately randomized.
 * Facilities are provided for augmenting a design -- for example, adding a foldover block or a set of axis points.
-* The `rsm` function is a special extension of `lm` that facilitates fitting and evaluating first- and second-order models. Special functions `f0()`, `SO()`, `PQ()`, and `TWI()` are used to generate first-order, second-order, pure quadratic, and two-way-interaction predictors for a model.
+* The `rsm` function is a special extension of `lm` that facilitates fitting and evaluating first- and second-order models. Special functions `FO()`, `SO()`, `PQ()`, and `TWI()` are used to generate first-order, second-order, pure quadratic, and two-way-interaction predictors for a model.
 * Functions such as `steepest()` allow for finding follow-up experiments in terms of coded or decoded predictors.
 * Graphical tools are provided for creating contour and other plots -- not just for `rsm` objects, abut for any `lm` object with continuous predictors.
 
