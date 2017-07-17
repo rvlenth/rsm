@@ -37,7 +37,7 @@
     a = eval(parse(text = sub(nm[2], "0", rhs)))
     b = eval(parse(text = sub(nm[2], "1", rhs)))
     d = 1 / (b - a)
-    list(names = nm, const=c(center = signif(-a * d, 4), divisor = signif(d, 4)))
+    list(names = nm, const=c(center = -a * d, divisor = d))
 }
 
 ### figure out the "rsdes" attribute for given data
