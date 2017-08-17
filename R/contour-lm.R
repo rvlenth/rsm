@@ -20,25 +20,42 @@
 ### Reconstructs the data set used in a linear model, and
 ### returns it as a data.frame
 
-model.data = function (lmobj, lhs = FALSE) {
-    form = lmobj$call$formula
-    if (is.name(form)) {
-        lmobj$call$data = form
-        form = formula(lmobj)
-    }
-    if (lhs) 
-        nm = all.vars(form)
-    else nm = all.vars(form[[3]])
-    if (inherits(lmobj, "rsm") && !is.null(lmobj$data))
-        lmobj$data[ ,nm]
-    else {
-        form = as.formula(paste("~", paste(nm, collapse = "+")))
-        envir = attr(lmobj$terms, ".Environment")
-        model.frame(form, eval(lmobj$call$data, envir=envir), 
-            subset = eval(lmobj$call$subset, envir=envir))
-    }
-}
+# # Old version -- had a couple of issues related to scoping
+# model.data = function (lmobj, lhs = FALSE) {
+#     form = lmobj$call$formula
+#     if (is.name(form)) {
+#         lmobj$call$data = form
+#         form = formula(lmobj)
+#     }
+#     if (lhs) 
+#         nm = all.vars(form)
+#     else nm = all.vars(form[[3]])
+#     if (inherits(lmobj, "rsm") && !is.null(lmobj$data))
+#         lmobj$data[ ,nm]
+#     else {
+#         form = as.formula(paste("~", paste(nm, collapse = "+")))
+#         envir = attr(lmobj$terms, ".Environment")
+#         model.frame(form, eval(lmobj$call$data, envir=envir), 
+#             subset = eval(lmobj$call$subset, envir=envir))
+#     }
+# }
 
+### New version based on lsmeans:::recover.data.call
+model.data = function (lmobj, lhs = FALSE) {
+  fcall = lmobj$call
+  m = match(c("formula", "data", "subset", "weights"), names(fcall), 0L)
+  fcall = fcall[c(1L, m)]
+  fcall[[1L]] = as.name("model.frame")
+  trms = terms(lmobj)
+  if (!lhs)
+    trms = delete.response(trms)
+  form = reformulate(all.vars(trms))
+  fcall$formula = update(trms, form)
+  env = environment(trms)
+  if (is.null(env)) 
+    env = parent.frame()
+  eval(fcall, env, parent.frame())
+}
 
 ### contour plot(s) for a lm
 contour.lm = function(x, form, at, bounds, zlim, 
