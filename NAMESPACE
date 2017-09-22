@@ -48,13 +48,18 @@ S3method(contour, lm)
 S3method(image, lm)
 S3method(persp, lm)
 
-# lsmeans support
-if (requireNamespace("lsmeans", quietly = TRUE)) {
-    importFrom("lsmeans", "recover.data", "lsm.basis")
-    importFrom("estimability", "all.estble", "nonest.basis")
-    S3method(recover.data, rsm)
-    S3method(lsm.basis, rsm)
-}
+# emmeans support
+# if (requireNamespace("emmeans", quietly = TRUE)) {
+#     importFrom("emmeans", "recover_data", "emm_basis")
+#     importFrom("estimability", "all.estble", "nonest.basis")
+#     S3method(recover_data, rsm)
+#     S3method(emm_basis, rsm)
+# }
+# emmeans support -- just export the S3 methods as ordinary functions
+export (recover_data.rsm, emm_basis.rsm)
+
+# lsmeans support -- important thing is not to import lsmeans stuff,
+export (recover.data.rsm, lsm.basis.rsm)
 
 
 # Exports

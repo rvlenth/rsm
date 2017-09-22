@@ -1,6 +1,6 @@
 Package: rsm
-Version: 2.9
-Date: 2016-11-16
+Version: 2.8.9001
+Date: 2017-09-22
 Title: Response-Surface Analysis
 Authors@R: c(person("Russell", "Lenth", role = c("aut", "cre"), 
     email = "russell-lenth@uiowa.edu"))
@@ -9,7 +9,7 @@ Description: Provides functions to generate response-surface designs,
     make surface plots, obtain the path of steepest ascent, 
     and do canonical analysis.
 Suggests: Vdgraph, conf.design, DoE.base, FrF2
-Imports: estimability, lsmeans
+Imports: estimability
 License: GPL(>=2)
 LazyLoad: yes
 LazyData: yes
