@@ -59,7 +59,7 @@ S3method(persp, lm)
 export (recover_data.rsm, emm_basis.rsm)
 
 # lsmeans support -- important thing is not to import lsmeans stuff,
-export (recover.data.rsm, lsm.basis.rsm)
+# export (recover.data.rsm, lsm.basis.rsm)
 
 
 # Exports

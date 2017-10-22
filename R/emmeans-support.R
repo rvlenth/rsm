@@ -76,9 +76,9 @@ emm_basis.rsm = function(object, trms, xlev, grid,
 }
 
 
-### For lsmeans
-recover.data.rsm = function (...)
-    recover_data.rsm (...)
-
-lsm.basis.rsm = function (...)
-    emm_basis.rsm (...)
+# ### For lsmeans
+# recover.data.rsm = function (...)
+#     recover_data.rsm (...)
+# 
+# lsm.basis.rsm = function (...)
+#     emm_basis.rsm (...)

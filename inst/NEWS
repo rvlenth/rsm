@@ -1,11 +1,11 @@
 NEWS for rsm package
 
 
-Changes for version 2.9 ()
+Changes for version 2.9 (22 October 2017)
   * Changed license to ease interdependencies with other packages
   * Moved development codebase to github repository rvlenth/rsm
   * Added more robust model.data() function
-  * Added support for emmeans package (and cont'd support for lsmeans)
+  * Added support for emmeans package
   
 
 Changes for version 2.8 (14 October 2016)

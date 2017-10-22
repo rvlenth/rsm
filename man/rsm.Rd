@@ -120,13 +120,13 @@ summary(CR.rs2)
 
 ### Example of a rising-ridge situation from Montgomery et al, Table 6.2
 RRex <- ccd(Response~A+B, n0=c(0,3), alpha="face", randomize=FALSE, oneblock=TRUE)
-RRex$Response <- c(52.3,5.3,46.7,44.2,58.5,33.5,32.8,49.2,49.3,50.2,51.6)
+RRex$Response <- c(52.3, 5.3, 46.7, 44.2, 58.5, 33.5, 32.8, 49.2, 49.3, 50.2, 51.6)
 RRex.rsm <- rsm(Response ~ SO(A,B), data = RRex)
 canonical(RRex.rsm)
 canonical(RRex.rsm, threshold = 1)  # xs is MUCH closer to the experiment
 
 \dontrun{
-# Illustration of emmeans/lsmeans support
+# Illustration of emmeans support
 emmeans::emmeans(CR.rs2, ~ x1 * x2, mode = "coded", 
         at = list(x1 = c(-1, 0, 1), x2 = c(-2, 2)))
         
