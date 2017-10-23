@@ -49,12 +49,17 @@ model.data = function (lmobj, lhs = FALSE) {
     trms = terms(lmobj)
     if (!lhs)
         trms = delete.response(trms)
-    form = reformulate(all.vars(trms))
-    fcall$formula = update(trms, form)
-    env = environment(trms)
-    if (is.null(env)) 
-        env = parent.frame()
-    eval(fcall, env, parent.frame())
+    vars = all.vars(trms)
+    if(!is.null(dat <- lmobj$data))
+        dat[, vars, drop = FALSE]
+    else {
+        form = reformulate(vars)
+        fcall$formula = update(trms, form)
+        env = environment(trms)
+        if (is.null(env)) 
+            env = parent.frame()
+        eval(fcall, env, parent.frame())
+    }
 }
 
 ### contour plot(s) for a lm
