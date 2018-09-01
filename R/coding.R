@@ -23,7 +23,6 @@
 # Normally expects the form coded ~ (orig - center) / divisor,
 # But any linear expression in one variable is OK.
 .parse.coding = function(form) {
-#print(form)    
     if (!inherits(form, "formula")) 
         stop("Coding formulas must be of class \"formula\"")
     if (length(form) < 3) 
@@ -37,7 +36,9 @@
     a = eval(parse(text = sub(nm[2], "0", rhs)))
     b = eval(parse(text = sub(nm[2], "1", rhs)))
     d = 1 / (b - a)
-    list(names = nm, const=c(center = -a * d, divisor = d))
+    c = -a * d
+    dig = 3 + ceiling(log(abs(c), 10)) - floor(log(d, 10))
+    list(names = nm, const=c(center = signif(c, dig), divisor = signif(d, 4)))
 }
 
 ### figure out the "rsdes" attribute for given data

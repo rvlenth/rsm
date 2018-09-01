@@ -121,11 +121,15 @@ Lenth RV (2009) ``Response-Surface Methods in R, Using rsm'',
 \author{Russell V. Lenth}
 \seealso{\code{\link{contour}}}
 \examples{
-library (rsm)
+### Basic example with a linear model:
+mpg.lm <- lm((mpg ~ poly(hp, disp, degree = 3), data = mtcars)
+contour(mpg.lm, hp ~ disp, image = TRUE)
+
+### Extended example with an rsm model...
 heli.rsm <- rsm (ave ~ block + SO(x1, x2, x3, x4), data = heli)
 
 # Plain contour plots
-par (mfrow = c (2,3))
+par (mfrow = c(2,3))
 contour (heli.rsm, ~x1+x2+x3+x4, at = xs(heli.rsm))
 
 # Same but with image overlay, slices at origin and block 2,

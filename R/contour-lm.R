@@ -189,6 +189,10 @@ contour.lm = function(x, form, at, bounds, zlim,
     for (i in 1:length(form)) {
         AT = at
         v = all.vars(form[[i]])
+        bad = which(!(v %in% names(data)))
+        if (length(bad) > 0)
+            stop("Unknown variable(s) encountered in 'form': ",
+                 paste(v[bad], collapse = ", "), call. = FALSE)
         if (length(unique(v)) == 1) next
         y = AT[[v[1]]] = bounds[[v[1]]]
         x = AT[[v[2]]] = bounds[[v[2]]]

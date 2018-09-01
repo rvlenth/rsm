@@ -1,6 +1,14 @@
 NEWS for rsm package
 
 
+Changes for version 2.10 () ------
+  * Changes to avoid loss of significance in decode.data()
+  * Informative error message in contour.lm() and relatives when
+    non-existing variables are specified in 'form'
+  * Some S3 methods (e.g. contour.lm) also exported visibly to save confusion
+  * 'emmeans' support (recover_data.rsm, emm_basis.rsm) now dynamically registered
+
+
 Changes for version 2.9 (22 October 2017)
   * Changed license to ease interdependencies with other packages
   * Moved development codebase to github repository rvlenth/rsm
