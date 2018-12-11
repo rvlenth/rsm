@@ -122,7 +122,7 @@ Lenth RV (2009) ``Response-Surface Methods in R, Using rsm'',
 \seealso{\code{\link{contour}}}
 \examples{
 ### Basic example with a linear model:
-mpg.lm <- lm((mpg ~ poly(hp, disp, degree = 3), data = mtcars)
+mpg.lm <- lm(mpg ~ poly(hp, disp, degree = 3), data = mtcars)
 contour(mpg.lm, hp ~ disp, image = TRUE)
 
 ### Extended example with an rsm model...
