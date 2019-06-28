@@ -1,6 +1,6 @@
 Package: rsm
-Version: 2.10
-Date: 2018-09-01
+Version: 2.10.1
+Date: 2019-06-28
 Title: Response-Surface Analysis
 Authors@R: c(person("Russell", "Lenth", role = c("aut", "cre"), 
     email = "russell-lenth@uiowa.edu"))
@@ -11,7 +11,7 @@ Description: Provides functions to generate response-surface designs,
     is Chapter 10 of Wu, C-F J and Hamada, M (2009) 
     "Experiments: Planning, Analysis, and Parameter Design Optimization"
     ISBN 978-0-471-69946-0.
-Suggests: emmeans, Vdgraph, conf.design, DoE.base, FrF2
+Suggests: emmeans (> 1.3.5.1), Vdgraph, conf.design, DoE.base, FrF2
 Imports: estimability
 License: GPL(>=2)
 LazyLoad: yes

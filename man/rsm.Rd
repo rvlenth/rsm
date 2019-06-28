@@ -40,7 +40,7 @@ xs (object, ...)
   are passed to their generic methods.}
 
   \item{object}{An object of class \code{rsm}}
-  \item{adjust}{Adjustment to apply to the P values in the coefficient matrix, chosen from among the available \code{\link[stats]{p.adjust.methods}} in the \pkg{stats} package. The default is \code{"none"}.}
+  \item{adjust}{Adjustment to apply to the P values in the coefficient matrix, chosen from among the available \code{\link[stats]{p.adjust}} methods in the \pkg{stats} package. The default is \code{"none"}.}
   \item{threshold}{Threshold for canonical analysis -- see Value}
   \item{x}{An object produced by \code{summary}}
 }
@@ -95,7 +95,7 @@ The first version, however, creates duplicate \code{x2:x3} terms -- which \code{
   \code{\link{coded.data}}, or \code{NULL} otherwise.
 }
 
-\note{
+\section{\pkg{emmeans} support}{
 Support is provided for the \pkg{emmeans} package: its \code{\link[emmeans]{emmeans}} and related functions work with special provisions for models fitted to coded data. The optional \code{mode} argument can have values of \code{"asis"} (the default), \code{"coded"}, or \code{"decoded"}. The first two are equivalent and simply return LS means based on the original model formula and the variables therein (raw or coded), without any conversion. When coded data were used and the user specifies \code{mode = "decoded"}, the user must specify results in terms of the decoded variables rather than the coded ones. See the illustration in the Examples section.
 }
 \references{
@@ -130,7 +130,7 @@ canonical(RRex.rsm, threshold = 1)  # xs is MUCH closer to the experiment
 emmeans::emmeans(CR.rs2, ~ x1 * x2, mode = "coded", 
         at = list(x1 = c(-1, 0, 1), x2 = c(-2, 2)))
         
-# The following will yield the same results:
+# The following will yield the same results, but based on the decoded data
 emmeans::emmeans(CR.rs2, ~ Time * Temp, mode = "decoded", 
         at = list(Time = c(80, 85, 90), Temp = c(165, 185)))
 }

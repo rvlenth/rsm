@@ -1,7 +1,10 @@
 NEWS for rsm package
 
+Changes for version 2.10.1 (28 June 2019)
+  * Updated to use new method registration support for emmeans package.
 
-Changes for version 2.10 () ------
+
+Changes for version 2.10 (2 September 2018) ------
   * Changes to avoid loss of significance in decode.data()
   * Informative error message in contour.lm() and relatives when
     non-existing variables are specified in 'form'
