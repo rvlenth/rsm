@@ -393,13 +393,14 @@ canonical.path = function(object,
                           which = ifelse(descent, length(object$b), 1),
                           dist = seq(-5, 5, by=.5),
                           descent = FALSE,
-                          threshold = 1e-04)
+                          ...)
 {
     if (!inherits(object, "rsm"))
         stop(paste(as.character(substitute(object)),"is not an 'rsm' object"))
     if (object$order == 1)
         stop("Requires a seconnd-order response surface")
-    can = canonical(object, threshold)
+    args = list(object = object, ...)
+    can = do.call(canonical, args)
     dir = can$eigen$vectors[ , which]
     path = t(sapply(dist, function(d) can$xs + d*dir))
     
@@ -423,15 +424,19 @@ canonical.path = function(object,
 
 # Canonical analysis -- allows singular B matrix and may set a 
 # higher threshold on e'vals considered to be zero
-canonical = function(object, threshold = 1e-4) {
+canonical = function(object, threshold = 0.1*max.eigen) {
     if (!inherits(object, "rsm")) 
         stop ("Not an 'rsm' object")
     if (object$order == 1) 
         stop("Canonical analysis is not possible for first-order models")
     EA = eigen(object$B)
-    active = which(abs(EA$values) > threshold)
+    max.eigen = max(abs(EA$values))
+    active = which(abs(EA$values) >= threshold)
     if (length(active) == 0)
         stop("threshold is greater than the largest |eigenvalue|")
+    if ((nzero <- length(EA$values) - length(active)) > 0)
+        message("Near-stationary-ridge situation detected -- stationary point altered\n",
+                " Change 'threshold' if this is not what you intend")
     U = EA$vectors[, active, drop=FALSE]
     laminv = 1 / EA$values[active]
     xs = as.vector(-0.5 * U %*% diag(laminv, ncol=ncol(U)) %*% t(U) %*% object$b)

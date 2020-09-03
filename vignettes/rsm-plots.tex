@@ -1,3 +1,5 @@
+%    Copyright (c) 2008-2010, 2012-2016 Russell V. Lenth
+
 \documentclass[article,nojss]{jss}
 \usepackage{amsmath}
 
@@ -59,17 +61,17 @@ This vignette is not meant to document the functions; please refer to the help p
 Consider an example using the ubiquitous "swiss" dataset that is standard in \R{}.  Let us fit a model for "Fertility" as a polynomial function of "Agriculture" and "Education":
 \begin{Schunk}
 \begin{Sinput}
-R> swiss2.lm <- lm(Fertility ~ poly(Agriculture, Education, degree=2), data=swiss)
+> swiss2.lm <- lm(Fertility ~ poly(Agriculture, Education, degree=2), data=swiss)
 \end{Sinput}
 \end{Schunk}
 The following basic calls illustrate the default results from the three functions.  The results are shown in Figure~\ref{basics}.
 \begin{Schunk}
 \begin{Sinput}
-R> library(rsm)
-R> par(mfrow=c(1,3))
-R> image(swiss2.lm, Education ~ Agriculture)
-R> contour(swiss2.lm, Education ~ Agriculture)
-R> persp(swiss2.lm, Education ~ Agriculture, zlab = "Fertility")
+> library(rsm)
+> par(mfrow=c(1,3))
+> image(swiss2.lm, Education ~ Agriculture)
+> contour(swiss2.lm, Education ~ Agriculture)
+> persp(swiss2.lm, Education ~ Agriculture, zlab = "Fertility")
 \end{Sinput}
 \end{Schunk}
 \begin{figure}
@@ -85,7 +87,7 @@ Generally (as we can see in Figure~\ref{basics}), perspective plots are best not
 \end{figure}
 \begin{Schunk}
 \begin{Sinput}
-R> persp(swiss2.lm, Education ~ Agriculture, col = "blue", 
+> persp(swiss2.lm, Education ~ Agriculture, col = "blue", 
 +   bounds = list(Agriculture=c(20,70), Education=c(0,30)),
 +   zlab = "Predicted Fertility", contours = list(z="top", col="orange"), 
 +   theta = -145, phi = 35, shade = 1)
@@ -103,7 +105,7 @@ When a regression model has more than two continuous predictors, some additional
 For illustration, we will use the data from a paper-helicopter experiment described in \cite{Box05}, page~499, and provided in the \rsm{} package as the dataset "heli".  The variables are coded variables $x_1$--$x_4$, which are, respectively, linear functions of wing area $A$, wing length ratio $R$, body width $W$, and body length $L$.  the experiment was run in two blocks, and the response variable is "ave", the average flight time in seconds.  This dataset is analyzed in more detail in  the \href{rsm.pdf}{main \rsm{} vignette}.  A second-order response-surface model for these data is obtained using
 \begin{Schunk}
 \begin{Sinput}
-R> heli.rsm <- rsm(ave ~ block + SO(x1,x2,x3,x4), data = heli)
+> heli.rsm <- rsm(ave ~ block + SO(x1,x2,x3,x4), data = heli)
 \end{Sinput}
 \end{Schunk}
 An "rsm" object is an extension of a "lm" object with extra response-surface-related information included.
@@ -122,8 +124,8 @@ To obtain contour plots with each of the 6 possible pairs of the variables $x_1$
 \end{figure}
 \begin{Schunk}
 \begin{Sinput}
-R> par(mfrow = c(2,3))
-R> contour (heli.rsm, ~ x1 + x2 + x3 + x4)
+> par(mfrow = c(2,3))
+> contour (heli.rsm, ~ x1 + x2 + x3 + x4)
 \end{Sinput}
 \end{Schunk}
 The result is shown in Figure~\ref{cont1}.  This dataset is an extension of "data.frame" that contains the coding information, and this information is retained in "heli.rsm".  When such coding is present, then by default, the coding formulas are used to decode the axis values $x_1,x_2,x_3,x_4$ to their original values $A,R,W,L$.
@@ -140,9 +142,9 @@ Suppose in the helicopter example, we want to add some annotations to the plots.
 In the following code, we set up a "post.plot" hook to plot the position of the stationary point in each graph.
 \begin{Schunk}
 \begin{Sinput}
-R> xs <- canonical(heli.rsm)$xs
-R> myhook <- list()
-R> myhook$post.plot <- function(lab) {
+> xs <- canonical(heli.rsm)$xs
+> myhook <- list()
+> myhook$post.plot <- function(lab) {
 +   idx <- sapply(lab[3:4], grep, names(xs))
 +   points (xs[idx[1]], xs[idx[2]], pch=2, col="red")
 + }
@@ -154,8 +156,8 @@ Figure~\ref{cont2} shows the results.
 Centering at the stationary point gives an entirely different view of the fitted surface than is seen in Figure~\ref{cont1}.
 \begin{Schunk}
 \begin{Sinput}
-R> par(mfrow = c(2,3))
-R> contour (heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE,
+> par(mfrow = c(2,3))
+> contour (heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE,
 +   at = xs, hook = myhook)
 \end{Sinput}
 \end{Schunk}
@@ -165,9 +167,9 @@ R> contour (heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE,
 An issue comes up when we don't want to squeeze all the plots into one multi-panel frame.  For PostScript and PDF formats, this is easy to handle.  For example:
 \begin{Schunk}
 \begin{Sinput}
-R> pdf(file = "heli-cps.pdf")
-R> contour (heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE, at = xs, hook = myhook)
-R> dev.off()
+> pdf(file = "heli-cps.pdf")
+> contour (heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE, at = xs, hook = myhook)
+> dev.off()
 \end{Sinput}
 \end{Schunk}
 With this example, the resulting file will have six pages, one per graph.  We can then import, say, the fourth graph into a \proglang{pdflatex} source file using a command like
@@ -180,12 +182,12 @@ If you are using \pkg{Sweave}, the device setup is already done in the backgroun
 If instead you want to create a separate file for each graph, use hooks to create files based on variable names.  For example,
 \begin{Schunk}
 \begin{Sinput}
-R> png.hook <- list()
-R> png.hook$pre.plot <- function(lab) 
+> png.hook <- list()
+> png.hook$pre.plot <- function(lab) 
 +     png(file = paste(lab[3], lab[4], ".png", sep = ""))
-R> png.hook$post.plot = function(lab)
+> png.hook$post.plot = function(lab)
 +     dev.off()
-R> contour (heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE, at = xs, hook = png.hook)
+> contour (heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE, at = xs, hook = png.hook)
 \end{Sinput}
 \end{Schunk}
 %%%(To also include the titles and annotations, use the "post.plot" function in "myhook", but add the "dev.off()" statement to the end.)
@@ -206,7 +208,7 @@ A value of \verb|contours="colors"| will draw the contours on the bottom, using 
 The plots depicted in Figure~\ref{persp} are two (the first and third of the perspective plots produced by
 \begin{Schunk}
 \begin{Sinput}
-R> persp (heli.rsm, ~ x1 + x2 + x3 + x4, at = xs, 
+> persp (heli.rsm, ~ x1 + x2 + x3 + x4, at = xs, 
 +   col = rainbow(50), contours = "colors")
 \end{Sinput}
 \end{Schunk}

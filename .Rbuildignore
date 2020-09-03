@@ -3,5 +3,5 @@
 ^\.travis\.yml$
 ^\.gitignore$
 
-rsm-plots.R
+### rsm-plots.R
 Readme.md

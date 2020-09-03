@@ -1,8 +1,14 @@
 NEWS for rsm package
 
-Changes for version 2.10.1 (28 June 2019)
-  * Updated to use new method registration support for emmeans package.
 
+Changes for version 2.10.2 (3 September 2020)
+  * Updated to use new method registration support for emmeans package.
+  * Warning message added to canonical() when eigenvalues < threshold
+  * Change in default threshold to 10% of largest |eigenvalue|
+  * Vignette changes related to these
+  * Restored the vignette "rsm-plots" which for some reason had been 
+    suppressed
+  
 
 Changes for version 2.10 (2 September 2018) ------
   * Changes to avoid loss of significance in decode.data()

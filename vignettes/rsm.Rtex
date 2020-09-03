@@ -1,11 +1,11 @@
-%    Copyright (c) 2008-2010, 2012-2016 Russell V. Lenth
+%    Copyright (c) 2008-2010, 2012-2020 Russell V. Lenth
 
 \documentclass[article,nojss]{jss}
 \usepackage{amsmath}
 
 %%%% FIX THESE WHEN YOU REVISE! %%%%%%%%%%%%%%%%
-\def\VERSION{2.00}
-\def\DATE{5 December 2012}
+\def\VERSION{2.10.2}
+\def\DATE{3 September 2020}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\rsm{\pkg{rsm}}
@@ -230,9 +230,9 @@ It is also important to examine a design's capabilities. First of all, is it ade
 \begin{figure}
 {\small
 \begin{Scode}{varfcn, fig=TRUE, height=5.5, width=10, include=FALSE}
-par(mfrow=c(1,2))
-varfcn(des10, ~ Blk + SO(A,B,C,D,E), dist = seq(0, 3, by=.1))
-varfcn(des10, ~ Blk + SO(A,B,C,D,E), dist = seq(0, 3, by=.1), contour = TRUE)
+par(mfrow = c(1, 2))
+varfcn(des10, ~ Blk + SO(A,B,C,D,E), dist = seq(0, 3, by = .1))
+varfcn(des10, ~ Blk + SO(A,B,C,D,E), dist = seq(0, 3, by = .1), contour = TRUE)
 \end{Scode}
 }
 \includegraphics[width=.8\textwidth]{rsm-varfcn.pdf}
@@ -249,7 +249,7 @@ It is possible to imagine a CCD that consists of a fractional factorial divided 
 
 Starting in version~1.40 of \rsm{}, an "inscribed" argument is available in "ccd".  This scales the entire design so that it fits within a unit cube---useful for situations when there are constraints on the region of operability.
 \begin{Scode}
-ccd(2, n0 = c(1,1), inscribed=TRUE, randomize=FALSE)
+ccd(2, n0 = c(1, 1), inscribed = TRUE, randomize = FALSE)
 \end{Scode}
 Note in this example that it is now the axis points that are at $\pm1$, while the cube points are at $\pm\sqrt{1/2}$. (Incidentally, this example also illustrates the default codings used when no coding formulas are specified.)
 
@@ -354,24 +354,31 @@ canonical(CO.rsm)
 \begin{figure}
 \includegraphics[width=.6\textwidth]{rsm-rising-ridge.pdf}
 
-\caption{Fitted response surface for \code{CO.rsm}, and the canonical paths with (blue) and without(red) a threshold. The design region is shown as a green box.}\label{rising-ridge}
+\caption{Fitted response surface for \code{CO.rsm}, and the canonical paths with (blue) and without(red) a threshold. Also shown is the path of steepest ascent (magenta), which aligns closely with one direction in the thresholded canonical path. 
+The design region is shown as a green box.}\label{rising-ridge}
 \end{figure}
 %--------------------- ILLUS FIGURE END --------------
 %
-Note that the stationary point is at about $(-15,15)$ in coded units---very distant from the design center. Also, one eigenvalue is very small relative to the other. \rsm{} now provides a "threshold" option whereby eigenvalues smaller than the threshold are not used. Note the results when we discard the smaller eigenvalue:
+Note that, due to an automatic thresholding provision, one of the eigenvalues has been
+set to zero. This causes the stationary point to be estimated based only on the
+surviving eigenvector, with the other one assumed to be a stationary ridge.
+To ignore this thresholding, set the threshold to zero:
 \begin{Scode}
-canonical(CO.rsm, threshold = .2)
+canonical(CO.rsm, threshold = 0)
 \end{Scode}
-This sets the smaller eigenvalue to zero. By ignoring it, the stationary point is $(-.06,-.06)$---much, much closer to the design center. 
+Now, the stationary point is at about $(-15,15)$ in coded units---very distant from the design center. 
 
 The following statements produce an illustrative plot, shown in Figure~\ref{rising-ridge}.
 \begin{Scode}{rr-code, eval=FALSE}
-contour(CO.rsm, x2 ~ x1, bounds = list(x1=c(-16,2), x2=c(-2,16)), 
-        zlim=c(-100,100), col="gray", decode = FALSE)
-lines(c(-1,1,1,-1,-1), c(-1,-1,1,1,-1), col="green") # design region
-points(x2 ~ x1, data=canonical.path(CO.rsm), col="red", pch=1+6*(dist==0))
-points(x2 ~ x1, data=canonical.path(CO.rsm, threshold=.2), 
-        col="blue", pch=1+6*(dist==0))
+contour(CO.rsm, x2 ~ x1, bounds = list(x1 = c(-16, 2), x2 = c(-2, 16)), 
+        zlim = c(-100, 100), col = "gray", decode = FALSE)
+lines(c(-1,1,1,-1,-1), c(-1,-1,1,1,-1), col = "green") # design region
+points(x2 ~ x1, data = canonical.path(CO.rsm), 
+        col = "blue", pch = 1 + 6*(dist == 0))
+points(x2 ~ x1, data = canonical.path(CO.rsm, threshold = 0), 
+        col = "red", pch = 1 + 6*(dist == 0))
+points(x2 ~ x1, data=steepest(CO.rsm), 
+        col = "magenta", pch = 1 + 6*(dist == 0))
 \end{Scode}
 \begin{Scode}{rising-ridge, fig=TRUE, results=hide, include=FALSE, echo=FALSE}
 par(mar=.1+c(4,4,0,0))
@@ -379,9 +386,13 @@ par(mar=.1+c(4,4,0,0))
 \end{Scode}
 It displays the fitted response surface, as well as the results from "canonical.path" with and without the threshold (blue and red points, respectively). The region of the design is shown as a green box. The stationary point (different symbol) is seen to be a saddle point near the upper-left corner when not thresholded, and near the design center whern thresholded. Otherwise, the canonical paths are much the same but with different origins. Both form a path along the rising ridge that occurs in the vicinity of the design. 
 
-It is important to note that the stationary point obtained by thresholding is not really a stationary point, but rather a nearby point that represents a center for the most important canonical directions. In this example, the true stationary point is very distant, and the thresholded stationary point is the nearest place on a rising ridge that emanates from the true stationary point. The thresholded "canonical.path" results give us a much more usable set of factor settings to explore than the ones without a threshold.
+It is important to note that the stationary point obtained by the default thresholding is not really a stationary point, but rather a nearby point that represents a center for the most important canonical directions. In this example, the true stationary point is very distant, and the thresholded stationary point is the nearest place on a rising ridge that emanates from the true stationary point. The thresholded "canonical.path" results give us a much more usable set of factor settings to explore than the ones without a threshold.
 
-The rest of this section provides some technical backing, in case you're interested. Let $\bb$ and $\bB$ denote the first and second-order coefficients of the fitted second-order surface, so that the fitted value at a coded point $\bx$ is $\yhat(\bx) = b_0 + \bb'\bx + \bx'\bB\bx$. The stationary point $\bx_s$ solves the equation $2\bB\bx_s + \bb = \bzero$, i.e., $\bx_s = -\frac12\bB^{-1}\bb$. The canonical analysis yields the decomposition 
+\subsection{Technical details}
+This subsection provides some technical backing for canonical analysis
+and what we do when a threshold is active, in case you're interested. 
+
+Let $\bb$ and $\bB$ denote the first and second-order coefficients of the fitted second-order surface, so that the fitted value at a coded point $\bx$ is $\yhat(\bx) = b_0 + \bb'\bx + \bx'\bB\bx$. The stationary point $\bx_s$ solves the equation $2\bB\bx_s + \bb = \bzero$, i.e., $\bx_s = -\frac12\bB^{-1}\bb$. The canonical analysis yields the decomposition 
 \[ \bB = \bU\bLambda\bU' = \lambda_1\bu_1\bu_1' + \lambda_2\bu_2\bu_2' + \cdots + \lambda_k\bu_k\bu_k' \]
 where there are $k$ predictors, the $\bu_j$ form orthonormal columns of $\bU$, and the $\lambda_j$ are the eigenvalues, and $\bLambda = \mathrm{diag}(\lambda_1,\lambda_2,\ldots,\lambda_k)$. It also happens to be true that 
 \[ \bB^{-1} = \bU\bLambda^{-1}\bU'
@@ -392,12 +403,6 @@ Now, for some $m<k$, let $\bLambda_*$ be the $m\times m$ diagonal matrix with on
 The stationary point satisfies $2\bB\bx + \bb = \bzero$ so that $2\bU_*'\bB\bx + \bU_*'\bb = \bzero$. Accordingly, we propose to define a pseudo-stationary point $\bx_*$ such that $2\bU_*'\bB\bx_* + \bU_*'\bb = \bzero$; i.e., $2\bLambda_*\bU_*'\bx_* + \bU_*'\bb = \bzero$. 
 
 This comprises $m$ equations in $k>m$ unknowns. 
-% To make it solvable, we can specify $\bgamme = \bU_0'\bx$ where $\bU_0$ consists of the $k-m$ columns of %$\bU$ not included in $\bU_*$. We now have the system of equations
-% \[ 
-% \bmat{ 2\bLambda_*\bU_*' \\ \bU_0' } \bx = \bmat{ -\bU_*'\bb \\ \bgamma}
-% \]
-% The question is which $\bgamma$ to choose. 
-% We opt to choose the solution that is closest to the origin. 
 To make it unique, we opt to choose the solution that is closest to the origin;
 that is, minimize $\bx'\bx$ subject to the constraint that $2\bLambda_*\bU_*'\bx + \bU_*'\bb = \bzero$.
 Using variational methods (Lagrange multipliers), we find that the resulting solution is $\bx_*= -\frac12\bU_*\bLambda_*^{-1}\bU_*'\bb$. In other words, we simply exclude some terms corresponding to small $\lambda_i$ in the above expression for $\bB^{-1}$.
@@ -408,7 +413,7 @@ This is the stationary point returned in \rsm's "canonical" and related function
 The current version of \rsm{} provides only the most standard tools for first- and second-order response-surface design and analysis.  The package can be quite useful for those standard situations, and it implements many of the analyses presented in textbooks.  However, clearly a great deal of work has been done in response-surface methods that is not represented here.
 Even a quick glance at a review article such as \cite{Mye04}---or even an older one such as \cite{Hil89}---reveals that there is a great deal that could be added to future editions of \rsm{}.  There are many other useful designs besides central composites and Box-Behnken designs.  We can consider higher-order models or the use of predictor transformations.  Mixture designs are not yet provided for.  There are important relationships between these methods and robust parameter design, and with computer experiments.  The list goes on.  However, we now at least have a good collection of basic tools for the \R{} platform, and that is a starting point.
 
-
+\clearpage
 
 
 \bibliography{rsm}

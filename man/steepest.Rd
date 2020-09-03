@@ -11,7 +11,7 @@
 \usage{
 steepest (object, dist = seq(0, 5, by = .5), descent = FALSE)
 canonical.path(object, which = ifelse(descent, length(object$b), 1),
-               dist = seq(-5, 5, by = 0.5), descent = FALSE, threshold = 1e-04)
+               dist = seq(-5, 5, by = 0.5), descent = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -23,7 +23,8 @@ canonical.path(object, which = ifelse(descent, length(object$b), 1),
     \code{FALSE} to obtain the path of steepest ascent.  This value is ignored in
     \code{canonical.path} if \code{which} is specified.}
   \item{which}{Which canonical direction (eigenvector) to use.}
-  \item{threshold}{Threshold for canonical analysis (see \code{\link{canonical}})}
+  \item{...}{Optional arguments passed to \code{\link{canonical}}. 
+    Currently this includes only \code{threshold}.}
 }
 \details{
   \code{steepest} returns the linear path of steepest ascent for first-order models, or a path obtained by ridge analysis (see Draper 1963) for second-order models.  In either case, the path begins at the origin.

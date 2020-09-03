@@ -1,9 +1,11 @@
+%    Copyright (c) 2008-2010, 2012-2020 Russell V. Lenth
+
 \documentclass[article,nojss]{jss}
 \usepackage{amsmath}
 
 %%%% FIX THESE WHEN YOU REVISE! %%%%%%%%%%%%%%%%
-\def\VERSION{2.00}
-\def\DATE{5 December 2012}
+\def\VERSION{2.10.2}
+\def\DATE{3 September 2020}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\rsm{\pkg{rsm}}
@@ -101,8 +103,8 @@ Accordingly, the \rsm{} package provides for a "coded.data" class of objects, an
 As an example, consider the provided dataset "ChemReact", which comes from Table~7.6 of \cite{Mye09}.
 \begin{Schunk}
 \begin{Sinput}
-R> library("rsm")
-R> ChemReact
+> library("rsm")
+> ChemReact
 \end{Sinput}
 \begin{Soutput}
     Time   Temp Block Yield
@@ -126,8 +128,8 @@ In this experiment, the data in block "B1" were collected first and analyzed, af
 The first block, "ChemReact1", uses factor settings of $\text{Time}=85\pm5$ and $\text{Temp}=175\pm5$, with three center points.  Thus, the coded variables are $x_1 = (\text{Time}-85)/5$ and $x_1 = (\text{Temp}-175)/5$.  To create a coded dataset with the appropriate codings, provide this information via formulas:
 \begin{Schunk}
 \begin{Sinput}
-R> CR1 <- coded.data(ChemReact1, x1 ~ (Time - 85)/5, x2 ~ (Temp - 175)/5)
-R> CR1
+> CR1 <- coded.data(ChemReact1, x1 ~ (Time - 85)/5, x2 ~ (Temp - 175)/5)
+> CR1
 \end{Sinput}
 \begin{Soutput}
   Time Temp Yield
@@ -147,7 +149,7 @@ x2 ~ (Temp - 175)/5
 This listing looks much like the original data, but internally, the data are saved in coded form, as can be seen by coercing it to a "data.frame":
 \begin{Schunk}
 \begin{Sinput}
-R> as.data.frame(CR1)
+> as.data.frame(CR1)
 \end{Sinput}
 \begin{Soutput}
   x1 x2 Yield
@@ -170,7 +172,7 @@ Observe that "coded.data" actually transforms the predictor values and replaces 
 The function "decode.data" decodes a "coded.data" object.  We may also easily encode or decode matrices or data frames of arbitrary values; for example,
 \begin{Schunk}
 \begin{Sinput}
-R> code2val(data.frame(x1 = c(0.25, 0.5), x2 = c(-1.5, -0.5)), codings(CR1))
+> code2val(data.frame(x1 = c(0.25, 0.5), x2 = c(-1.5, -0.5)), codings(CR1))
 \end{Sinput}
 \begin{Soutput}
    Time  Temp
@@ -185,25 +187,25 @@ The functions "ccd" and "bbd" are available to generate standard response-surfac
 we generate a 3-factor Box-Behnken design \cite[]{Box60} with two center points:
 \begin{Schunk}
 \begin{Sinput}
-R> bbd(3, n0 = 2, coding =
+> bbd(3, n0 = 2, coding =
 +   list(x1 ~ (Force - 20)/3, x2 ~ (Rate - 50)/10, x3 ~ Polish - 4))
 \end{Sinput}
 \begin{Soutput}
    run.order std.order Force Rate Polish
-1          1         4    23   60      4
-2          2         2    23   40      4
-3          3         5    17   50      3
-4          4         6    23   50      3
-5          5        10    20   60      3
-6          6        14    20   50      4
+1          1        10    20   60      3
+2          2         9    20   40      3
+3          3         8    23   50      5
+4          4         4    23   60      4
+5          5         7    17   50      5
+6          6         1    17   40      4
 7          7        12    20   60      5
-8          8         3    17   60      4
-9          9         9    20   40      3
-10        10         8    23   50      5
-11        11         1    17   40      4
-12        12         7    17   50      5
-13        13        11    20   40      5
-14        14        13    20   50      4
+8          8         6    23   50      3
+9          9        14    20   50      4
+10        10         2    23   40      4
+11        11        11    20   40      5
+12        12        13    20   50      4
+13        13         3    17   60      4
+14        14         5    17   50      3
 
 Data are stored in coded form using these coding formulas ...
 x1 ~ (Force - 20)/3
@@ -272,7 +274,7 @@ With this many factors, the number of different star points ($2k=10$) is relativ
 Finally, suppose that we want the total size of the experiment to be no more than $N=65$ runs (see "restrict" in the call below).  Here are the ten best choices based on these criteria:
 \begin{Schunk}
 \begin{Sinput}
-R> ccd.pick(5, n.c = c(8, 16), blks.c = c(1, 2, 4),
+> ccd.pick(5, n.c = c(8, 16), blks.c = c(1, 2, 4),
 +   wbr.s = 1:2, restrict = "N<=65")
 \end{Sinput}
 \begin{Soutput}
@@ -301,7 +303,7 @@ We first illustrate the generation of Design~1 above.  This design requires a $2
 Suppose that we denote the design factors by $A,B,C,D,E$; let's opt to use $E=-ABCD$ as the generator.  The following call generates the design (results not shown):
 \begin{Schunk}
 \begin{Sinput}
-R> des1 <- ccd (y1 + y2 ~ A + B + C + D,
+> des1 <- ccd (y1 + y2 ~ A + B + C + D,
 +   generators = E ~ - A * B * C * D, n0 = c(6, 1))
 \end{Sinput}
 \end{Schunk}
@@ -311,7 +313,7 @@ Next, we illustrate the generation of Design~10.
 This design has four $2^{5-2}$ cube blocks with $2$ center points each, and one unreplicated star block with $4$ center points.  The non-center points in the cube blocks comprise $4\times8=32$ runs, so we most likely want to create them by dividing the full $2^5$ factorial into four fractional blocks.  We can for example opt to generate the blocks via the factors $b_1=ABC$ and $b_2=CDE$, so that the blocks are determined by the four combinations of $b_1$ and $b_2$.  Then the block effects will be confounded with the effects $ABC$, $CDE$, and also the $b_1b_2$ interaction $ABC^2DE=ABDE$.  It  is important in response-surface work to avoid confounding second-order interactions, and this scheme is thus acceptable.  Unlike Design~1, this design includes all $2^5$ factor combinations, so we do not use the "generators" argument; instead, we use "blocks" to do the fractionation:
 \begin{Schunk}
 \begin{Sinput}
-R> des10 <- ccd( ~ A + B + C + D + E,
+> des10 <- ccd( ~ A + B + C + D + E,
 +   blocks = Blk ~ c(A * B * C, C * D * E), n0 = c(2, 4))
 \end{Sinput}
 \end{Schunk}
@@ -323,9 +325,9 @@ It is also important to examine a design's capabilities. First of all, is it ade
 {\small
 \begin{Schunk}
 \begin{Sinput}
-R> par(mfrow=c(1,2))
-R> varfcn(des10, ~ Blk + SO(A,B,C,D,E), dist = seq(0, 3, by=.1))
-R> varfcn(des10, ~ Blk + SO(A,B,C,D,E), dist = seq(0, 3, by=.1), contour = TRUE)
+> par(mfrow = c(1, 2))
+> varfcn(des10, ~ Blk + SO(A,B,C,D,E), dist = seq(0, 3, by = .1))
+> varfcn(des10, ~ Blk + SO(A,B,C,D,E), dist = seq(0, 3, by = .1), contour = TRUE)
 \end{Sinput}
 \end{Schunk}
 }
@@ -344,7 +346,7 @@ It is possible to imagine a CCD that consists of a fractional factorial divided 
 Starting in version~1.40 of \rsm{}, an "inscribed" argument is available in "ccd".  This scales the entire design so that it fits within a unit cube---useful for situations when there are constraints on the region of operability.
 \begin{Schunk}
 \begin{Sinput}
-R> ccd(2, n0 = c(1,1), inscribed=TRUE, randomize=FALSE)
+> ccd(2, n0 = c(1, 1), inscribed = TRUE, randomize = FALSE)
 \end{Sinput}
 \begin{Soutput}
    run.order std.order   x1.as.is   x2.as.is Block
@@ -376,19 +378,20 @@ A response surface is fitted using the "rsm" function.  This is an extension of 
 To illustrate this, let us revisit the "ChemReact" data introduced in \Sect{coding}.  We have one response variable, "Yield", and two coded predictors "x1" and "x2" as well as a blocking factor "Block".  Supposing that the experiment was done in two stages, we first act as though the data in the second block have not yet been collected; and fit a first-order response-surface model to the data in the first block:
 \begin{Schunk}
 \begin{Sinput}
-R> CR1.rsm <- rsm(Yield ~ FO(x1, x2), data = CR1)
-R> summary(CR1.rsm)
+> CR1.rsm <- rsm(Yield ~ FO(x1, x2), data = CR1)
+> summary(CR1.rsm)
 \end{Sinput}
 \begin{Soutput}
 Call:
 rsm(formula = Yield ~ FO(x1, x2), data = CR1)
 
-            Estimate Std. Error  t value  Pr(>|t|)    
-(Intercept) 82.81429    0.54719 151.3456 1.143e-08 ***
-x1           0.87500    0.72386   1.2088    0.2933    
-x2           0.62500    0.72386   0.8634    0.4366    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+            Estimate Std. Error  t value  Pr(>|t|)
+(Intercept) 82.81429    0.54719 151.3456 1.143e-08
+x1           0.87500    0.72386   1.2088    0.2933
+x2           0.62500    0.72386   0.8634    0.4366
+
+Multiple R-squared:  0.3555,	Adjusted R-squared:  0.0333 
+F-statistic: 1.103 on 2 and 4 DF,  p-value: 0.4153
 
 Analysis of Variance Table
 
@@ -414,8 +417,8 @@ In this particular example, the steepest-ascent information is of little use, be
 lack of fit for this model ($p \approx 0.01$).  It suggests that we should try a higher-order model.  For example, we could add two-way interactions:
 \begin{Schunk}
 \begin{Sinput}
-R> CR1.rsmi <- update(CR1.rsm, . ~ . + TWI(x1, x2))
-R> summary(CR1.rsmi)
+> CR1.rsmi <- update(CR1.rsm, . ~ . + TWI(x1, x2))
+> summary(CR1.rsmi)
 \end{Sinput}
 \end{Schunk}
 The results are not shown, but one finds there is still a small $p$~value for lack-of-fit.  
@@ -424,7 +427,7 @@ To go further, we need more data.  Thus, let us pretend that we now collect the 
 Then here are the data from the combined blocks:
 \begin{Schunk}
 \begin{Sinput}
-R> ( CR2 <- djoin(CR1, ChemReact2) )
+> ( CR2 <- djoin(CR1, ChemReact2) )
 \end{Sinput}
 \begin{Soutput}
     Time   Temp Yield Block
@@ -453,23 +456,24 @@ Notice that "djoin" figures out the fact that "ChemReact2" is not coded but it h
 We are now in the position of fitting a full second-order model to the combined data.  This can be done by adding "PQ(x1, x2)" to the above model with interaction, but the easier way is to use "SO", which is shorthand for a model with "FO", "TWI", and "PQ" terms.  Also, we now need to account for the block effect since the data are collected in separate experiments:
 \begin{Schunk}
 \begin{Sinput}
-R> CR2.rsm <- rsm(Yield ~ Block + SO(x1, x2), data = CR2)
-R> summary(CR2.rsm)
+> CR2.rsm <- rsm(Yield ~ Block + SO(x1, x2), data = CR2)
+> summary(CR2.rsm)
 \end{Sinput}
 \begin{Soutput}
 Call:
 rsm(formula = Yield ~ Block + SO(x1, x2), data = CR2)
 
-             Estimate Std. Error  t value  Pr(>|t|)    
-(Intercept) 84.095427   0.079631 1056.067 < 2.2e-16 ***
-Block2      -4.457530   0.087226  -51.103 2.877e-10 ***
-x1           0.932541   0.057699   16.162 8.444e-07 ***
-x2           0.577712   0.057699   10.012 2.122e-05 ***
-x1:x2        0.125000   0.081592    1.532    0.1694    
-x1^2        -1.308555   0.060064  -21.786 1.083e-07 ***
-x2^2        -0.933442   0.060064  -15.541 1.104e-06 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+             Estimate Std. Error  t value  Pr(>|t|)
+(Intercept) 84.095427   0.079631 1056.067 < 2.2e-16
+Block2      -4.457530   0.087226  -51.103 2.877e-10
+x1           0.932541   0.057699   16.162 8.444e-07
+x2           0.577712   0.057699   10.012 2.122e-05
+x1:x2        0.125000   0.081592    1.532    0.1694
+x1^2        -1.308555   0.060064  -21.786 1.083e-07
+x2^2        -0.933442   0.060064  -15.541 1.104e-06
+
+Multiple R-squared:  0.9981,	Adjusted R-squared:  0.9964 
+F-statistic: 607.2 on 6 and 7 DF,  p-value: 3.811e-09
 
 Analysis of Variance Table
 
@@ -492,6 +496,7 @@ Stationary point in original units:
  86.86148 176.67190 
 
 Eigenanalysis:
+eigen() decomposition
 $values
 [1] -0.9233027 -1.3186949
 
@@ -508,32 +513,33 @@ the stationary point of the fitted surface is at $(0.37, 0.33)$ in coded units--
 Another example that comes out a different way is a paper-helicopter experiment \cite[Table 12.5]{Box05}.  This is another central-composite experiment, in four variables and two blocks.  The data are provided in the \rsm{} dataset "heli"; these data are already coded.  The original variables are wing area "A", wing shape "R", body width "W", and body length "L".  The goal is to make a paper helicopter that flies for as long as possible.  Each observation in the dataset represents the results of ten replicated flights at each experimental condition.  Here we study the average flight time, variable name "ave", using a second-order surface.
 \begin{Schunk}
 \begin{Sinput}
-R> heli.rsm <- rsm(ave ~ block + SO(x1, x2, x3, x4), data = heli)
-R> summary(heli.rsm)
+> heli.rsm <- rsm(ave ~ block + SO(x1, x2, x3, x4), data = heli)
+> summary(heli.rsm)
 \end{Sinput}
 \begin{Soutput}
 Call:
 rsm(formula = ave ~ block + SO(x1, x2, x3, x4), data = heli)
 
-              Estimate Std. Error  t value  Pr(>|t|)    
-(Intercept) 372.800000   1.506375 247.4815 < 2.2e-16 ***
-block2       -2.950000   1.207787  -2.4425 0.0284522 *  
-x1           -0.083333   0.636560  -0.1309 0.8977075    
-x2            5.083333   0.636560   7.9856 1.398e-06 ***
-x3            0.250000   0.636560   0.3927 0.7004292    
-x4           -6.083333   0.636560  -9.5566 1.633e-07 ***
-x1:x2        -2.875000   0.779623  -3.6877 0.0024360 ** 
-x1:x3        -3.750000   0.779623  -4.8100 0.0002773 ***
-x1:x4         4.375000   0.779623   5.6117 6.412e-05 ***
-x2:x3         4.625000   0.779623   5.9324 3.657e-05 ***
-x2:x4        -1.500000   0.779623  -1.9240 0.0749257 .  
-x3:x4        -2.125000   0.779623  -2.7257 0.0164099 *  
-x1^2         -2.037500   0.603894  -3.3739 0.0045424 ** 
-x2^2         -1.662500   0.603894  -2.7530 0.0155541 *  
-x3^2         -2.537500   0.603894  -4.2019 0.0008873 ***
-x4^2         -0.162500   0.603894  -0.2691 0.7917877    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+              Estimate Std. Error  t value  Pr(>|t|)
+(Intercept) 372.800000   1.506375 247.4815 < 2.2e-16
+block2       -2.950000   1.207787  -2.4425 0.0284522
+x1           -0.083333   0.636560  -0.1309 0.8977075
+x2            5.083333   0.636560   7.9856 1.398e-06
+x3            0.250000   0.636560   0.3927 0.7004292
+x4           -6.083333   0.636560  -9.5566 1.633e-07
+x1:x2        -2.875000   0.779623  -3.6877 0.0024360
+x1:x3        -3.750000   0.779623  -4.8100 0.0002773
+x1:x4         4.375000   0.779623   5.6117 6.412e-05
+x2:x3         4.625000   0.779623   5.9324 3.657e-05
+x2:x4        -1.500000   0.779623  -1.9240 0.0749257
+x3:x4        -2.125000   0.779623  -2.7257 0.0164099
+x1^2         -2.037500   0.603894  -3.3739 0.0045424
+x2^2         -1.662500   0.603894  -2.7530 0.0155541
+x3^2         -2.537500   0.603894  -4.2019 0.0008873
+x4^2         -0.162500   0.603894  -0.2691 0.7917877
+
+Multiple R-squared:  0.9555,	Adjusted R-squared:  0.9078 
+F-statistic: 20.04 on 15 and 14 DF,  p-value: 6.54e-07
 
 Analysis of Variance Table
 
@@ -556,6 +562,7 @@ Stationary point in original units:
 12.916426  2.434015  1.040128  1.941927 
 
 Eigenanalysis:
+eigen() decomposition
 $values
 [1]  3.258222 -1.198324 -3.807935 -4.651963
 
@@ -581,8 +588,8 @@ While the canonical analysis gives us a handle on the behavior of a second-order
 We provide the "lm" or "rsm" object, a formula for which predictors to use, and various optional parameters.  Consider the paper-helicopter example in the preceding section; there are four response-surface predictors, making six pairs of predictors.  If we want to visualize the behavior of the fitted surface around the stationary point, we can provide that location as the "at" argument:
 \begin{Schunk}
 \begin{Sinput}
-R> par(mfrow = c(2, 3))
-R> contour(heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE,
+> par(mfrow = c(2, 3))
+> contour(heli.rsm, ~ x1 + x2 + x3 + x4, image = TRUE,
 +   at = summary(heli.rsm)$canonical$xs)
 \end{Sinput}
 \end{Schunk}
@@ -597,7 +604,7 @@ the coordinate axes, as shown in the subtitles.
 In many first-order cases, as well as second-order cases where we find a saddle point or the stationary point is distant, the most useful further action is to decide in which direction to explore further.  In the case of first-order models, one can follow the direction of steepest ascent.  As already seen in \Sect{fitting}, the "summary" method for "rsm" objects provides some information about this path.  More detailed information is available via the "steepest" function; for example,
 \begin{Schunk}
 \begin{Sinput}
-R> steepest(CR1.rsm, dist = c(0, 0.5, 1))
+> steepest(CR1.rsm, dist = c(0, 0.5, 1))
 \end{Sinput}
 \begin{Soutput}
 Path of steepest ascent from ridge analysis:
@@ -616,7 +623,7 @@ In the second-order case, the "steepest" function still works, but it uses the r
 In the "heli" example, we do have a nearby stationary point.  Here are some points within a radius of $5$ along the canonical path:
 \begin{Schunk}
 \begin{Sinput}
-R> canonical.path(heli.rsm, dist = seq(-5, 5, by = 0.5))
+> canonical.path(heli.rsm, dist = seq(-5, 5, by = 0.5))
 \end{Sinput}
 \begin{Soutput}
    dist     x1     x2     x3     x4 |       A       R       W      L |    yhat
@@ -649,9 +656,9 @@ R> canonical.path(heli.rsm, dist = seq(-5, 5, by = 0.5))
 Canonical analysis becomes unstable in cases where the matrix $\bB$ of second-order coefficients is singular or nearly so. As an example, consider the dataset "codata" provided with \rsm{} and used as an example in \cite{Box05}. It comes in coded form, but to relate things to the actual variables, let's add the codings:
 \begin{Schunk}
 \begin{Sinput}
-R> CO = as.coded.data(codata,  x1 ~ (Ethanol - 0.2)/0.1,  x2 ~ A.F.ratio - 15)
-R> names(CO)[3] = "CO.conc"
-R> head(CO)
+> CO = as.coded.data(codata,  x1 ~ (Ethanol - 0.2)/0.1,  x2 ~ A.F.ratio - 15)
+> names(CO)[3] = "CO.conc"
+> head(CO)
 \end{Sinput}
 \begin{Soutput}
   Ethanol A.F.ratio CO.conc
@@ -670,19 +677,20 @@ x2 ~ A.F.ratio - 15
 This is a $3^2$ design in one block. We fit a second-order model and obtain the canonical analysis:
 \begin{Schunk}
 \begin{Sinput}
-R> CO.rsm = rsm(CO.conc ~ SO(x1,x2), data = CO)
-R> canonical(CO.rsm)
+> CO.rsm = rsm(CO.conc ~ SO(x1,x2), data = CO)
+> canonical(CO.rsm)
 \end{Sinput}
 \begin{Soutput}
 $xs
-       x1        x2 
--14.81387  15.44149 
+         x1          x2 
+-0.06302658 -0.05997463 
 
 $eigen
-$eigen$values
-[1]  0.1868328 -8.8868328
+eigen() decomposition
+$values
+[1]  0.000000 -8.886833
 
-$eigen$vectors
+$vectors
          [,1]       [,2]
 x1  0.6893497 -0.7244288
 x2 -0.7244288 -0.6893497
@@ -693,48 +701,60 @@ x2 -0.7244288 -0.6893497
 \begin{figure}
 \includegraphics[width=.6\textwidth]{rsm-rising-ridge.pdf}
 
-\caption{Fitted response surface for \code{CO.rsm}, and the canonical paths with (blue) and without(red) a threshold. The design region is shown as a green box.}\label{rising-ridge}
+\caption{Fitted response surface for \code{CO.rsm}, and the canonical paths with (blue) and without(red) a threshold. Also shown is the path of steepest ascent (magenta), which aligns closely with one direction in the thresholded canonical path. 
+The design region is shown as a green box.}\label{rising-ridge}
 \end{figure}
 %--------------------- ILLUS FIGURE END --------------
 %
-Note that the stationary point is at about $(-15,15)$ in coded units---very distant from the design center. Also, one eigenvalue is very small relative to the other. \rsm{} now provides a "threshold" option whereby eigenvalues smaller than the threshold are not used. Note the results when we discard the smaller eigenvalue:
+Note that, due to an automatic thresholding provision, one of the eigenvalues has been
+set to zero. This causes the stationary point to be estimated based only on the
+surviving eigenvector, with the other one assumed to be a stationary ridge.
+To ignore this thresholding, set the threshold to zero:
 \begin{Schunk}
 \begin{Sinput}
-R> canonical(CO.rsm, threshold = .2)
+> canonical(CO.rsm, threshold = 0)
 \end{Sinput}
 \begin{Soutput}
 $xs
-         x1          x2 
--0.06302658 -0.05997463 
+       x1        x2 
+-14.81387  15.44149 
 
 $eigen
-$eigen$values
-[1]  0.000000 -8.886833
+eigen() decomposition
+$values
+[1]  0.1868328 -8.8868328
 
-$eigen$vectors
+$vectors
          [,1]       [,2]
 x1  0.6893497 -0.7244288
 x2 -0.7244288 -0.6893497
 \end{Soutput}
 \end{Schunk}
-This sets the smaller eigenvalue to zero. By ignoring it, the stationary point is $(-.06,-.06)$---much, much closer to the design center. 
+Now, the stationary point is at about $(-15,15)$ in coded units---very distant from the design center. 
 
 The following statements produce an illustrative plot, shown in Figure~\ref{rising-ridge}.
 \begin{Schunk}
 \begin{Sinput}
-R> contour(CO.rsm, x2 ~ x1, bounds = list(x1=c(-16,2), x2=c(-2,16)), 
-+         zlim=c(-100,100), col="gray", decode = FALSE)
-R> lines(c(-1,1,1,-1,-1), c(-1,-1,1,1,-1), col="green") # design region
-R> points(x2 ~ x1, data=canonical.path(CO.rsm), col="red", pch=1+6*(dist==0))
-R> points(x2 ~ x1, data=canonical.path(CO.rsm, threshold=.2), 
-+         col="blue", pch=1+6*(dist==0))
+> contour(CO.rsm, x2 ~ x1, bounds = list(x1 = c(-16, 2), x2 = c(-2, 16)), 
++         zlim = c(-100, 100), col = "gray", decode = FALSE)
+> lines(c(-1,1,1,-1,-1), c(-1,-1,1,1,-1), col = "green") # design region
+> points(x2 ~ x1, data = canonical.path(CO.rsm), 
++         col = "blue", pch = 1 + 6*(dist == 0))
+> points(x2 ~ x1, data = canonical.path(CO.rsm, threshold = 0), 
++         col = "red", pch = 1 + 6*(dist == 0))
+> points(x2 ~ x1, data=steepest(CO.rsm), 
++         col = "magenta", pch = 1 + 6*(dist == 0))
 \end{Sinput}
 \end{Schunk}
 It displays the fitted response surface, as well as the results from "canonical.path" with and without the threshold (blue and red points, respectively). The region of the design is shown as a green box. The stationary point (different symbol) is seen to be a saddle point near the upper-left corner when not thresholded, and near the design center whern thresholded. Otherwise, the canonical paths are much the same but with different origins. Both form a path along the rising ridge that occurs in the vicinity of the design. 
 
-It is important to note that the stationary point obtained by thresholding is not really a stationary point, but rather a nearby point that represents a center for the most important canonical directions. In this example, the true stationary point is very distant, and the thresholded stationary point is the nearest place on a rising ridge that emanates from the true stationary point. The thresholded "canonical.path" results give us a much more usable set of factor settings to explore than the ones without a threshold.
+It is important to note that the stationary point obtained by the default thresholding is not really a stationary point, but rather a nearby point that represents a center for the most important canonical directions. In this example, the true stationary point is very distant, and the thresholded stationary point is the nearest place on a rising ridge that emanates from the true stationary point. The thresholded "canonical.path" results give us a much more usable set of factor settings to explore than the ones without a threshold.
 
-The rest of this section provides some technical backing, in case you're interested. Let $\bb$ and $\bB$ denote the first and second-order coefficients of the fitted second-order surface, so that the fitted value at a coded point $\bx$ is $\yhat(\bx) = b_0 + \bb'\bx + \bx'\bB\bx$. The stationary point $\bx_s$ solves the equation $2\bB\bx_s + \bb = \bzero$, i.e., $\bx_s = -\frac12\bB^{-1}\bb$. The canonical analysis yields the decomposition 
+\subsection{Technical details}
+This subsection provides some technical backing for canonical analysis
+and what we do when a threshold is active, in case you're interested. 
+
+Let $\bb$ and $\bB$ denote the first and second-order coefficients of the fitted second-order surface, so that the fitted value at a coded point $\bx$ is $\yhat(\bx) = b_0 + \bb'\bx + \bx'\bB\bx$. The stationary point $\bx_s$ solves the equation $2\bB\bx_s + \bb = \bzero$, i.e., $\bx_s = -\frac12\bB^{-1}\bb$. The canonical analysis yields the decomposition 
 \[ \bB = \bU\bLambda\bU' = \lambda_1\bu_1\bu_1' + \lambda_2\bu_2\bu_2' + \cdots + \lambda_k\bu_k\bu_k' \]
 where there are $k$ predictors, the $\bu_j$ form orthonormal columns of $\bU$, and the $\lambda_j$ are the eigenvalues, and $\bLambda = \mathrm{diag}(\lambda_1,\lambda_2,\ldots,\lambda_k)$. It also happens to be true that 
 \[ \bB^{-1} = \bU\bLambda^{-1}\bU'
@@ -745,12 +765,6 @@ Now, for some $m<k$, let $\bLambda_*$ be the $m\times m$ diagonal matrix with on
 The stationary point satisfies $2\bB\bx + \bb = \bzero$ so that $2\bU_*'\bB\bx + \bU_*'\bb = \bzero$. Accordingly, we propose to define a pseudo-stationary point $\bx_*$ such that $2\bU_*'\bB\bx_* + \bU_*'\bb = \bzero$; i.e., $2\bLambda_*\bU_*'\bx_* + \bU_*'\bb = \bzero$. 
 
 This comprises $m$ equations in $k>m$ unknowns. 
-% To make it solvable, we can specify $\bgamme = \bU_0'\bx$ where $\bU_0$ consists of the $k-m$ columns of %$\bU$ not included in $\bU_*$. We now have the system of equations
-% \[ 
-% \bmat{ 2\bLambda_*\bU_*' \\ \bU_0' } \bx = \bmat{ -\bU_*'\bb \\ \bgamma}
-% \]
-% The question is which $\bgamma$ to choose. 
-% We opt to choose the solution that is closest to the origin. 
 To make it unique, we opt to choose the solution that is closest to the origin;
 that is, minimize $\bx'\bx$ subject to the constraint that $2\bLambda_*\bU_*'\bx + \bU_*'\bb = \bzero$.
 Using variational methods (Lagrange multipliers), we find that the resulting solution is $\bx_*= -\frac12\bU_*\bLambda_*^{-1}\bU_*'\bb$. In other words, we simply exclude some terms corresponding to small $\lambda_i$ in the above expression for $\bB^{-1}$.
@@ -761,7 +775,7 @@ This is the stationary point returned in \rsm's "canonical" and related function
 The current version of \rsm{} provides only the most standard tools for first- and second-order response-surface design and analysis.  The package can be quite useful for those standard situations, and it implements many of the analyses presented in textbooks.  However, clearly a great deal of work has been done in response-surface methods that is not represented here.
 Even a quick glance at a review article such as \cite{Mye04}---or even an older one such as \cite{Hil89}---reveals that there is a great deal that could be added to future editions of \rsm{}.  There are many other useful designs besides central composites and Box-Behnken designs.  We can consider higher-order models or the use of predictor transformations.  Mixture designs are not yet provided for.  There are important relationships between these methods and robust parameter design, and with computer experiments.  The list goes on.  However, we now at least have a good collection of basic tools for the \R{} platform, and that is a starting point.
 
-
+\clearpage
 
 
 \bibliography{rsm}
