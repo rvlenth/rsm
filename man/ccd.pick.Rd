@@ -65,7 +65,7 @@ ccd.pick(k, n.c = 2^k, n0.c = 1:10, blks.c = 1, n0.s = 1:10, bbr.c = 1,
 \references{
 Lenth RV (2009) ``Response-Surface Methods in R, Using rsm'', 
   \emph{Journal of Statistical Software}, 32(7), 1--17. 
-  \url{http://www.jstatsoft.org/v32/i07/.}
+  \url{https://www.jstatsoft.org/v32/i07/.}
 
 Myers, RH, Montgomery, DC, and Anderson-Cook, CM (2009)
 \emph{Response Surface Methodology} (3rd ed.), Wiley.

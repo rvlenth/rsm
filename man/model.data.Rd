@@ -28,7 +28,7 @@ model.data(lmobj, lhs = FALSE)
 \references{
 Lenth RV (2009) ``Response-Surface Methods in R, Using rsm'', 
   \emph{Journal of Statistical Software}, 32(7), 1--17. 
-  \url{http://www.jstatsoft.org/v32/i07/.}
+  \url{https://www.jstatsoft.org/v32/i07/.}
 }
 \author{ Russell V. Lenth }
 
