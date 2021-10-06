@@ -1,6 +1,10 @@
 NEWS for rsm package
 
 
+Changes in version 2.10.3 (6 October 2021)
+  * Changed URL links to JSS article to DOI:10.18637/jss.v032.i07
+
+
 Changes for version 2.10.2 (3 September 2020)
   * Updated to use new method registration support for emmeans package.
   * Warning message added to canonical() when eigenvalues < threshold

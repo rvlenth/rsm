@@ -8,12 +8,12 @@ citEntry(entry = "Article",
   volume       = "32",
   number       = "7",
   pages        = "1--17",
-  url          = "https://www.jstatsoft.org/v32/i07/",
+  doi          = "10.18637/jss.v032.i07",
 
   textVersion  =
   paste("Russell V. Lenth (2009).",
         "Response-Surface Methods in R, Using rsm.",
         "Journal of Statistical Software, 32(7), 1-17.",
-        "URL https://www.jstatsoft.org/v32/i07/.")
+        "DOI: 10.18637/jss.v032.i07")
 )
 

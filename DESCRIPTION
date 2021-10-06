@@ -1,6 +1,6 @@
 Package: rsm
-Version: 2.10.2
-Date: 2020-09-03
+Version: 2.10.3
+Date: 2021-10-06
 Title: Response-Surface Analysis
 Authors@R: c(person("Russell", "Lenth", role = c("aut", "cre"), 
     email = "russell-lenth@uiowa.edu"))
@@ -10,7 +10,8 @@ Description: Provides functions to generate response-surface designs,
     and do canonical analysis. A good reference on these methods 
     is Chapter 10 of Wu, C-F J and Hamada, M (2009) 
     "Experiments: Planning, Analysis, and Parameter Design Optimization"
-    ISBN 978-0-471-69946-0.
+    ISBN 978-0-471-69946-0. An early version of the package is
+    documented in Journal of Statistical Software <doi:10.18637/jss.v032.i07>.
 Suggests: emmeans (> 1.3.5.1), Vdgraph, conf.design, DoE.base, FrF2
 Imports: estimability
 License: GPL(>=2)

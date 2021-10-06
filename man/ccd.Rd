@@ -91,7 +91,7 @@ A \code{\link{coded.data}} object with the generated design, with additional var
 \references{
 Lenth RV (2009) ``Response-Surface Methods in R, Using rsm'', 
   \emph{Journal of Statistical Software}, 32(7), 1--17. 
-  \url{https://www.jstatsoft.org/v32/i07/.}
+  \doi{10.18637/jss.v032.i07}
 
 Myers, RH, Montgomery, DC, and Anderson-Cook, CM (2009) 
 \emph{Response Surface Methodology} (3rd ed.), Wiley.
