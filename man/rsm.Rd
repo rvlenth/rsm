@@ -66,8 +66,8 @@ The first version, however, creates duplicate \code{x2:x3} terms -- which \code{
   additional members as follows:
     \item{order}{The order of the model: 1 for first-order, 1.5 for first-order plus interactions, 
      or 2 for a model that contains square terms.}
-    \item{\bold{b}}{The first-order response-surface coefficients.}
-    \item{\bold{B}}{The matrix of second-order response-surface coefficients, if present.}
+    \item{b}{The first-order response-surface coefficients.}
+    \item{B}{The matrix of second-order response-surface coefficients, if present.}
     \item{labels}{Labels for the response-surface terms.  These make the summary much more readable.}
     \item{coding}{Coding formulas, if provided in the \code{codings} argument or
       if the \code{data} argument passed to \code{\link{lm}} is a \code{\link{coded.data}} object.}

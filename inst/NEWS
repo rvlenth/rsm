@@ -1,5 +1,9 @@
 NEWS for rsm package
 
+Changes in version 2.10.4 (19 September 2023)
+  * Removed formatting in Value list in rsm.Rd, per CRAN request
+  * Allowed weights in recover_data.rsm
+
 
 Changes in version 2.10.3 (6 October 2021)
   * Changed URL links to JSS article to DOI:10.18637/jss.v032.i07

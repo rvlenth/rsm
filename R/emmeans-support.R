@@ -30,7 +30,7 @@ recover_data.rsm = function(object, data, mode = c("asis", "coded", "decoded"), 
     fcall = object$call
     if(is.null(data))
         data = emmeans::recover_data(fcall, delete.response(terms(object)), 
-                                     object$na.action, ...)
+                                     object$na.action, weights = weights(object), ...)
     if (!is.null(cod) && (mode == "decoded")) {
         pred = cpred = attr(data, "predictors")
         trms = attr(data, "terms")
