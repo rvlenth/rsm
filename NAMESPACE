@@ -27,7 +27,8 @@ importFrom("stats",
            "sd", 
            "terms",
            "uniroot",
-           "update")
+           "update",
+           "weights")
      
 import(graphics)
 
@@ -72,8 +73,9 @@ S3method(persp, lm)
 # --- to make Ulrike's life easier...
 #export(.ccd.1.41, .bbd.1.41)
 
-export(".bbd.1.41", 
-       ".ccd.1.41", 
+export(
+#       ".bbd.1.41", 
+#       ".ccd.1.41", 
 #       "[.coded.data", 
        "as.coded.data", 
        "bbd", 

@@ -1,19 +1,18 @@
 citHeader("To cite rsm in publications use:")
 
-citEntry(entry = "Article",
+bibentry(
+  bibtype      = "Article",
   title        = "Response-Surface Methods in {R}, Using {rsm}",
-  author       = personList(as.person("Russell V. Lenth")),
+  author       = person("Russell", "Lenth", role = c("cre", "aut")),
   journal      = "Journal of Statistical Software",
   year         = "2009",
   volume       = "32",
   number       = "7",
   pages        = "1--17",
   doi          = "10.18637/jss.v032.i07",
-
-  textVersion  =
-  paste("Russell V. Lenth (2009).",
-        "Response-Surface Methods in R, Using rsm.",
-        "Journal of Statistical Software, 32(7), 1-17.",
-        "DOI: 10.18637/jss.v032.i07")
+  textVersion  = paste("Russell V. Lenth (2009).",
+                    "Response-Surface Methods in R, Using rsm.",
+                    "Journal of Statistical Software, 32(7), 1-17.",
+                    "DOI: 10.18637/jss.v032.i07")
 )
 
