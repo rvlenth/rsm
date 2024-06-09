@@ -51,7 +51,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="nav-link" href="https://github.com/rvlenth/rsm/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -68,7 +75,7 @@
 Version 2.10.5</h4>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/rvlenth/rsm/blob/HEAD/vignettes/plots.rmd"><code>vignettes/plots.rmd</code></a></small>
       <div class="d-none name"><code>plots.rmd</code></div>
     </div>
 
@@ -115,7 +122,7 @@ a polynomial function of <code>Agriculture</code> and
 <p>The following basic calls illustrate the default results from the
 three functions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rsm</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/rsm">rsm</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/image.html" class="external-link">image</a></span><span class="op">(</span><span class="va">swiss2.lm</span>, <span class="va">Education</span> <span class="op">~</span> <span class="va">Agriculture</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/contour.html" class="external-link">contour</a></span><span class="op">(</span><span class="va">swiss2.lm</span>, <span class="va">Education</span> <span class="op">~</span> <span class="va">Agriculture</span><span class="op">)</span></span>

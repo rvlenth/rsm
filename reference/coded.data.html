@@ -32,7 +32,13 @@
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
-      <ul class="navbar-nav"></ul></div>
+      <ul class="navbar-nav"><li class="nav-item">
+  <a class="nav-link" href="https://github.com/rvlenth/rsm/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div>
 
     
   </div>
@@ -202,7 +208,7 @@ truenames(x) &lt;- value</code></pre></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rsm</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/rsm">rsm</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">### Existing dataset with variables on actual scale</span></span></span>
 <span class="r-in"><span><span class="va">CR</span> <span class="op">&lt;-</span> <span class="fu">coded.data</span> <span class="op">(</span><span class="va">ChemReact</span>, <span class="va">x1</span> <span class="op">~</span> <span class="op">(</span><span class="va">Time</span> <span class="op">-</span> <span class="fl">85</span><span class="op">)</span><span class="op">/</span><span class="fl">5</span>, <span class="va">x2</span> <span class="op">~</span> <span class="op">(</span><span class="va">Temp</span> <span class="op">-</span> <span class="fl">175</span><span class="op">)</span><span class="op">/</span><span class="fl">5</span><span class="op">)</span></span></span>
