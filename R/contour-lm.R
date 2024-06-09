@@ -224,7 +224,7 @@ contour.lm = function(x, form, at, bounds, zlim,
             if (length(atidx) > 0) { ###### || length(allfac) > 0) {
                 atlabs = NULL
                 if (length(atidx) > 0) {
-                    atvals = round(sapply(atidx, function(v) .decode.value(v, at[[v]])), 2)
+                    atvals = signif(sapply(atidx, function(v) .decode.value(v, at[[v]])), 2)
                     if (decode && !is.null(forms)) {
                         dclabs = sapply(atidx, function(x) {
                             f = forms[[x]]
@@ -240,18 +240,19 @@ contour.lm = function(x, form, at, bounds, zlim,
                         atlabs = paste(atidx, atvals, sep = " = ")
                 }
                 # added  for factors in 'at'
-                facidx = setdiff(orig.atnm, atidx)
-                facx = unlist(at[facidx])
-                fn = which(!is.na(suppressWarnings(as.numeric(facx))))
-                facx[fn] = signif(as.numeric(facx[fn]), digits = 2)
-                faclabs = paste(facidx, facx, sep = " = ")
-                atlabs = c(atlabs, faclabs)
-#                 faclabs = paste(allfac, sapply(allfac, function(v) at[[v]]), sep=" = ")
-#                 atlabs = paste(c(atlabs, faclabs), collapse = ", ")
+                facidx = setdiff(setdiff(orig.atnm, atidx), v)
+                if(length(facidx) > 0) {
+                    facx = unlist(at[facidx])
+                    fn = which(!is.na(suppressWarnings(as.numeric(facx))))
+                    facx[fn] = signif(as.numeric(facx[fn]), digits = 2)
+                    faclabs = paste(facidx, facx, sep = " = ")
+                    atlabs = c(atlabs, faclabs)
+                }
                 atlabs = paste(atlabs, collapse = ", ") ### NEW
                 labs[5] = paste("Slice at", atlabs)
                 if (atpos < 3)
                     labs[atpos] = paste(labs[atpos], "\n", labs[5], sep = "")
+                
             }
         }
         y = .decode.value(v[1], y) 

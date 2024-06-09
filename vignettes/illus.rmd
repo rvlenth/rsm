@@ -89,9 +89,10 @@ But here are the characteristics of a design with $\alpha = 1.5$:
 ```{r fig=TRUE, fig.height=3.5, fig.width=6}
 par(mfrow=c(1,2))
 followup = djoin(expt1, star(n0 = 2, alpha = 1.5))
-varfcn(followup, ~ Block + SO(x1,x2,x3))
-varfcn(followup, ~ Block + SO(x1,x2,x3), contour = TRUE)
+varfcn(followup, ~ Block + SO(x1,x2,x3), main = "Followup")
+varfcn(followup, ~ Block + SO(x1,x2,x3), contour = TRUE, main = "Block + SO(x1,x2,x3)")
 ```
+
 From this we can tell that we can at least augment the design to fit a second-order model. The model includes a block effect to account for the fact that two separately randomized experiments are combined. 
 
 
@@ -210,8 +211,8 @@ Because there is lack of fit, it's now a good idea to collect data at the "star"
 expt5 = star(expt4, n0 = 2, alpha = "orthogonal")
 par(mfrow=c(1,2))
 comb = djoin(expt3, expt4, expt5)
-varfcn(comb, ~ Block + SO(x1,x2,x3))
-varfcn(comb, ~ Block + SO(x1,x2,x3), contour = TRUE)
+varfcn(comb, ~ Block + SO(x1,x2,x3), main = "Further augmented")
+varfcn(comb, ~ Block + SO(x1,x2,x3), contour = TRUE, main = "2nd order")
 ```
 
 This is not the second-order design we contemplated earlier, because it involves adding star points to the complete $2^3$ design; but it has reasonable prediction-variance properties. 
