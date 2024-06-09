@@ -1,6 +1,6 @@
 Package: rsm
-Version: 2.10.4
-Date: 2023-09-19
+Version: 2.10.5
+Date: 2024-06-08
 Title: Response-Surface Analysis
 Authors@R: c(person("Russell", "Lenth", role = c("aut", "cre"), 
     email = "russell-lenth@uiowa.edu"))

@@ -6,3 +6,6 @@
 ### rsm-plots.R
 Readme.md
 old-ccd-bbd.R
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

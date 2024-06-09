@@ -241,7 +241,10 @@ contour.lm = function(x, form, at, bounds, zlim,
                 }
                 # added  for factors in 'at'
                 facidx = setdiff(orig.atnm, atidx)
-                faclabs = paste(facidx, unlist(at[facidx]), sep = " = ")
+                facx = unlist(at[facidx])
+                fn = which(!is.na(suppressWarnings(as.numeric(facx))))
+                facx[fn] = signif(as.numeric(facx[fn]), digits = 2)
+                faclabs = paste(facidx, facx, sep = " = ")
                 atlabs = c(atlabs, faclabs)
 #                 faclabs = paste(allfac, sapply(allfac, function(v) at[[v]]), sep=" = ")
 #                 atlabs = paste(c(atlabs, faclabs), collapse = ", ")

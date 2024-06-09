@@ -1,0 +1,39 @@
+url: https://github.com/rvlenth/rsm
+template:
+  bootstrap: 5
+
+reference:
+- title: Overview
+  contents:
+  - rsm-package
+  
+- title: Coding of data
+  contents:
+  - coded.data
+
+- title: Analysis
+  contents:
+  - rsm
+  - FO
+  - steepest
+  - model.data
+  
+- title: Experimental designs
+  contents:
+  - bbd
+  - ccd
+  - ccd.pick
+  - djoin
+  - varfcn
+
+- title: Graphics
+  contents:
+  - contour.lm
+
+- title: Data sets
+  contents:
+  - ChemReact
+  - codata
+  - heli
+
+

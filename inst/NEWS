@@ -1,5 +1,10 @@
 NEWS for rsm package
 
+Changes in version 2.10.5 (9 June 2024)
+  * Re-did old Sweave/PDF vignettes in RMarkdown/HTML
+  * Made **pkgdown** site
+
+
 Changes in version 2.10.4 (19 September 2023)
   * Removed formatting in Value list in rsm.Rd, per CRAN request
   * Allowed weights in recover_data.rsm

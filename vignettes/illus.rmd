@@ -1,0 +1,322 @@
+---
+title: "Response-surface illustration"
+author: "rsm package, Version `r packageVersion('rsm')`"
+output: html_vignette
+vignette: >
+  %\VignetteIndexEntry{Response-surface illustration}
+  %\VignetteKeywords{response-surface methods, regression, experimental design, first-order designs, second-order designs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r, echo = FALSE, results = "hide", message = FALSE}
+require("rsm")
+knitr::opts_chunk$set(fig.width = 4.5, class.output = "ro")
+
+suppressWarnings(RNGversion("2.15.3")) ### This saved my bacon reproducing a very old vignette!
+set.seed(19482012)
+
+# basic generator
+simb = function(flour, sugar, butter, sd=0.58) {
+  x1 = (flour - 1.2)/.1
+  x2 = (sugar - .25)/.1
+  x3 = (butter - .4)/.15
+  y = 32 - x1^2 - .5*x3^2 - sqrt(abs(x2 + x3))^2
+  rnorm(length(y), y, sd)
+}
+
+# requires DECODED data!
+simBake = function(data) {
+  blkeff = rnorm(1, 0, 2.3)
+  round(blkeff + simb(data$flour, data$sugar, data$butter), 1)
+}
+```
+
+### Abstract
+In this vignette, we give an illustration, using simulated data, of a sequential-experimentation process to optimize a response surface. I hope that this is helpful for understanding both how to use the **rsm** package and RSM methodology in general.
+
+## The scenario
+We will use simulated data from a hypothetical baking experiment. Our goal is to find the optimal amounts of flour, butter, and sugar in a recipe. The response variable is some rating of the texture and flavor of the product. The baking temperature, procedures, equipment, and operating environment will be held constant. 
+
+## Initial experiment
+Our current recipe calls for 1 cup of flour, 0.50 cups of sugar, and 0.25 cups of butter. Our initial experiment will center at this recipe, and we will vary each ingredient by $\pm0.1$ cup. Let's start with a minimal first-order experiment, a half-fraction of a $2^3$ design plus 4 center points. This is a total of 8 experimental runs, which is quite enough given the labor involved. The philosophy of RSM is to do minimal experiments that can be augmented later if necessary if more detail is needed. We'll generate and randomize the experiment using `cube`, in terms of coded variables $x_1,x_2,x_3$:
+```{r}
+library(rsm)
+expt1 = cube(~ x1 + x2,  x3 ~ x1 * x2, n0 = 4,
+            coding = c(x1 ~ (flour - 1)/.1, x2 ~ (sugar - .5)/.1, x3 ~ (butter - .25)/.1))
+```
+So here is the protocol for the first design.
+```{r}
+expt1
+```
+It's important to understand that `cube` returns a *coded* dataset; this facilitates response-surface methodology in that analyses are best done on a coded scale. The above design is actually stored in coded form, as we can see by looking at it as an ordinary `data.frame`:
+```{r}
+as.data.frame(expt1)
+```
+```{r echo = FALSE}
+SAVESEED = .Random.seed
+```
+
+
+
+## But hold on a minute... First, assess the strategy
+But wait! Before collecting any data, we really should plan ahead and make sure this is all going to work.
+
+### First-order design capability
+First of all, will this initial design do the trick? One helpful tool in **rsm** is the `varfcn` function, which allows us to examine the variance of the predictions we will obtain. We don't have any data yet, so this is done in terms of a scaled variance, defined as $\frac N{\sigma^2}\mathrm{Var}(\hat{y}(\mathbf{x}))$, where $N$ is the number of design points, $\sigma^2$ is the error variance and $\hat{y}(\mathbf{x})$ is the predicted value at a design point $\mathbf{x}$. In turn, $\hat{y}(\mathbf{x})$ depends on the model as well as the experimental design. Usually, $\mathrm{Var}(\hat{y}(\mathbf{x}))$ depends most strongly on how far $\mathbf{x}$ is from the center of the design (which is $\mathbf{0}$ in coded units). Accordingly, the `varfcn` function requires us to supply the design and the model, and a few different directions to go from the origin along which to plot the scaled variance (some defaults are supplied if not specified). We can look either at a profile plot or a contour plot:
+```{r fig=TRUE, fig.width=6, fig.height=3.5}
+par(mfrow=c(1,2))
+varfcn(expt1, ~ FO(x1,x2,x3))
+varfcn(expt1, ~ FO(x1,x2,x3), contour = TRUE)
+```
+
+Not surprisingly, the variance increases as we go farther out---that is, estimation is more accurate in the center of the design than in the periphery. This particular design has the same variance profile in all directions: this is called a *rotatable* design.
+
+Another important outcome of this is what do *not* see: there are no error messages. That means we can actually fit the intended model. If we intend to use this design to fit a second-order model, it's a different story:
+```{r error = TRUE}
+varfcn(expt1, ~ SO(x1,x2,x3))
+```
+The point is, `varfcn` is a useful way to make sure you can estimate the model you need to fit, *before* collecting any data.
+
+
+### Looking further ahead {#lookahead2}
+As we mentioned, response-surface experimentation uses a building-block approach. It could be that we will want to augment this design so that we can fit a second-order surface. A popular way to do that is to do a followup experiment on  axis or "star" points at locations $\pm\alpha$ so that the two experiments combined may be used to fit a second-order model. Will this work? And if so, what does the variance function look like? Let's find out. It turns out that a rotatable design is not achievable by adding star points:
+```{r}
+try(
+  djoin(expt1, star(n0 = 2, alpha = "rotatable"))
+)
+```
+But here are the characteristics of a design with $\alpha = 1.5$:
+```{r fig=TRUE, fig.height=3.5, fig.width=6}
+par(mfrow=c(1,2))
+followup = djoin(expt1, star(n0 = 2, alpha = 1.5))
+varfcn(followup, ~ Block + SO(x1,x2,x3))
+varfcn(followup, ~ Block + SO(x1,x2,x3), contour = TRUE)
+```
+From this we can tell that we can at least augment the design to fit a second-order model. The model includes a block effect to account for the fact that two separately randomized experiments are combined. 
+
+
+<!-- %%% RESTORE THE SEED WE HAD and generate new data -->
+```{r echo = FALSE}
+.Random.seed = SAVESEED
+expt1$rating = simBake(decode.data(expt1))
+```
+
+## OK, *now* we can collect some data
+
+
+Now, pretend that you now go off and baked some cakes according to these recipes. 
+
+Time passes...
+
+OK, the baking is over, and the results are in, and we entered them in a new `ratings` column in `expt1`:
+```{r}
+expt1
+```
+We can now analyze the data using a first-order model (implemented in **rsm** by the `FO` function). The model is fitted in terms of the coded variables.
+```{r}
+anal1 = rsm(rating ~ FO(x1,x2,x3), data=expt1)
+summary(anal1)
+```
+The take-home message here is that the first-order model does help explain the variations in the response (significant $F$ statistic for the model, as well as two of the three coefficients of $x_j$ are fairly significant); and also that there is no real evidence that the model does not fit (large P value for lack of fit). Finally, there is information on the direction of steepest ascent, which suggests that we could improve the ratings by increasing the flour and decreasing the sugar and butter (by smaller amounts in terms of coded units).
+
+## Explore the path of steepest-ascent
+The direction of steepest ascent is our best guess for how we can improve the recipe. The `steepest` function provides an easy way to find some steps in the right direction, up to a distance of 5 (in coded units) by default:
+```{r}
+( sa1 = steepest(anal1) )
+```
+The `yhat` values show what the fitted model anticipates for the rating; but as we move to further distances, these are serious extrapolations and can't be trusted. What we need is real data! So let's do a little experiment along this path, using the distances from 0.5 to 4.0, for a total of 8 runs. The `dupe` function makes a copy of these runs and re-randomizes the order. 
+```{r}
+expt2 = dupe(sa1[2:9, ])
+```
+Now we need to do some more baking based on this design. Time passes...
+
+The data are now collected; and we have these results:
+```{r echo = FALSE}
+expt2$rating = simBake(expt2)
+options(width=110)
+```
+```{r}
+expt2
+```
+
+With a steepest-ascent path, the idea is to find the highest point along this path, and center the next experiment there. To that end, let's look at it graphically:
+```{r fig = TRUE, scale=.46, fig.height=4.5}
+plot(rating ~ dist, data = expt2)
+anal2 = lm(rating ~ poly(dist, 2),  data = expt2)
+with(expt2, {
+    ord = order(dist)
+    lines(dist[ord], predict(anal2)[ord])
+})
+```
+
+There is a fair amount of variation here, so the fitted quadratic curve provides useful guidance. It suggests that we do our next experiment at a distance of about $2.5$ in coded units, i.e., near point \#6 in the steepest-ascent path, `sa1`. Let's use somewhat rounder values: flour:~$1.25$~cups, sugar:~$0.45$~cups, and butter:~$0.25$~cups (unchanged from `expt1`).
+
+## Relocated experiment
+We can run basically the same design we did the first time around, only with the new center. This is easily done using `dupe` and changing the codings:
+```{r}
+expt3 = dupe(expt1)
+codings(expt3) = c(x1 ~ (flour - 1.25)/.1,  x2 ~ (sugar - .45)/.1,  x3 ~ (butter - .25)/.1)
+```
+
+Again, off to do more baking ... Once the data are collected, we have:
+```{r echo = FALSE}
+expt3$rating = simBake(decode.data(expt3))
+```
+```{r}
+expt3
+```
+
+... and we do the same analysis:
+```{r}
+anal3 = rsm(rating ~ FO(x1,x2,x3), data=expt3)
+summary(anal3)
+```
+This may not seem too dissimilar to the `anal1` results, and if you think so, that would suggest we just do another steepest-ascent step. However, none of the linear (first-order) effects are statistically significant, nor are they even jointly significant ($P\approx0.30$ in the ANOVA table); so we don’t have a compelling case that we even know what that direction might be! It seems better to instead collect more data in this region and see if we get more clarity.
+
+## Foldover experiment
+Recall that our first experiment was a half-fraction plus center points. We can get more information by doing the other fraction. This is accomplished using the `foldover` function, which reverses the signs of some or all of the coded variables (and also re-randomizes the experiment). In this case, the original experiment was generated using $x_3=x_1x_2$, so if we reverse $x_1$, we will have $x_3=-x_1x_2$, thus the other half of the experiment.
+```{r}
+expt4 = foldover(expt3, variable = "x1")
+expt4$rating = NULL  ### discard previous rating data
+expt4   # Here's the new protocol
+```
+Note that this experiment does indeed have different factor combinations (e.g., $(1.15,.35,.15))$ not present in `expt3`. 
+
+Back to the kitchen again...
+
+Once the data are collected, we have:
+```{r echo = FALSE}
+expt4$rating = simBake(decode.data(expt4))
+```
+```{r}
+expt4
+```
+
+For analysis, we will combine `expt3` and `expt4`, which is easily accomplished with  the `djoin` function. Note that `djoin` creates an additional blocking factor:
+```{r}
+names( djoin(expt3, expt4) )
+```
+It's important to include this block effect in the model because we have two separately randomized experiments. In this particular case, it's especially important because `expt4` seems to have  higher values overall than `expt3`; either the raters are in a better mood, or ambient conditions have changed. Here is our analysis:
+```{r}
+anal4 = rsm(rating ~ Block + FO(x1,x2,x3), data = djoin(expt3, expt4))
+summary(anal4)
+```
+Now one of the first-order terms is significant. The lack of fit test is also quite significant. Response-surface experimentation is different from some other kinds of experiments in that it's actually "ideal" in a way to have nonsignificant effects, especially first-order ones, because it would suggest we might be close to the peak.
+Well, we have one big first-order effect, but evidence of curvature; let's carry on.
+
+### Augmenting further to estimate a second-order response surface
+Because there is lack of fit, it's now a good idea to collect data at the "star" or axis points so that we can fit a second-order model. As illustrated [earlier](#lookahead2), the `star` function does this for us. We will choose the parameter `alpha` ($\alpha$) so that the star block is orthogonal to the cube blocks; this seems like a good idea, given how strong we have observed the block effect to be. So here is the next experiment, using the six axis points and 2 center points (we already have 8 center points at this location), for 8 runs. The analysis will be based on combining the cube clock, its foldover, and the star block:
+```{r fig = TRUE, fig.height=3.5, fig.width=6}
+expt5 = star(expt4, n0 = 2, alpha = "orthogonal")
+par(mfrow=c(1,2))
+comb = djoin(expt3, expt4, expt5)
+varfcn(comb, ~ Block + SO(x1,x2,x3))
+varfcn(comb, ~ Block + SO(x1,x2,x3), contour = TRUE)
+```
+
+This is not the second-order design we contemplated earlier, because it involves adding star points to the complete $2^3$ design; but it has reasonable prediction-variance properties. 
+
+Time passes, more cakes are baked and rated, and we have these data:
+```{r echo = FALSE}
+expt5$rating = simBake(decode.data(expt5))
+```
+```{r}
+expt5
+```
+We will fit a second-order model, accounting for the block effect.
+```{r}
+anal5 = rsm(rating ~ Block + SO(x1,x2,x3), data = djoin(expt3, expt4, expt5))
+summary(anal5)
+```
+There are significant first and second-order terms now, and nonsignificant lack of fit. The summary includes a canonical analysis which gives the coordinates of the estimated stationary point and the canonical directions (eigenvectors) from that point. That is, the fitted surface is characterized in the form $\hat{y}(v_1,v_2,v_3) = \hat{y}_s + \lambda_1v_1^2 + \lambda_2v_2^2 + \lambda_3v_3^2$ where $\hat{y}_s$ is the fitted value at the stationary point, the eigenvalues are denoted $\lambda_j$, and the eigenvectors are denoted $v_j$. Since all three eigenvalues are negative, the estimated surface decreases in all directions from its value at $\hat{y}_s$ and hence there is a maximum there. However, the stationary point is nowhere near the experiment, so this is an extreme extrapolation and not to be trusted at all. (In fact, in decoded units, the estimated optimum calls for a negative amount of sugar!) So the best bet now is to experiment on some path that leads us vaguely toward this distant stationary point.
+
+## Ridge analysis (second-order steepest ascent)
+The `steepest` function again may be used; this time it computes a curved path of steepest ascent, based on ridge analysis:
+```{r}
+steepest(anal5)
+```
+After a distance of about 3, it starts venturing into unreasonable combinations of design factors. So let's experiment at 8 distances spread 2/3 apart in coded units:
+```{r}
+expt6 = dupe(steepest(anal5, dist = (2:9)/3))
+```
+```{r echo = FALSE}
+expt6$rating = simBake(expt6)
+```
+After the cakes have been baked and rated, we have
+```{r}
+expt6
+```
+
+And let's do an analysis like that of `expt2`:
+```{r fig = TRUE, fig.height=3.5}
+par(mar=c(4,4,0,0)+.1)
+plot(rating ~ dist, data = expt6)
+anal6 = lm(rating ~ poly(dist, 2),  data = expt6)
+with(expt6, {
+    ord = order(dist)
+    lines(dist[ord], predict(anal6)[ord])
+})
+```
+
+It looks like we should center a new experiment at a distance of 1.5 or so---perhaps flour still at 1.25, and both sugar and butter at .30. 
+
+## Second-order design at the new location
+We are now in a situation where we already know we have curvature, so we might as well go straight to a second-order experiment. It is less critical to assess lack of fit, so we don't need as many center points. Note that each of the past experiments has 8 runs---that is the practical size for one block. All these things considered, we decide to run a central-composite design with the cube portion being a complete $2^3$ design (8 runs with no center points), and the star portion including two center points (another block of 8 runs). Let's generate the design, and magically do the cooking and the rating for these two 8-run experiments:
+```{r}
+expt7  =  ccd( ~ x1 + x2 + x3,  n0 = c(0, 2),  alpha = "orth",  coding  =  c(
+            x1 ~ (flour - 1.25)/.1,  x2 ~ (sugar - .3)/.1,  x3 ~ (butter - .3)/.1))
+```
+```{r echo = FALSE}
+expt7$rating = simBake(decode.data(expt7))
+```
+... and after the data are collected:
+```{r}
+expt7
+```
+
+It turns out that to obtain orthogonal blocks, locating the star points at $\pm\alpha=\pm2$ is the correct choice for these numbers of center points; hence the nice round values. Here's our analysis; we'll go straight to the second-order model, and again, we need to include the block effect in the model.
+```{r}
+anal7 = rsm(rating ~ Block + SO(x1,x2,x3), data = expt7)
+summary(anal7)
+```
+The model fits decently, and there are important second-order terms. The most exciting news is that the stationary point is quite close to the design center, and it is indeed a maximum since all three eigenvalues are negative. It looks like the best recipe is around $1.22$~c.~flour, $.28$~c.~sugar, and $.36$~c.~butter. Let's look at this graphically using the `contour` function, slicing the fitted surface at the stationary point.
+```{r fig = TRUE, fig.width=8, fig.height=2.5}
+par(cex.lab=1.25, cex.axis=1, cex.sub=1.5, mar=.1+c(4.5,7,0,0))
+par(mfrow=c(1,3))
+contour(anal7, ~ x1 + x2 + x3, at = xs(anal7), image = TRUE)
+```
+
+It's also helpful to know how well we have estimated the stationary point. A simple bootstrap procedure helps us understand this. In the code below, we simulate 200 re-fits of the model, after scrambling the residuals and adding them back to the fitted values; then plot the their stationary points along with the one estimated from `anal7`. The `replicate` function returns a matrix with 3 rows and 200 columns (one for each bootstrap replication); so we need to transpose the result and decode the values.
+```{r fig=TRUE, fig.width=7, fig.height=2.3}
+fits = predict(anal7)
+resids = resid(anal7)
+boot.raw = suppressMessages(
+    replicate(200, xs(update(anal7, fits + sample(resids, replace=TRUE) ~ .))))
+boot = code2val(as.data.frame(t(boot.raw)), codings=codings(anal7))
+par(mar=.1+c(4,5,0,0), cex.lab=1.5)
+par(mfrow = c(1,3))
+plot(sugar ~ flour, data = boot, col = "gray");   points(1.215, .282, col = "red", pch = 7)
+plot(butter ~ flour, data = boot, col = "gray");  points(1.215, .364, col = "red", pch = 7)
+plot(butter ~ sugar, data = boot, col = "gray");  points(.282, .364, col = "red", pch = 7)
+```
+
+These plots show something akin to a confidence region for the best recipe. Note they do not follow symmetrical elliptical patterns, as would a multivariate normal; this is due primarily to nonlinearity in estimating the stationary point.
+
+
+
+
+
+## Summary
+For convenience, here is a tabular summary of what we did
+
+|Expt | Center        |Type                   | Runs |Result | 
+|:---|:---|:---|:--|:---|
+| 1 | $(1.00,.50,.25)$ | $2^{3-1} + 4\times0$   | 8    | Fit OK, but we're on a slope|
+| 2 |                  | SA path                | 8    | Re-center at distance $\sim2.5$|
+| 3 | $(1.25,.45,.25)$ | $2^{3-1} + 4\times0$   | 8    | Need more data to say much|
+| 4 | same             | Foldover               | $+8$ | LOF; need second-order design|
+| 5 | same             | Star block             | $+8$ | Suggests move to a new center|
+| 6 |                  | SA path                | 8    | Re center at distance $\sim1.5$|
+| 7 | $(1.25,.30,.30)$ | CCD: $2^3$; $\text{star}+2\times0$ | $8+8$ | Best recipe: (1.22,.28,.36) |
+
+It has required 64 experimental runs to find this optimum. That is not too bad considering how much variation there is in the response measures.
