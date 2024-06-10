@@ -1,8 +1,10 @@
 NEWS for rsm package
 
 Changes in version 2.10.5 (9 June 2024)
-  * Re-did old Sweave/PDF vignettes in RMarkdown/HTML
-  * Made **pkgdown** site
+  * Re-did old Sweave/PDF vignettes in RMarkdown/HTML. 
+    This makes the whole package easier to maintain
+  * Corrections to slice labels for contour and persp
+  * Made pkgdown site
 
 
 Changes in version 2.10.4 (19 September 2023)

@@ -1,7 +1,7 @@
 ---
 title: "Response-surface illustration"
 author: "rsm package, Version `r packageVersion('rsm')`"
-output: html_vignette
+output: emmeans::.emm_vignette
 vignette: >
   %\VignetteIndexEntry{Response-surface illustration}
   %\VignetteKeywords{response-surface methods, regression, experimental design, first-order designs, second-order designs}
@@ -320,4 +320,4 @@ For convenience, here is a tabular summary of what we did
 | 6 |                  | SA path                | 8    | Re center at distance $\sim1.5$|
 | 7 | $(1.25,.30,.30)$ | CCD: $2^3$; $\text{star}+2\times0$ | $8+8$ | Best recipe: (1.22,.28,.36) |
 
-It has required 64 experimental runs to find this optimum. That is not too bad considering how much variation there is in the response measures.
+It has required 64 experimental runs to find this optimum. For a home baker, 64 cakes is a lot. But for a commercial baker, that is not too bad considering how much variation there is in the response measures and the fact that now we have a better recipe. If we had just kept baking cakes with the same recipe, we can't gain knowledge. Only by varying the recipe in disciplined ways can we improve it.

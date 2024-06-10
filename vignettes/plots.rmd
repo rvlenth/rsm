@@ -1,7 +1,7 @@
 ---
 title: "Surface Plots in the rsm Package"
 author: "rsm package, Version `r packageVersion('rsm')`"
-output: html_vignette
+output: emmeans::.emm_vignette
 vignette: >
   %\VignetteIndexEntry{Surface Plots in the rsm Package}
   %\VignetteKeywords{response-surface methods, regression, contour plots, perspective plots}
@@ -26,7 +26,7 @@ To this end, the functions `contour.lm`, `persp.lm` and `image.lm` were develope
 
 This vignette is not meant to document the functions; please refer to the help pages for details.  Our goal here is to illustrate their use.
 
-## Models with two predictors}
+## Models with two predictors
 Consider an example using the ubiquitous `swiss` dataset that is standard in R.  Let us fit a model for `Fertility` as a polynomial function of `Agriculture` and `Education`:
 ```{r}
 swiss2.lm <- lm(Fertility ~ poly(Agriculture, Education, degree=2), data=swiss)
@@ -50,7 +50,7 @@ persp(swiss2.lm, Education ~ Agriculture, col = "blue",
   theta = -135, phi = 35)
 ```
 
-## Three or more predictors}
+## Three or more predictors
 When a regression model has more than two continuous predictors, some additional issues arise:
 
   1. We can use only two predictors at a time in an image, contour, or surface plot.

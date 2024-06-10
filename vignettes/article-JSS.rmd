@@ -1,7 +1,7 @@
 ---
 title: "Response-Surface Methods in R, Using rsm"
 author: "rsm package, Version `r packageVersion('rsm')`"
-output: html_vignette
+output: emmeans::.emm_vignette
 vignette: >
   %\VignetteIndexEntry{Response-Surface Methods in R, Using rsm}
   %\VignetteKeywords{response-surface methods, regression, experimental design, first-order designs, second-order designs}
@@ -42,7 +42,7 @@ most standard first-and second order designs and methods for one response variab
 reasonably well, and it could be expanded in the future.  Multiple-response optimization is not covered
 in this package, but the **desirability** package (Kuhn 2009) may be used in conjunction with
 predictions obtained using the **rsm** package. The **rsm** package is available from the Comprehensive
-**R** Archive Network at http://CRAN.R-project.org/package=rsm.
+**R** Archive Network at https://CRAN.R-project.org/package=rsm.
 
 Here is a general overview of **rsm**.  First, it provides functions and data types that provide for the coding and decoding of factor levels, since appropriate coding is an important element of response-surface analysis.  These are discussed in the [coding section]{#coding).  Second, it provides functions for generating standard designs (currently, central-composite and Box-Behnken), and building blocks thereof, and examining their variance function; see the [designs section](#designs).  Third the [fitting section](#fitting) extends **R**'s `lm` function to simplify the specification of standard response-surface models, and provide appropriate summaries.  Fourth, the [contour section](#contour) provides a means of visualizing a fitted response surface (or in fact any `lm` object).  Finally the [steepest ascent section](#steepest) provides guidance for further experimentation, e.g., along the path of steepest ascent.  Most **rsm** functions take advantage of **R**'s formula capabilities to provide intuitive and transparent ways of obtaining the needed results.
 
@@ -101,7 +101,7 @@ In the following discussion, the term "design points" refers to the non-center p
 The table below displays the parameters of a CCD, along with the names used by the function `ccd.pick` to be described shortly.  Suppose that there are $k$ variables to be varied.  For the cube blocks, we start with a given $2^{k-p}$ fractional factorial design (or full factorial, when $p=0$).  We may either use this design as-is to define the design points in the cube block(s).  Alternatively, we may confound one or more effects with blocks to split this design into `blks.c` smaller cube blocks, in which case each cube block contains $2^{k-p}/\mathtt{blks.c}$ distinct design points.  The star blocks always contain all $2k$ distinct design points---two on each axis.
 
 |Parameter(s) | Cube block(s) | Star block(s) |
-|:------------|--------------|--------------|
+|:------------|:--------------|:--------------|
 |Design points | $(\pm1,\pm1,...,\pm1)$ |$(\pm\alpha,0,0,...,0),...,(0,0,...,\pm\alpha)$ |
 |Center points | $(0,0,\ldots,0)$ | $(0,0,\ldots,0)$ | 
 |  |  |  |
@@ -337,7 +337,7 @@ Hoerl AE (1959). "Optimum Solution of Many Variables Equations." *Chemical Engin
 
 Khuri AI, Cornell JA (1996). Responses Surfaces: Design and Analyses. 2nd edition. Marcel Dekker, Monticello, NY. 
 
-Kuhn M (2009). desirability: Desirability Function Optimization and Ranking. R package version 1.02, URL http://CRAN.R-project.org/package=desirability. 
+Kuhn M (2009). desirability: Desirability Function Optimization and Ranking. R package version 1.02, URL https://CRAN.R-project.org/package=desirability 
 
 Lenth RV (2009). "Response-Surface Methods in R, Using rsm." *Journal of Statistical Software*, **32**(7), 1--17. URL https://www.jstatsoft.org/v32/i07/. 
 
@@ -351,8 +351,8 @@ Ryan TP (2007). *Modern Experimental Design*. John Wiley & Sons, New York.
 
 SAS Institute, Inc (2009). JMP 8: Statistical Discovery Software. Cary, NC. URL http: //www.jmp.com/. 
 
-Stat-Ease, Inc (2009). *Design-Expert 7 for Windows: Software for Design of Experiments (DOE)*. Minneapolis, MN. URL http://www.statease.com/.
+Stat-Ease, Inc (2009). *Design-Expert 7 for Windows: Software for Design of Experiments (DOE)*. Minneapolis, MN. URL https://www.statease.com/software/design-expert/.
 
-StatPoint Technologies, Inc (2009). *Statgraphics Centurion: Data Analysis and Statistical Software*. Warrenton, VA. URL http://www.statgraphics.com/. 
+StatPoint Technologies, Inc (2009). *Statgraphics Centurion: Data Analysis and Statistical Software*. Warrenton, VA. URL https://www.statgraphics.com/. 
 
 Wu CFJ, Hamada M (2000). *Experiments: Planning, Analysis, and Parameter Design Optimization*. John Wiley & Sons, New York.

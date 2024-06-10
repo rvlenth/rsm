@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^\.gitignore$
+^\.github$
 
 ### rsm-plots.R
 Readme.md
