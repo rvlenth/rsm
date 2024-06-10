@@ -147,7 +147,7 @@ future. Multiple-response optimization is not covered in this package,
 but the <strong>desirability</strong> package (Kuhn 2009) may be used in
 conjunction with predictions obtained using the <strong>rsm</strong>
 package. The <strong>rsm</strong> package is available from the
-Comprehensive <strong>R</strong> Archive Network at <a href="http://CRAN.R-project.org/package=rsm" class="external-link uri">http://CRAN.R-project.org/package=rsm</a>.</p>
+Comprehensive <strong>R</strong> Archive Network at <a href="https://CRAN.R-project.org/package=rsm" class="external-link uri">https://CRAN.R-project.org/package=rsm</a>.</p>
 <p>Here is a general overview of <strong>rsm</strong>. First, it
 provides functions and data types that provide for the coding and
 decoding of factor levels, since appropriate coding is an important
@@ -356,82 +356,83 @@ points. The star blocks always contain all <span class="math inline">\(2k\)</spa
 axis.</p>
 <table class="table">
 <colgroup>
-<col width="31%">
+<col width="30%">
 <col width="34%">
 <col width="34%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Parameter(s)</th>
-<th>Cube block(s)</th>
-<th>Star block(s)</th>
+<th align="left">Cube block(s)</th>
+<th align="left">Star block(s)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Design points</td>
-<td><span class="math inline">\((\pm1,\pm1,...,\pm1)\)</span></td>
-<td><span class="math inline">\((\pm\alpha,0,0,...,0),...,(0,0,...,\pm\alpha)\)</span></td>
+<td align="left"><span class="math inline">\((\pm1,\pm1,...,\pm1)\)</span></td>
+<td align="left"><span class="math inline">\((\pm\alpha,0,0,...,0),...,(0,0,...,\pm\alpha)\)</span></td>
 </tr>
 <tr class="even">
 <td align="left">Center points</td>
-<td><span class="math inline">\((0,0,\ldots,0)\)</span></td>
-<td><span class="math inline">\((0,0,\ldots,0)\)</span></td>
+<td align="left"><span class="math inline">\((0,0,\ldots,0)\)</span></td>
+<td align="left"><span class="math inline">\((0,0,\ldots,0)\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td></td>
-<td></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"># <em>Distinct</em> design points</td>
-<td>
-<span class="math inline">\(2^{k-p}\)</span> (altogether)</td>
-<td><span class="math inline">\(2k\)</span></td>
+<td align="left">
+<span class="math inline">\(2^{k-p}\)</span>
+(altogether)</td>
+<td align="left"><span class="math inline">\(2k\)</span></td>
 </tr>
 <tr class="odd">
 <td align="left"># Fractions of <span class="math inline">\(2^{k-p}\)</span>
 </td>
-<td><code>blks.c</code></td>
-<td>–</td>
+<td align="left"><code>blks.c</code></td>
+<td align="left">–</td>
 </tr>
 <tr class="even">
 <td align="left">Reps of each design point, within each block</td>
-<td><code>wbr.c</code></td>
-<td><code>wbr.s</code></td>
+<td align="left"><code>wbr.c</code></td>
+<td align="left"><code>wbr.s</code></td>
 </tr>
 <tr class="odd">
 <td align="left"># Design pts each block</td>
-<td>
+<td align="left">
 <code>n.c</code> <span class="math inline">\(=
 \mathtt{\frac{wbr.c}{blks.c}}\cdot2^{k-p}\)</span>
 </td>
-<td>
+<td align="left">
 <code>n.s</code> <span class="math inline">\(=\mathtt{wbr.s}\cdot(2k)\)</span>
 </td>
 </tr>
 <tr class="even">
 <td align="left"># Center points</td>
-<td><code>n0.c</code></td>
-<td><code>n0.s</code></td>
+<td align="left"><code>n0.c</code></td>
+<td align="left"><code>n0.s</code></td>
 </tr>
 <tr class="odd">
 <td align="left"># Points in each block</td>
-<td><code>n.c + n0.c</code></td>
-<td><code>n.s + n0.s</code></td>
+<td align="left"><code>n.c + n0.c</code></td>
+<td align="left"><code>n.s + n0.s</code></td>
 </tr>
 <tr class="even">
 <td align="left">Reps of each block</td>
-<td><code>bbr.c</code></td>
-<td><code>bbr.s</code></td>
+<td align="left"><code>bbr.c</code></td>
+<td align="left"><code>bbr.s</code></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td></td>
-<td></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">Total observations (<code>N</code>)</td>
-<td><code>blks.c * bbr.c * (n.c + n0.c)</code></td>
-<td><code>+ bbr.s * (n.s + n0.s)</code></td>
+<td align="left"><code>blks.c * bbr.c * (n.c + n0.c)</code></td>
+<td align="left"><code>+ bbr.s * (n.s + n0.s)</code></td>
 </tr>
 </tbody>
 </table>
@@ -1167,7 +1168,7 @@ A Literature Review.” <em>Technometrics</em>, <strong>8</strong>,
 <p>Khuri AI, Cornell JA (1996). Responses Surfaces: Design and Analyses.
 2nd edition. Marcel Dekker, Monticello, NY.</p>
 <p>Kuhn M (2009). desirability: Desirability Function Optimization and
-Ranking. R package version 1.02, URL <a href="http://CRAN.R-project.org/package=desirability" class="external-link uri">http://CRAN.R-project.org/package=desirability</a>.</p>
+Ranking. R package version 1.02, URL <a href="https://CRAN.R-project.org/package=desirability" class="external-link uri">https://CRAN.R-project.org/package=desirability</a></p>
 <p>Lenth RV (2009). “Response-Surface Methods in R, Using rsm.”
 <em>Journal of Statistical Software</em>, <strong>32</strong>(7), 1–17.
 URL <a href="https://www.jstatsoft.org/v32/i07/" class="external-link uri">https://www.jstatsoft.org/v32/i07/</a>.</p>
@@ -1185,9 +1186,9 @@ Sons, New York.</p>
 <p>SAS Institute, Inc (2009). JMP 8: Statistical Discovery Software.
 Cary, NC. URL http: //www.jmp.com/.</p>
 <p>Stat-Ease, Inc (2009). <em>Design-Expert 7 for Windows: Software for
-Design of Experiments (DOE)</em>. Minneapolis, MN. URL <a href="http://www.statease.com/" class="external-link uri">http://www.statease.com/</a>.</p>
+Design of Experiments (DOE)</em>. Minneapolis, MN. URL <a href="https://www.statease.com/software/design-expert/" class="external-link uri">https://www.statease.com/software/design-expert/</a>.</p>
 <p>StatPoint Technologies, Inc (2009). <em>Statgraphics Centurion: Data
-Analysis and Statistical Software</em>. Warrenton, VA. URL <a href="http://www.statgraphics.com/" class="external-link uri">http://www.statgraphics.com/</a>.</p>
+Analysis and Statistical Software</em>. Warrenton, VA. URL <a href="https://www.statgraphics.com/" class="external-link uri">https://www.statgraphics.com/</a>.</p>
 <p>Wu CFJ, Hamada M (2000). <em>Experiments: Planning, Analysis, and
 Parameter Design Optimization</em>. John Wiley &amp; Sons, New York.</p>
 </div>
