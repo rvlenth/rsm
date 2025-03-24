@@ -1,4 +1,4 @@
-%    Copyright (c) 2008-2010, 2012-2016 Russell V. Lenth
+%    Copyright (c) 2008-2010, 2012-2025 Russell V. Lenth
 \name{contour.lm}
 \alias{contour.lm}
 \alias{image.lm}

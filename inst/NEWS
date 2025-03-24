@@ -1,5 +1,10 @@
 NEWS for rsm package
 
+Changes in version 2.10.5 (24 March 2025)
+  * Removes references to now-archived **Vdgraph** package, and
+    replaces with **vdg**.
+
+
 Changes in version 2.10.5 (9 June 2024)
   * Re-did old Sweave/PDF vignettes in RMarkdown/HTML. 
     This makes the whole package easier to maintain

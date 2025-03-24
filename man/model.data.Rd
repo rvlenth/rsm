@@ -1,4 +1,4 @@
-%    Copyright (c) 2008-2010, 2012-2016 Russell V. Lenth
+%    Copyright (c) 2008-2010, 2012-2025 Russell V. Lenth
 \name{model.data}
 \alias{model.data}
 \title{Reconstruct data from a linear model}

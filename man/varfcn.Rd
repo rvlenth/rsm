@@ -1,4 +1,4 @@
-%    Copyright (c) 2008-2010, 2012-2016 Russell V. Lenth
+%    Copyright (c) 2008-2010, 2012-2025 Russell V. Lenth
 \name{varfcn}
 \alias{varfcn}
 \title{
@@ -24,7 +24,8 @@ varfcn(design, formula, dist = seq(0, 2, by = 0.1), vectors, contour = FALSE,
   \item{\dots}{Other arguments passed to the \code{\link{plot}} or \code{\link{contour}} functions.}
 }
 \details{
-The scaled prediction variance at a particular design point is the variance of the predicted value, multiplied by the sample size \emph{N}, and divided by the error variance. (See, for example, Montgomery \emph{et al.}, Section 8.2.1). It depends on the design point, but for a symmetric design, it depends only on the distance from the origin and the direction. This function provides a simple way to examine the variance function directly. (There are other more sophisticated methods available that integrate-out the direction, for example \code{\link[Vdgraph]{Vdgraph}} in the \code{Vdgraph} package.) 
+The scaled prediction variance at a particular design point is the variance of the predicted value, multiplied by the sample size \emph{N}, and divided by the error variance. (See, for example, Montgomery \emph{et al.}, Section 8.2.1). It depends on the design point, but for a symmetric design, it depends only on the distance from the origin and the direction. This function provides a simple way to examine the variance function directly. (There are other more 
+sophisticated methods available that integrate-out the direction, for example in the \pkg{vdg} package.
 
 If \code{vectors} is not specified and \code{contour==FALSE}, the function generates default directions along one axis, and on a diagonal through a corner in each dimension. For example, with four design variables, the default directions are (1,0,0,0), (1,1,0,0), (1,1,1,0), and (1,1,1,1). The graph produced shows how the scaled variance changes along each of these vectors, for the distances provided. In a rotatable design, these curves will all be the same. 
 
@@ -41,8 +42,6 @@ Myers, RH Montgomery DC, and Anderson-Cook CM (2009)
 %\note{}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{\code{\link[Vdgraph]{Vdgraph}}}
 
 \examples{
   des = ccd(~ x1 + x2 + x3, alpha = 1.5, block = Phase ~ x1*x2*x3, randomize=FALSE)

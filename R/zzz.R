@@ -1,5 +1,5 @@
 ##############################################################################
-#    Copyright (c) 2018 Russell V. Lenth                                     #
+#    Copyright (c) 2025 Russell V. Lenth                                     #
 #                                                                            #
 #    This file is part of the rsm package for R (*rsm*)                      #
 #                                                                            #
