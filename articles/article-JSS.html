@@ -5,63 +5,49 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="rsm">
 <title>Response-Surface Methods in R, Using rsm • rsm</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Response-Surface Methods in R, Using rsm">
-<meta property="og:description" content="rsm">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Response-Surface Methods in R, Using rsm">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">rsm</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.10.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.10.6</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/article-JSS.html">Response-Surface Methods in R, Using rsm</a>
-    <a class="dropdown-item" href="../articles/illus.html">Response-surface illustration</a>
-    <a class="dropdown-item" href="../articles/plots.html">Surface Plots in the rsm Package</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/article-JSS.html">Response-Surface Methods in R, Using rsm</a></li>
+    <li><a class="dropdown-item" href="../articles/illus.html">Response-surface illustration</a></li>
+    <li><a class="dropdown-item" href="../articles/plots.html">Surface Plots in the rsm Package</a></li>
+  </ul>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="nav-link" href="https://github.com/rvlenth/rsm/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="nav-link" href="https://github.com/rvlenth/rsm/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -70,12 +56,13 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Response-Surface Methods in R, Using rsm</h1>
+
+      <h1>Response-Surface Methods in R, Using rsm</h1>
                         <h4 data-toc-skip class="author">rsm package,
-Version 2.10.5</h4>
+Version 2.10.6</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/rvlenth/rsm/blob/HEAD/vignettes/article-JSS.rmd"><code>vignettes/article-JSS.rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/rvlenth/rsm/blob/master/vignettes/article-JSS.rmd"><code>vignettes/article-JSS.rmd</code></a></small>
       <div class="d-none name"><code>article-JSS.rmd</code></div>
     </div>
 
@@ -239,11 +226,16 @@ which comes from Table 7.6 of Myers <em>et al.</em> (2009).</p>
 first and analyzed, after which block <code>B2</code> was added and a
 new analysis was done. The provided datasets <code>ChemReact1</code> and
 <code>ChemReact2</code> provide these separate blocks. The first block,
-<code>ChemReact1</code>, uses factor settings of <span class="math inline">\(\text{Time}=85\pm5\)</span> and <span class="math inline">\(\text{Temp}=175\pm5\)</span>, with three center
-points. Thus, the coded variables are <span class="math inline">\(x_1 =
-(\text{Time}-85)/5\)</span> and <span class="math inline">\(x_1 =
-(\text{Temp}-175)/5\)</span>. To create a coded dataset with the
-appropriate codings, provide this information via formulas:</p>
+<code>ChemReact1</code>, uses factor settings of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Time</mtext><mo>=</mo><mn>85</mn><mo>±</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\text{Time}=85\pm5</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Temp</mtext><mo>=</mo><mn>175</mn><mo>±</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">\text{Temp}=175\pm5</annotation></semantics></math>,
+with three center points. Thus, the coded variables are
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtext mathvariant="normal">Time</mtext><mo>−</mo><mn>85</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">x_1 = (\text{Time}-85)/5</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtext mathvariant="normal">Temp</mtext><mo>−</mo><mn>175</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>5</mn></mrow><annotation encoding="application/x-tex">x_1 = (\text{Temp}-175)/5</annotation></semantics></math>.
+To create a coded dataset with the appropriate codings, provide this
+information via formulas:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CR1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/coded.data.html">coded.data</a></span><span class="op">(</span><span class="va">ChemReact1</span>, <span class="va">x1</span> <span class="op">~</span> <span class="op">(</span><span class="va">Time</span> <span class="op">-</span> <span class="fl">85</span><span class="op">)</span><span class="op">/</span><span class="fl">5</span>, <span class="va">x2</span> <span class="op">~</span> <span class="op">(</span><span class="va">Temp</span> <span class="op">-</span> <span class="fl">175</span><span class="op">)</span><span class="op">/</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">CR1</span></span></code></pre></div>
@@ -318,9 +310,12 @@ center points:</p>
 <span><span class="co">## x2 ~ (Rate - 50)/10</span></span>
 <span><span class="co">## x3 ~ Polish - 4</span></span></code></pre>
 <p>By default, the variable names are <code>x1</code>, <code>x2</code>,
-… and the experiment is randomized. If there are <span class="math inline">\(4\)</span> or <span class="math inline">\(5\)</span> factors, the design is blocked by
-default (this is not possible for other numbers of factors), and the
-blocks are randomized separately.</p>
+… and the experiment is randomized. If there are
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>4</mn><annotation encoding="application/x-tex">4</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>5</mn><annotation encoding="application/x-tex">5</annotation></semantics></math>
+factors, the design is blocked by default (this is not possible for
+other numbers of factors), and the blocks are randomized separately.</p>
 <p>One of the most popular response-surface designs is the
 central-composite design (CCD), due to Box and Wilson (1951). A simple
 example is the chemical-reaction experiment presented in the preceding
@@ -334,26 +329,35 @@ block, contains axis points plus center points.</p>
 <p>In the following discussion, the term “design points” refers to the
 non-center points in a block. The levels of the factors are coded, so
 that the cube blocks contain design points with coordinate values all
-equal to <span class="math inline">\(\pm1\)</span>, and center points at
-<span class="math inline">\((0,0,\ldots,0)\)</span>. The design points
-in the star blocks are at positions of <span class="math inline">\(\pm\alpha\)</span> along each coordinate axis. The
-value of <span class="math inline">\(\alpha\)</span>, and choices of
-replications of design points and center points, are often selected
-based on considerations of rotatability (i.e., the variance of the
-prediction depends only on the distance from the center) and
-orthogonality of blocks (so that the coefficients of the fitted
+equal to
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\pm1</annotation></semantics></math>,
+and center points at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,0,\ldots,0)</annotation></semantics></math>.
+The design points in the star blocks are at positions of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\pm\alpha</annotation></semantics></math>
+along each coordinate axis. The value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>,
+and choices of replications of design points and center points, are
+often selected based on considerations of rotatability (i.e., the
+variance of the prediction depends only on the distance from the center)
+and orthogonality of blocks (so that the coefficients of the fitted
 response-surface equation are not correlated with block effects).</p>
 <p>The table below displays the parameters of a CCD, along with the
 names used by the function <code>ccd.pick</code> to be described
-shortly. Suppose that there are <span class="math inline">\(k\)</span>
-variables to be varied. For the cube blocks, we start with a given <span class="math inline">\(2^{k-p}\)</span> fractional factorial design (or
-full factorial, when <span class="math inline">\(p=0\)</span>). We may
-either use this design as-is to define the design points in the cube
-block(s). Alternatively, we may confound one or more effects with blocks
-to split this design into <code>blks.c</code> smaller cube blocks, in
-which case each cube block contains <span class="math inline">\(2^{k-p}/\mathtt{blks.c}\)</span> distinct design
-points. The star blocks always contain all <span class="math inline">\(2k\)</span> distinct design points—two on each
-axis.</p>
+shortly. Suppose that there are
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+variables to be varied. For the cube blocks, we start with a given
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>k</mi><mo>−</mo><mi>p</mi></mrow></msup><annotation encoding="application/x-tex">2^{k-p}</annotation></semantics></math>
+fractional factorial design (or full factorial, when
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p=0</annotation></semantics></math>).
+We may either use this design as-is to define the design points in the
+cube block(s). Alternatively, we may confound one or more effects with
+blocks to split this design into <code>blks.c</code> smaller cube
+blocks, in which case each cube block contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>k</mi><mo>−</mo><mi>p</mi></mrow></msup><mi>/</mi><mrow><mi>𝚋</mi><mi>𝚕</mi><mi>𝚔</mi><mi>𝚜</mi><mi mathvariant="monospace">.</mi><mi>𝚌</mi></mrow></mrow><annotation encoding="application/x-tex">2^{k-p}/\mathtt{blks.c}</annotation></semantics></math>
+distinct design points. The star blocks always contain all
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>k</mi></mrow><annotation encoding="application/x-tex">2k</annotation></semantics></math>
+distinct design points—two on each axis.</p>
 <table class="table">
 <colgroup>
 <col width="30%">
@@ -368,13 +372,13 @@ axis.</p>
 <tbody>
 <tr class="odd">
 <td align="left">Design points</td>
-<td align="left"><span class="math inline">\((\pm1,\pm1,...,\pm1)\)</span></td>
-<td align="left"><span class="math inline">\((\pm\alpha,0,0,...,0),...,(0,0,...,\pm\alpha)\)</span></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mo>±</mo><mn>1</mn><mo>,</mo><mo>±</mo><mn>1</mn><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><mo>±</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\pm1,\pm1,...,\pm1)</annotation></semantics></math></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mo>±</mo><mi>α</mi><mo>,</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><mo>±</mo><mi>α</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(\pm\alpha,0,0,...,0),...,(0,0,...,\pm\alpha)</annotation></semantics></math></td>
 </tr>
 <tr class="even">
 <td align="left">Center points</td>
-<td align="left"><span class="math inline">\((0,0,\ldots,0)\)</span></td>
-<td align="left"><span class="math inline">\((0,0,\ldots,0)\)</span></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,0,\ldots,0)</annotation></semantics></math></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0,0,\ldots,0)</annotation></semantics></math></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
@@ -384,12 +388,13 @@ axis.</p>
 <tr class="even">
 <td align="left"># <em>Distinct</em> design points</td>
 <td align="left">
-<span class="math inline">\(2^{k-p}\)</span>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>k</mi><mo>−</mo><mi>p</mi></mrow></msup><annotation encoding="application/x-tex">2^{k-p}</annotation></semantics></math>
 (altogether)</td>
-<td align="left"><span class="math inline">\(2k\)</span></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>k</mi></mrow><annotation encoding="application/x-tex">2k</annotation></semantics></math></td>
 </tr>
 <tr class="odd">
-<td align="left"># Fractions of <span class="math inline">\(2^{k-p}\)</span>
+<td align="left"># Fractions of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mi>k</mi><mo>−</mo><mi>p</mi></mrow></msup><annotation encoding="application/x-tex">2^{k-p}</annotation></semantics></math>
 </td>
 <td align="left"><code>blks.c</code></td>
 <td align="left">–</td>
@@ -402,11 +407,12 @@ axis.</p>
 <tr class="odd">
 <td align="left"># Design pts each block</td>
 <td align="left">
-<code>n.c</code> <span class="math inline">\(=
-\mathtt{\frac{wbr.c}{blks.c}}\cdot2^{k-p}\)</span>
+<code>n.c</code>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mfrac><mrow><mi>𝚠</mi><mi>𝚋</mi><mi>𝚛</mi><mi mathvariant="monospace">.</mi><mi>𝚌</mi></mrow><mrow><mi>𝚋</mi><mi>𝚕</mi><mi>𝚔</mi><mi>𝚜</mi><mi mathvariant="monospace">.</mi><mi>𝚌</mi></mrow></mfrac><mo>⋅</mo><msup><mn>2</mn><mrow><mi>k</mi><mo>−</mo><mi>p</mi></mrow></msup></mrow><annotation encoding="application/x-tex">= \mathtt{\frac{wbr.c}{blks.c}}\cdot2^{k-p}</annotation></semantics></math>
 </td>
 <td align="left">
-<code>n.s</code> <span class="math inline">\(=\mathtt{wbr.s}\cdot(2k)\)</span>
+<code>n.s</code>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mrow><mi>𝚠</mi><mi>𝚋</mi><mi>𝚛</mi><mi mathvariant="monospace">.</mi><mi>𝚜</mi></mrow><mo>⋅</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>k</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">=\mathtt{wbr.s}\cdot(2k)</annotation></semantics></math>
 </td>
 </tr>
 <tr class="even">
@@ -441,11 +447,13 @@ within blocks. We may also replicate the center points. The names
 <code>wbr.c</code> and <code>wbr.s</code> (for “within-block reps”)
 refer to the number of replicates of each design point within each cube
 block or star block, respectively.<br>
-Thus, each cube block has a total of <span class="math inline">\(\mathtt{n.c} =
-\mathtt{wbr.c}\cdot2^{k-p}/\mathtt{blks.c}\)</span> design points, and
-each star block contains <span class="math inline">\(\mathtt{wbr.s}\cdot2k\)</span> design points. We
-may also replicate the center points—<code>n0.c</code> times in each
-cube block, <code>n0.s</code> times within each star block.</p>
+Thus, each cube block has a total of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>𝚗</mi><mi mathvariant="monospace">.</mi><mi>𝚌</mi></mrow><mo>=</mo><mrow><mi>𝚠</mi><mi>𝚋</mi><mi>𝚛</mi><mi mathvariant="monospace">.</mi><mi>𝚌</mi></mrow><mo>⋅</mo><msup><mn>2</mn><mrow><mi>k</mi><mo>−</mo><mi>p</mi></mrow></msup><mi>/</mi><mrow><mi>𝚋</mi><mi>𝚕</mi><mi>𝚔</mi><mi>𝚜</mi><mi mathvariant="monospace">.</mi><mi>𝚌</mi></mrow></mrow><annotation encoding="application/x-tex">\mathtt{n.c} = \mathtt{wbr.c}\cdot2^{k-p}/\mathtt{blks.c}</annotation></semantics></math>
+design points, and each star block contains
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>𝚠</mi><mi>𝚋</mi><mi>𝚛</mi><mi mathvariant="monospace">.</mi><mi>𝚜</mi></mrow><mo>⋅</mo><mn>2</mn><mi>k</mi></mrow><annotation encoding="application/x-tex">\mathtt{wbr.s}\cdot2k</annotation></semantics></math>
+design points. We may also replicate the center points—<code>n0.c</code>
+times in each cube block, <code>n0.s</code> times within each star
+block.</p>
 <p>Finally, we may replicate the blocks themselves; the numbers of such
 between-block replications are denoted <code>bbr.c</code> and
 <code>bbr.s</code> for cube blocks and star blocks, respectively. It is
@@ -455,19 +463,37 @@ between-block replications means repeating these mini-experiments. We
 run an entire block before running another block.</p>
 <p>The function <code>ccd.pick</code> is designed to help identify good
 CCDs. It simply creates a grid of all combinations of design choices,
-computes the <span class="math inline">\(\alpha\)</span> values required
-for orthogonality and rotatability, sorts them by a specified criterion
-(by default, a measure of the discrepancy between these two <span class="math inline">\(\alpha\)</span>s), and presents the best few.</p>
-<p>For example, suppose that we want to experiment with <span class="math inline">\(k=5\)</span> factors, and we are willing to
-consider CCDs with <span class="math inline">\(\mathtt{blks.c}=1\)</span>, <span class="math inline">\(2\)</span>, or <span class="math inline">\(4\)</span> cube blocks of sizes <span class="math inline">\(\mathtt{n.c}=8\)</span> or <span class="math inline">\(16\)</span> each.<br>
-With this many factors, the number of different star points (<span class="math inline">\(2k=10\)</span>) is relatively small compared with
-the size of some cube blocks (<span class="math inline">\(16\)</span>),
-so it seems reasonable to consider either one or two replications (<span class="math inline">\(\mathtt{wbr.s}\in\{1,2\}\)</span>) of each point
-within each star block.<br>
+computes the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+values required for orthogonality and rotatability, sorts them by a
+specified criterion (by default, a measure of the discrepancy between
+these two
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>s),
+and presents the best few.</p>
+<p>For example, suppose that we want to experiment with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">k=5</annotation></semantics></math>
+factors, and we are willing to consider CCDs with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>𝚋</mi><mi>𝚕</mi><mi>𝚔</mi><mi>𝚜</mi><mi mathvariant="monospace">.</mi><mi>𝚌</mi></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\mathtt{blks.c}=1</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>,
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>4</mn><annotation encoding="application/x-tex">4</annotation></semantics></math>
+cube blocks of sizes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>𝚗</mi><mi mathvariant="monospace">.</mi><mi>𝚌</mi></mrow><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">\mathtt{n.c}=8</annotation></semantics></math>
+or
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>16</mn><annotation encoding="application/x-tex">16</annotation></semantics></math>
+each.<br>
+With this many factors, the number of different star points
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>k</mi><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">2k=10</annotation></semantics></math>)
+is relatively small compared with the size of some cube blocks
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>16</mn><annotation encoding="application/x-tex">16</annotation></semantics></math>),
+so it seems reasonable to consider either one or two replications
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>𝚠</mi><mi>𝚋</mi><mi>𝚛</mi><mi mathvariant="monospace">.</mi><mi>𝚜</mi></mrow><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\mathtt{wbr.s}\in\{1,2\}</annotation></semantics></math>)
+of each point within each star block.<br>
 Finally, suppose that we want the total size of the experiment to be no
-more than <span class="math inline">\(N=65\)</span> runs (see
-<code>restrict</code> in the call below). Here are the ten best choices
-based on these criteria:</p>
+more than
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>65</mn></mrow><annotation encoding="application/x-tex">N=65</annotation></semantics></math>
+runs (see <code>restrict</code> in the call below). Here are the ten
+best choices based on these criteria:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ccd.pick.html">ccd.pick</a></span><span class="op">(</span><span class="fl">5</span>, n.c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">16</span><span class="op">)</span>, blks.c <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span>,</span>
 <span>  wbr.s <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, restrict <span class="op">=</span> <span class="st">"N&lt;=65"</span><span class="op">)</span></span></code></pre></div>
@@ -483,28 +509,43 @@ based on these criteria:</p>
 <span><span class="co">## 9   16    4      2  10    4     1     1     1 54  2.378414   2.366432</span></span>
 <span><span class="co">## 10   8    2      4  10    4     1     1     1 54  2.378414   2.366432</span></span></code></pre>
 <p>The first design listed is also the smallest; it consists of one cube
-block of <span class="math inline">\(16\)</span> runs, plus <span class="math inline">\(6\)</span> center points; and one star block with
-the points replicated once and one center point; thus, the total number
-of runs is <span class="math inline">\(N=(16+6)+(10+1) = 33\)</span>. If
-we choose <span class="math inline">\(\alpha=2\)</span>, this design is
-both orthogonal and rotatable as seen by noting that
+block of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>16</mn><annotation encoding="application/x-tex">16</annotation></semantics></math>
+runs, plus
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>6</mn><annotation encoding="application/x-tex">6</annotation></semantics></math>
+center points; and one star block with the points replicated once and
+one center point; thus, the total number of runs is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>16</mn><mo>+</mo><mn>6</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>33</mn></mrow><annotation encoding="application/x-tex">N=(16+6)+(10+1) = 33</annotation></semantics></math>.
+If we choose
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\alpha=2</annotation></semantics></math>,
+this design is both orthogonal and rotatable as seen by noting that
 <code>alpha.rot</code> and <code>alpha.orth</code> are both equal to
-<span class="math inline">\(2\)</span>. The <span class="math inline">\(16\)</span> design points in the cube block may be
-generated by a <span class="math inline">\(2^{5-1}\)</span> fractional
-factorial design.</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>.
+The
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>16</mn><annotation encoding="application/x-tex">16</annotation></semantics></math>
+design points in the cube block may be generated by a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>5</mn><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">2^{5-1}</annotation></semantics></math>
+fractional factorial design.</p>
 <p>While this is a small design, we have only one center point in the
 star block, not providing a way to test lack of fit in the star portion.
 The second and third designs remedy this slightly, but all these designs
 are fairly lopsided in that the cube block is much larger than the star
 block. The next few designs require considerably more runs. Design
-number 4 is nicely balanced in that it consists of three blocks of <span class="math inline">\(21\)</span> runs each, and it is both rotatable
-and orthogonal. However, we still have no lack-of-fit test in the star
-blocks. Designs 5 and 6 differ only in whether they use two <span class="math inline">\(2^{5-1}\)</span> cubes or four <span class="math inline">\(2^{5-2}\)</span> cubes, but they provide several
-center points for a lack-of-fit test. If we position the axis points at
-<span class="math inline">\(\alpha=2.38\)</span>, the design is almost
-orthogonal and almost rotatable. The remaining designs also come close
-to meeting both criteria, but are also somewhat smaller, so that Designs
-9 and 10 are essentially down-sized versions of Designs 5 and 6.</p>
+number 4 is nicely balanced in that it consists of three blocks of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>21</mn><annotation encoding="application/x-tex">21</annotation></semantics></math>
+runs each, and it is both rotatable and orthogonal. However, we still
+have no lack-of-fit test in the star blocks. Designs 5 and 6 differ only
+in whether they use two
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>5</mn><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">2^{5-1}</annotation></semantics></math>
+cubes or four
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>5</mn><mo>−</mo><mn>2</mn></mrow></msup><annotation encoding="application/x-tex">2^{5-2}</annotation></semantics></math>
+cubes, but they provide several center points for a lack-of-fit test. If
+we position the axis points at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>2.38</mn></mrow><annotation encoding="application/x-tex">\alpha=2.38</annotation></semantics></math>,
+the design is almost orthogonal and almost rotatable. The remaining
+designs also come close to meeting both criteria, but are also somewhat
+smaller, so that Designs 9 and 10 are essentially down-sized versions of
+Designs 5 and 6.</p>
 <p>The choice of which design is best depends on the tradeoff between
 economy and ability to assess the fitted surface. Design 1 is the only
 one of these that is included in Table 7.6 of Myers <em>et al.</em>
@@ -515,41 +556,65 @@ generate it. (Alternatively, starting with <strong>rsm</strong> version
 and <code>dupe</code> functions are available for generating and
 randomizing a CCD in separate blocks, and then they may be combined
 using <code>djoin</code>.) We first illustrate the generation of Design
-1 above. This design requires a <span class="math inline">\(2^{5-1}\)</span> fraction for the cube block.
-Typically, this is done by confounding the five-way interaction with the
-mean; or equivalently, create a four-factor design, and generate the
-levels of the fifth as the four-way interaction of the others. That is
-the approach implemented by <code>ccd</code>. Suppose that we denote the
-design factors by <span class="math inline">\(A,B,C,D,E\)</span>; let’s
-opt to use <span class="math inline">\(E=-ABCD\)</span> as the
-generator. The following call generates the design (results not
+1 above. This design requires a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>5</mn><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">2^{5-1}</annotation></semantics></math>
+fraction for the cube block. Typically, this is done by confounding the
+five-way interaction with the mean; or equivalently, create a
+four-factor design, and generate the levels of the fifth as the four-way
+interaction of the others. That is the approach implemented by
+<code>ccd</code>. Suppose that we denote the design factors by
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo>,</mo><mi>D</mi><mo>,</mo><mi>E</mi></mrow><annotation encoding="application/x-tex">A,B,C,D,E</annotation></semantics></math>;
+let’s opt to use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mo>−</mo><mi>A</mi><mi>B</mi><mi>C</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">E=-ABCD</annotation></semantics></math>
+as the generator. The following call generates the design (results not
 shown):</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">des1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ccd.html">ccd</a></span> <span class="op">(</span><span class="va">y1</span> <span class="op">+</span> <span class="va">y2</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">D</span>,</span>
 <span>  generators <span class="op">=</span> <span class="va">E</span> <span class="op">~</span> <span class="op">-</span> <span class="va">A</span> <span class="op">*</span> <span class="va">B</span> <span class="op">*</span> <span class="va">C</span> <span class="op">*</span> <span class="va">D</span>, n0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>The value of <span class="math inline">\(\alpha\)</span> was not
-specified, and by default it uses the <span class="math inline">\(\alpha\)</span> for orthogonality. The first
-argument could have been just <code>4</code>, but then the generator
-would have had to have been given in terms of the default variable names
-<code>x1</code>, <code>x2</code>, …. The optional left-hand side in the
-formula creates place-holders for response variable(s), to be filled-in
-with data later. As in <code>bbd</code>, we could have added coding
-formulas to create a <code>coded.data</code> object.</p>
+<p>The value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+was not specified, and by default it uses the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>
+for orthogonality. The first argument could have been just
+<code>4</code>, but then the generator would have had to have been given
+in terms of the default variable names <code>x1</code>, <code>x2</code>,
+…. The optional left-hand side in the formula creates place-holders for
+response variable(s), to be filled-in with data later. As in
+<code>bbd</code>, we could have added coding formulas to create a
+<code>coded.data</code> object.</p>
 <p>Next, we illustrate the generation of Design 10. This design has four
-<span class="math inline">\(2^{5-2}\)</span> cube blocks with <span class="math inline">\(2\)</span> center points each, and one
-unreplicated star block with <span class="math inline">\(4\)</span>
-center points. The non-center points in the cube blocks comprise <span class="math inline">\(4\times8=32\)</span> runs, so we most likely want
-to create them by dividing the full <span class="math inline">\(2^5\)</span> factorial into four fractional
-blocks. We can for example opt to generate the blocks via the factors
-<span class="math inline">\(b_1=ABC\)</span> and <span class="math inline">\(b_2=CDE\)</span>, so that the blocks are
-determined by the four combinations of <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_2\)</span>. Then the block effects will be
-confounded with the effects <span class="math inline">\(ABC\)</span>,
-<span class="math inline">\(CDE\)</span>, and also the <span class="math inline">\(b_1b_2\)</span> interaction <span class="math inline">\(ABC^2DE=ABDE\)</span>. It is important in
-response-surface work to avoid confounding second-order interactions,
-and this scheme is thus acceptable. Unlike Design 1, this design
-includes all <span class="math inline">\(2^5\)</span> factor
-combinations, so we do not use the <code>generators</code> argument;
-instead, we use <code>blocks</code> to do the fractionation:</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mrow><mn>5</mn><mo>−</mo><mn>2</mn></mrow></msup><annotation encoding="application/x-tex">2^{5-2}</annotation></semantics></math>
+cube blocks with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>2</mn><annotation encoding="application/x-tex">2</annotation></semantics></math>
+center points each, and one unreplicated star block with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>4</mn><annotation encoding="application/x-tex">4</annotation></semantics></math>
+center points. The non-center points in the cube blocks comprise
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>×</mo><mn>8</mn><mo>=</mo><mn>32</mn></mrow><annotation encoding="application/x-tex">4\times8=32</annotation></semantics></math>
+runs, so we most likely want to create them by dividing the full
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>5</mn></msup><annotation encoding="application/x-tex">2^5</annotation></semantics></math>
+factorial into four fractional blocks. We can for example opt to
+generate the blocks via the factors
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mn>1</mn></msub><mo>=</mo><mi>A</mi><mi>B</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">b_1=ABC</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mn>2</mn></msub><mo>=</mo><mi>C</mi><mi>D</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">b_2=CDE</annotation></semantics></math>,
+so that the blocks are determined by the four combinations of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>b</mi><mn>1</mn></msub><annotation encoding="application/x-tex">b_1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>b</mi><mn>2</mn></msub><annotation encoding="application/x-tex">b_2</annotation></semantics></math>.
+Then the block effects will be confounded with the effects
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">ABC</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>D</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">CDE</annotation></semantics></math>,
+and also the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mn>1</mn></msub><msub><mi>b</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">b_1b_2</annotation></semantics></math>
+interaction
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>B</mi><msup><mi>C</mi><mn>2</mn></msup><mi>D</mi><mi>E</mi><mo>=</mo><mi>A</mi><mi>B</mi><mi>D</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">ABC^2DE=ABDE</annotation></semantics></math>.
+It is important in response-surface work to avoid confounding
+second-order interactions, and this scheme is thus acceptable. Unlike
+Design 1, this design includes all
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>2</mn><mn>5</mn></msup><annotation encoding="application/x-tex">2^5</annotation></semantics></math>
+factor combinations, so we do not use the <code>generators</code>
+argument; instead, we use <code>blocks</code> to do the
+fractionation:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">des10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ccd.html">ccd</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">A</span> <span class="op">+</span> <span class="va">B</span> <span class="op">+</span> <span class="va">C</span> <span class="op">+</span> <span class="va">D</span> <span class="op">+</span> <span class="va">E</span>,</span>
 <span>  blocks <span class="op">=</span> <span class="va">Blk</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">A</span> <span class="op">*</span> <span class="va">B</span> <span class="op">*</span> <span class="va">C</span>, <span class="va">C</span> <span class="op">*</span> <span class="va">D</span> <span class="op">*</span> <span class="va">E</span><span class="op">)</span>, n0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -565,7 +630,8 @@ how effective is it in predicting the response surface? The
 <strong>rsm</strong> version 2.0) is helpful in this regard. It
 calculates a scaled version of the varaince of the fitted values over a
 specified set of design points. By default, it computes this along paths
-through <span class="math inline">\((1,0,\ldots,0),(1,1,\ldots,0),\ldots,(1,1,\ldots,1)\)</span>,
+through
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mi>…</mi><mo>,</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mi>…</mi><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">(1,0,\ldots,0),(1,1,\ldots,0),\ldots,(1,1,\ldots,1)</annotation></semantics></math>,
 or on a grid with the first two variables. The right-hand side of the
 intended model must be provided.</p>
 <p>We illustrate this for Design 10:</p>
@@ -607,9 +673,12 @@ situations when there are constraints on the region of operability.</p>
 <span><span class="co">## Data are stored in coded form using these coding formulas ...</span></span>
 <span><span class="co">## x1 ~ x1.as.is</span></span>
 <span><span class="co">## x2 ~ x2.as.is</span></span></code></pre>
-<p>Note in this example that it is now the axis points that are at <span class="math inline">\(\pm1\)</span>, while the cube points are at <span class="math inline">\(\pm\sqrt{1/2}\)</span>. (Incidentally, this
-example also illustrates the default codings used when no coding
-formulas are specified.)</p>
+<p>Note in this example that it is now the axis points that are at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\pm1</annotation></semantics></math>,
+while the cube points are at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><msqrt><mrow><mn>1</mn><mi>/</mi><mn>2</mn></mrow></msqrt></mrow><annotation encoding="application/x-tex">\pm\sqrt{1/2}</annotation></semantics></math>.
+(Incidentally, this example also illustrates the default codings used
+when no coding formulas are specified.)</p>
 <p>There are several other types of designs that are useful for response
 surfaces, as mentioned in several of the books referenced in this
 article. Provisions for generating those designs are an area of future
@@ -682,13 +751,15 @@ require a <code>coded.data</code> dataset, the use of one is highly
 recommended.)</p>
 <p>In this particular example, the steepest-ascent information is of
 little use, because there is significant lack of fit for this model
-(<span class="math inline">\(p \approx 0.01\)</span>). It suggests that
-we should try a higher-order model. For example, we could add two-way
-interactions:</p>
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>≈</mo><mn>0.01</mn></mrow><annotation encoding="application/x-tex">p \approx 0.01</annotation></semantics></math>).
+It suggests that we should try a higher-order model. For example, we
+could add two-way interactions:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CR1.rsmi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">CR1.rsm</span>, <span class="va">.</span> <span class="op">~</span> <span class="va">.</span> <span class="op">+</span> <span class="fu"><a href="../reference/FO.html">TWI</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">CR1.rsmi</span><span class="op">)</span></span></code></pre></div>
-<p>The results are not shown, but one finds there is still a small <span class="math inline">\(p\)</span> value for lack-of-fit.</p>
+<p>The results are not shown, but one finds there is still a small
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
+value for lack-of-fit.</p>
 <p>To go further, we need more data. Thus, let us pretend that we now
 collect the data in the second block. Then here are the data from the
 combined blocks:</p>
@@ -775,16 +846,21 @@ experiments:</p>
 <span><span class="co">##          [,1]       [,2]</span></span>
 <span><span class="co">## x1 -0.1601375 -0.9870947</span></span>
 <span><span class="co">## x2 -0.9870947  0.1601375</span></span></code></pre>
-<p>The lack of fit is now non-significant (<span class="math inline">\(p
-\approx 0.69\)</span>). The summary for a second-order model provides
-results of a canonical analysis of the surface rather than for steepest
-ascent. The analysis indicates that the stationary point of the fitted
-surface is at <span class="math inline">\((0.37, 0.33)\)</span> in coded
-units—well within the experimental region; and that both eigenvalues are
-negative, indicating that the stationary point is a maximum. This is the
-kind of situation we dream for in response-surface experimentation—clear
-evidence of a nearby set of optimal conditions. We should probably
-collect some confirmatory data near this estimated optimum at <span class="math inline">\(\text{Time}\approx87\)</span>, <span class="math inline">\(\text{Temp}\approx 177\)</span>, to make sure.</p>
+<p>The lack of fit is now non-significant
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>≈</mo><mn>0.69</mn></mrow><annotation encoding="application/x-tex">p \approx 0.69</annotation></semantics></math>).
+The summary for a second-order model provides results of a canonical
+analysis of the surface rather than for steepest ascent. The analysis
+indicates that the stationary point of the fitted surface is at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mn>0.37</mn><mo>,</mo><mn>0.33</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(0.37, 0.33)</annotation></semantics></math>
+in coded units—well within the experimental region; and that both
+eigenvalues are negative, indicating that the stationary point is a
+maximum. This is the kind of situation we dream for in response-surface
+experimentation—clear evidence of a nearby set of optimal conditions. We
+should probably collect some confirmatory data near this estimated
+optimum at
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Time</mtext><mo>≈</mo><mn>87</mn></mrow><annotation encoding="application/x-tex">\text{Time}\approx87</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Temp</mtext><mo>≈</mo><mn>177</mn></mrow><annotation encoding="application/x-tex">\text{Temp}\approx 177</annotation></semantics></math>,
+to make sure.</p>
 <p>Another example that comes out a different way is a paper-helicopter
 experiment (Box <em>et al.</em> 2005, Table 12.5). This is another
 central-composite experiment, in four variables and two blocks. The data
@@ -925,17 +1001,21 @@ guidance on where to locate the next factorial experiment.</p>
 <p>In the second-order case, the <code>steepest</code> function still
 works, but it uses the ridge analysis method (Hoerl 1959; Draper 1963),
 which is the analog of steepest ascent in the sense that for a specified
-distance <span class="math inline">\(d\)</span>, it finds the point at
-which the predicted response is a maximum among all predictor
-combinations at radius <span class="math inline">\(d\)</span>. This
-method makes sense when the stationary point is some distance away; but
-when this point is nearby, it makes more sense to start at the saddle
-point (rather than the origin) and follow the most steeply rising ridge
-in <em>both</em> directions. This path is obtained using the
+distance
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>,
+it finds the point at which the predicted response is a maximum among
+all predictor combinations at radius
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>.
+This method makes sense when the stationary point is some distance away;
+but when this point is nearby, it makes more sense to start at the
+saddle point (rather than the origin) and follow the most steeply rising
+ridge in <em>both</em> directions. This path is obtained using the
 <code>canonical.path</code> function. In this function, distance is a
 signed quantity, according to the direction along the ridge.</p>
 <p>In the <code>heli</code> example, we do have a nearby stationary
-point. Here are some points within a radius of <span class="math inline">\(5\)</span> along the canonical path:</p>
+point. Here are some points within a radius of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>5</mn><annotation encoding="application/x-tex">5</annotation></semantics></math>
+along the canonical path:</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/steepest.html">canonical.path</a></span><span class="op">(</span><span class="va">heli.rsm</span>, dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre class="ro"><code><span><span class="co">##    dist     x1     x2     x3     x4 |       A       R       W      L |    yhat</span></span>
@@ -963,17 +1043,20 @@ point. Here are some points within a radius of <span class="math inline">\(5\)</
 <p>Box <em>et al.</em> (2005, Table12.7 and Figure12.6) reports some
 results of experimentation along this path. They found the most
 promising location for the next experiment was at a distance of about
-<span class="math inline">\(3.5\)</span> (<span class="math inline">\(-3.5\)</span> on their scale as their signs are
-reversed from ours).</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3.5</mn><annotation encoding="application/x-tex">3.5</annotation></semantics></math>
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>3.5</mn></mrow><annotation encoding="application/x-tex">-3.5</annotation></semantics></math>
+on their scale as their signs are reversed from ours).</p>
 </div>
 <div class="section level2">
 <h2 id="stationary-and-rising-ridge-situations">Stationary and rising-ridge situations<a class="anchor" aria-label="anchor" href="#stationary-and-rising-ridge-situations"></a>
 </h2>
-<p>Canonical analysis becomes unstable in cases where the matrix <span class="math inline">\(\mathbf{B}\)</span> of second-order coefficients
-is singular or nearly so. As an example, consider the dataset
-<code>codata</code> provided with <strong>rsm</strong> and used as an
-example in Box <em>et al.</em> (2005). It comes in coded form, but to
-relate things to the actual variables, let’s add the codings:</p>
+<p>Canonical analysis becomes unstable in cases where the matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐁</mi><annotation encoding="application/x-tex">\mathbf{B}</annotation></semantics></math>
+of second-order coefficients is singular or nearly so. As an example,
+consider the dataset <code>codata</code> provided with
+<strong>rsm</strong> and used as an example in Box <em>et al.</em>
+(2005). It comes in coded form, but to relate things to the actual
+variables, let’s add the codings:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CO</span> <span class="op">=</span> <span class="fu"><a href="../reference/coded.data.html">as.coded.data</a></span><span class="op">(</span><span class="va">codata</span>,  <span class="va">x1</span> <span class="op">~</span> <span class="op">(</span><span class="va">Ethanol</span> <span class="op">-</span> <span class="fl">0.2</span><span class="op">)</span><span class="op">/</span><span class="fl">0.1</span>,  <span class="va">x2</span> <span class="op">~</span> <span class="va">A.F.ratio</span> <span class="op">-</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">CO</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">=</span> <span class="st">"CO.conc"</span></span>
@@ -989,9 +1072,10 @@ relate things to the actual variables, let’s add the codings:</p>
 <span><span class="co">## Data are stored in coded form using these coding formulas ...</span></span>
 <span><span class="co">## x1 ~ (Ethanol - 0.2)/0.1</span></span>
 <span><span class="co">## x2 ~ A.F.ratio - 15</span></span></code></pre>
-<p>This is a <span class="math inline">\(3^2\)</span> design in one
-block. We fit a second-order model and obtain the canonical
-analysis:</p>
+<p>This is a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mn>3</mn><mn>2</mn></msup><annotation encoding="application/x-tex">3^2</annotation></semantics></math>
+design in one block. We fit a second-order model and obtain the
+canonical analysis:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CO.rsm</span> <span class="op">=</span> <span class="fu"><a href="../reference/rsm.html">rsm</a></span><span class="op">(</span><span class="va">CO.conc</span> <span class="op">~</span> <span class="fu"><a href="../reference/FO.html">SO</a></span><span class="op">(</span><span class="va">x1</span>,<span class="va">x2</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">CO</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/rsm.html">canonical</a></span><span class="op">(</span><span class="va">CO.rsm</span><span class="op">)</span></span></code></pre></div>
@@ -1030,8 +1114,9 @@ threshold to zero:</p>
 <span><span class="co">##          [,1]       [,2]</span></span>
 <span><span class="co">## x1  0.6893497 -0.7244288</span></span>
 <span><span class="co">## x2 -0.7244288 -0.6893497</span></span></code></pre>
-<p>Now, the stationary point is at about <span class="math inline">\((-15,15)\)</span> in coded units—very distant from
-the design center.</p>
+<p>Now, the stationary point is at about
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mo>−</mo><mn>15</mn><mo>,</mo><mn>15</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-15,15)</annotation></semantics></math>
+in coded units—very distant from the design center.</p>
 <p>The following statements produce an illustrative plot of this
 situation.</p>
 <div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
@@ -1069,56 +1154,89 @@ factor settings to explore than the ones without a threshold.</p>
 <p>This subsection provides some technical backing for canonical
 analysis and what we do when a threshold is active, in case you’re
 interested.</p>
-<p>Let <span class="math inline">\(\mathbf{b}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> denote the first and
-second-order coefficients of the fitted second-order surface, so that
-the fitted value at a coded point <span class="math inline">\(\mathbf{x}\)</span> is <span class="math inline">\(\hat{y}(\mathbf{x}) = b_0 +
-\mathbf{b}'\mathbf{x} +
-\mathbf{x}'\mathbf{B}\mathbf{x}\)</span>. The stationary point <span class="math inline">\(\mathbf{x}_s\)</span> solves the equation <span class="math inline">\(2\mathbf{B}\mathbf{x}_s + \mathbf{b} =
-\mathbf{0}\)</span>, i.e., <span class="math inline">\(\mathbf{x}_s =
--\frac12\mathbf{B}^{-1}\mathbf{b}\)</span>. The canonical analysis
-yields the decomposition <span class="math display">\[ \mathbf{B} =
-\mathbf{U}\mathbf{\Lambda}\mathbf{U}' =
-\lambda_1\mathbf{u}_1\mathbf{u}_1' +
-\lambda_2\mathbf{u}_2\mathbf{u}_2' + \cdots +
-\lambda_k\mathbf{u}_k\mathbf{u}_k' \]</span> where there are <span class="math inline">\(k\)</span> predictors, the <span class="math inline">\(\mathbf{u}_j\)</span> form orthonormal columns of
-<span class="math inline">\(\mathbf{U}\)</span>, and the <span class="math inline">\(\lambda_j\)</span> are the eigenvalues, and <span class="math inline">\(\mathbf{\Lambda} =
-\mathrm{diag}(\lambda_1,\lambda_2,\ldots,\lambda_k)\)</span>. It also
-happens to be true that <span class="math display">\[ \mathbf{B}^{-1} =
-\mathbf{U}\mathbf{\Lambda}^{-1}\mathbf{U}'
-= \textstyle\frac1{\lambda_1}\mathbf{u}_1\mathbf{u}_1' +
-\frac1{\lambda_2}\mathbf{u}_2\mathbf{u}_2' + \cdots +
-\frac1{\lambda_k}\mathbf{u}_k\mathbf{u}_k'  \]</span> Thus, a really
-small value of <span class="math inline">\(\lambda_j\)</span> hardly
-affects <span class="math inline">\(\mathbf{B}\)</span>, but has a huge
-influence on <span class="math inline">\(\mathbf{B}^{-1}\)</span>.</p>
-<p>Now, for some <span class="math inline">\(m&lt;k\)</span>, let <span class="math inline">\(\mathbf{\Lambda}_*\)</span> be the <span class="math inline">\(m\times m\)</span> diagonal matrix with only some
-subset of <span class="math inline">\(m\)</span> eigenvalues; and let
-<span class="math inline">\(\mathbf{U}_*\)</span> be the <span class="math inline">\(k \times m\)</span> matrix with the corresponding
-<span class="math inline">\(\mathbf{u}_j\)</span>. If we excluded the
-smallest absolute eigenvalues, then <span class="math inline">\(\mathbf{B}_* =
-\mathbf{U}_*\mathbf{\Lambda}_*\mathbf{U}'_* \approx
-\mathbf{B}\)</span>. Moreover, by orthogonality, <span class="math inline">\(\mathbf{U}'\mathbf{B} =
-\mathbf{\Lambda}\mathbf{U}'\)</span> and <span class="math inline">\(\mathbf{U}_*'\mathbf{B} =
-\mathbf{\Lambda}_*\mathbf{U}_*'\)</span>. The stationary point
-satisfies <span class="math inline">\(2\mathbf{B}\mathbf{x} + \mathbf{b}
-= \mathbf{0}\)</span> so that <span class="math inline">\(2\mathbf{U}_*'\mathbf{B}\mathbf{x} +
-\mathbf{U}_*'\mathbf{b} = \mathbf{0}\)</span>. Accordingly, we
-propose to define a pseudo-stationary point <span class="math inline">\(\mathbf{x}_*\)</span> such that <span class="math inline">\(2\mathbf{U}_*'\mathbf{B}\mathbf{x}_* +
-\mathbf{U}_*'\mathbf{b} = \mathbf{0}\)</span>; i.e., <span class="math inline">\(2\mathbf{\Lambda}_*\mathbf{U}_*'\mathbf{x}_* +
-\mathbf{U}_*'\mathbf{b} = \mathbf{0}\)</span>.</p>
-<p>This comprises <span class="math inline">\(m\)</span> equations in
-<span class="math inline">\(k&gt;m\)</span> unknowns. To make it unique,
-we opt to choose the solution that is closest to the origin; that is,
-minimize <span class="math inline">\(\mathbf{x}'\mathbf{x}\)</span>
-subject to the constraint that <span class="math inline">\(2\mathbf{\Lambda}_*\mathbf{U}_*'\mathbf{x} +
-\mathbf{U}_*'\mathbf{b} = \mathbf{0}\)</span>. Using variational
-methods (Lagrange multipliers), we find that the resulting solution is
-<span class="math inline">\(\mathbf{x}_*=
--\frac12\mathbf{U}_*\mathbf{\Lambda}_*^{-1}\mathbf{U}_*'\mathbf{b}\)</span>.
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐛</mi><annotation encoding="application/x-tex">\mathbf{b}</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐁</mi><annotation encoding="application/x-tex">\mathbf{B}</annotation></semantics></math>
+denote the first and second-order coefficients of the fitted
+second-order surface, so that the fitted value at a coded point
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐱</mi><annotation encoding="application/x-tex">\mathbf{x}</annotation></semantics></math>
+is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>y</mi><mo accent="true">̂</mo></mover><mrow><mo stretchy="true" form="prefix">(</mo><mi>𝐱</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>b</mi><mn>0</mn></msub><mo>+</mo><mi>𝐛</mi><mi>′</mi><mi>𝐱</mi><mo>+</mo><mi>𝐱</mi><mi>′</mi><mi>𝐁</mi><mi>𝐱</mi></mrow><annotation encoding="application/x-tex">\hat{y}(\mathbf{x}) = b_0 + \mathbf{b}'\mathbf{x} + \mathbf{x}'\mathbf{B}\mathbf{x}</annotation></semantics></math>.
+The stationary point
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐱</mi><mi>s</mi></msub><annotation encoding="application/x-tex">\mathbf{x}_s</annotation></semantics></math>
+solves the equation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>𝐁</mi><msub><mi>𝐱</mi><mi>s</mi></msub><mo>+</mo><mi>𝐛</mi><mo>=</mo><mn>𝟎</mn></mrow><annotation encoding="application/x-tex">2\mathbf{B}\mathbf{x}_s + \mathbf{b} = \mathbf{0}</annotation></semantics></math>,
+i.e.,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐱</mi><mi>s</mi></msub><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>𝐁</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>𝐛</mi></mrow><annotation encoding="application/x-tex">\mathbf{x}_s = -\frac12\mathbf{B}^{-1}\mathbf{b}</annotation></semantics></math>.
+The canonical analysis yields the decomposition
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐁</mi><mo>=</mo><mi>𝐔</mi><mi>𝚲</mi><mi>𝐔</mi><mi>′</mi><mo>=</mo><msub><mi>λ</mi><mn>1</mn></msub><msub><mi>𝐮</mi><mn>1</mn></msub><msub><mi>𝐮</mi><mn>1</mn></msub><mi>′</mi><mo>+</mo><msub><mi>λ</mi><mn>2</mn></msub><msub><mi>𝐮</mi><mn>2</mn></msub><msub><mi>𝐮</mi><mn>2</mn></msub><mi>′</mi><mo>+</mo><mi>⋯</mi><mo>+</mo><msub><mi>λ</mi><mi>k</mi></msub><msub><mi>𝐮</mi><mi>k</mi></msub><msub><mi>𝐮</mi><mi>k</mi></msub><mi>′</mi></mrow><annotation encoding="application/x-tex"> \mathbf{B} = \mathbf{U}\mathbf{\Lambda}\mathbf{U}' = \lambda_1\mathbf{u}_1\mathbf{u}_1' + \lambda_2\mathbf{u}_2\mathbf{u}_2' + \cdots + \lambda_k\mathbf{u}_k\mathbf{u}_k' </annotation></semantics></math>
+where there are
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+predictors, the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐮</mi><mi>j</mi></msub><annotation encoding="application/x-tex">\mathbf{u}_j</annotation></semantics></math>
+form orthonormal columns of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐔</mi><annotation encoding="application/x-tex">\mathbf{U}</annotation></semantics></math>,
+and the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>λ</mi><mi>j</mi></msub><annotation encoding="application/x-tex">\lambda_j</annotation></semantics></math>
+are the eigenvalues, and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝚲</mi><mo>=</mo><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">g</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>λ</mi><mn>1</mn></msub><mo>,</mo><msub><mi>λ</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>λ</mi><mi>k</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathbf{\Lambda} = \mathrm{diag}(\lambda_1,\lambda_2,\ldots,\lambda_k)</annotation></semantics></math>.
+It also happens to be true that
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>𝐁</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mi>𝐔</mi><msup><mi>𝚲</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi>𝐔</mi><mi>′</mi><mo>=</mo><mfrac><mn>1</mn><msub><mi>λ</mi><mn>1</mn></msub></mfrac><msub><mi>𝐮</mi><mn>1</mn></msub><msub><mi>𝐮</mi><mn>1</mn></msub><mi>′</mi><mo>+</mo><mfrac><mn>1</mn><msub><mi>λ</mi><mn>2</mn></msub></mfrac><msub><mi>𝐮</mi><mn>2</mn></msub><msub><mi>𝐮</mi><mn>2</mn></msub><mi>′</mi><mo>+</mo><mi>⋯</mi><mo>+</mo><mfrac><mn>1</mn><msub><mi>λ</mi><mi>k</mi></msub></mfrac><msub><mi>𝐮</mi><mi>k</mi></msub><msub><mi>𝐮</mi><mi>k</mi></msub><mi>′</mi></mrow><annotation encoding="application/x-tex"> \mathbf{B}^{-1} = \mathbf{U}\mathbf{\Lambda}^{-1}\mathbf{U}'
+= \textstyle\frac1{\lambda_1}\mathbf{u}_1\mathbf{u}_1' + \frac1{\lambda_2}\mathbf{u}_2\mathbf{u}_2' + \cdots + \frac1{\lambda_k}\mathbf{u}_k\mathbf{u}_k'  </annotation></semantics></math>
+Thus, a really small value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>λ</mi><mi>j</mi></msub><annotation encoding="application/x-tex">\lambda_j</annotation></semantics></math>
+hardly affects
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝐁</mi><annotation encoding="application/x-tex">\mathbf{B}</annotation></semantics></math>,
+but has a huge influence on
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>𝐁</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\mathbf{B}^{-1}</annotation></semantics></math>.</p>
+<p>Now, for some
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&lt;</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">m&lt;k</annotation></semantics></math>,
+let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝚲</mi><mo>*</mo></msub><annotation encoding="application/x-tex">\mathbf{\Lambda}_*</annotation></semantics></math>
+be the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">m\times m</annotation></semantics></math>
+diagonal matrix with only some subset of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+eigenvalues; and let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐔</mi><mo>*</mo></msub><annotation encoding="application/x-tex">\mathbf{U}_*</annotation></semantics></math>
+be the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">k \times m</annotation></semantics></math>
+matrix with the corresponding
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐮</mi><mi>j</mi></msub><annotation encoding="application/x-tex">\mathbf{u}_j</annotation></semantics></math>.
+If we excluded the smallest absolute eigenvalues, then
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐁</mi><mo>*</mo></msub><mo>=</mo><msub><mi>𝐔</mi><mo>*</mo></msub><msub><mi>𝚲</mi><mo>*</mo></msub><mi>𝐔</mi><msub><mi>′</mi><mo>*</mo></msub><mo>≈</mo><mi>𝐁</mi></mrow><annotation encoding="application/x-tex">\mathbf{B}_* = \mathbf{U}_*\mathbf{\Lambda}_*\mathbf{U}'_* \approx \mathbf{B}</annotation></semantics></math>.
+Moreover, by orthogonality,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐔</mi><mi>′</mi><mi>𝐁</mi><mo>=</mo><mi>𝚲</mi><mi>𝐔</mi><mi>′</mi></mrow><annotation encoding="application/x-tex">\mathbf{U}'\mathbf{B} = \mathbf{\Lambda}\mathbf{U}'</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐁</mi><mo>=</mo><msub><mi>𝚲</mi><mo>*</mo></msub><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi></mrow><annotation encoding="application/x-tex">\mathbf{U}_*'\mathbf{B} = \mathbf{\Lambda}_*\mathbf{U}_*'</annotation></semantics></math>.
+The stationary point satisfies
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>𝐁</mi><mi>𝐱</mi><mo>+</mo><mi>𝐛</mi><mo>=</mo><mn>𝟎</mn></mrow><annotation encoding="application/x-tex">2\mathbf{B}\mathbf{x} + \mathbf{b} = \mathbf{0}</annotation></semantics></math>
+so that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐁</mi><mi>𝐱</mi><mo>+</mo><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐛</mi><mo>=</mo><mn>𝟎</mn></mrow><annotation encoding="application/x-tex">2\mathbf{U}_*'\mathbf{B}\mathbf{x} + \mathbf{U}_*'\mathbf{b} = \mathbf{0}</annotation></semantics></math>.
+Accordingly, we propose to define a pseudo-stationary point
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝐱</mi><mo>*</mo></msub><annotation encoding="application/x-tex">\mathbf{x}_*</annotation></semantics></math>
+such that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐁</mi><msub><mi>𝐱</mi><mo>*</mo></msub><mo>+</mo><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐛</mi><mo>=</mo><mn>𝟎</mn></mrow><annotation encoding="application/x-tex">2\mathbf{U}_*'\mathbf{B}\mathbf{x}_* + \mathbf{U}_*'\mathbf{b} = \mathbf{0}</annotation></semantics></math>;
+i.e.,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mi>𝚲</mi><mo>*</mo></msub><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><msub><mi>𝐱</mi><mo>*</mo></msub><mo>+</mo><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐛</mi><mo>=</mo><mn>𝟎</mn></mrow><annotation encoding="application/x-tex">2\mathbf{\Lambda}_*\mathbf{U}_*'\mathbf{x}_* + \mathbf{U}_*'\mathbf{b} = \mathbf{0}</annotation></semantics></math>.</p>
+<p>This comprises
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+equations in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>&gt;</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">k&gt;m</annotation></semantics></math>
+unknowns. To make it unique, we opt to choose the solution that is
+closest to the origin; that is, minimize
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝐱</mi><mi>′</mi><mi>𝐱</mi></mrow><annotation encoding="application/x-tex">\mathbf{x}'\mathbf{x}</annotation></semantics></math>
+subject to the constraint that
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mi>𝚲</mi><mo>*</mo></msub><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐱</mi><mo>+</mo><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐛</mi><mo>=</mo><mn>𝟎</mn></mrow><annotation encoding="application/x-tex">2\mathbf{\Lambda}_*\mathbf{U}_*'\mathbf{x} + \mathbf{U}_*'\mathbf{b} = \mathbf{0}</annotation></semantics></math>.
+Using variational methods (Lagrange multipliers), we find that the
+resulting solution is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>𝐱</mi><mo>*</mo></msub><mo>=</mo><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>𝐔</mi><mo>*</mo></msub><msubsup><mi>𝚲</mi><mo>*</mo><mrow><mo>−</mo><mn>1</mn></mrow></msubsup><msub><mi>𝐔</mi><mo>*</mo></msub><mi>′</mi><mi>𝐛</mi></mrow><annotation encoding="application/x-tex">\mathbf{x}_*= -\frac12\mathbf{U}_*\mathbf{\Lambda}_*^{-1}\mathbf{U}_*'\mathbf{b}</annotation></semantics></math>.
 In other words, we simply exclude some terms corresponding to small
-<span class="math inline">\(\lambda_i\)</span> in the above expression
-for <span class="math inline">\(\mathbf{B}^{-1}\)</span>. This is the
-stationary point returned in <strong>rsm</strong>’s
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>λ</mi><mi>i</mi></msub><annotation encoding="application/x-tex">\lambda_i</annotation></semantics></math>
+in the above expression for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>𝐁</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">\mathbf{B}^{-1}</annotation></semantics></math>.
+This is the stationary point returned in <strong>rsm</strong>’s
 <code>canonical</code> and related functions when a threshold is used to
 exclude some small eigenvalues.</p>
 </div>
@@ -1192,7 +1310,7 @@ Analysis and Statistical Software</em>. Warrenton, VA. URL <a href="https://www.
 <p>Wu CFJ, Hamada M (2000). <em>Experiments: Planning, Analysis, and
 Parameter Design Optimization</em>. John Wiley &amp; Sons, New York.</p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -1203,15 +1321,15 @@ Parameter Design Optimization</em>. John Wiley &amp; Sons, New York.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
